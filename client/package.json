@@ -8,7 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.12.0",
+    "@fortawesome/free-regular-svg-icons": "^5.12.0",
     "core-js": "^3.4.4",
+    "electron": "^7.1.8",
     "vue": "^2.6.10"
   },
   "devDependencies": {
