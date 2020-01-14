@@ -7,7 +7,7 @@
       <Icon _class="fab fa-github" desc="Github" />
       <Icon _class="fas fa-file" desc="Resume" />
     </div>
-    <div class="container grid">
+    <div class="container project-grid">
       <div class="heading">
         <h1>Projects</h1>
         <hr />
@@ -62,18 +62,25 @@ hr {
   display: grid;
 }
 
+.project-grid {
+  display: grid;
+  grid-gap: 20px;
+}
+
 .heading {
   grid-column: 1/ 1;
 }
 
 .card-grid {
-  grid-row
+  grid-column: 2/ 5;
   display: grid;
   grid-template-columns: repeat(2, auto);
+  grid-template-rows: 350px auto;
   grid-gap: 15px;
 }
 
 .head-card {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
+  grid-auto-rows: 100%;
 }
 </style>
