@@ -6,9 +6,12 @@
       <i class="fas fa-play"></i>
     </a>
     <div class="card-body">
-      <h2>Stuff</h2>
-      <p>This is the thing.</p>
-      <a href="#" class="button">Click here for more</a>
+      <h2>{{ heading }}</h2>
+      <small>{{ date }}</small>
+      <p>{{ body }}</p>
+      <a :href="url" class="button" target="_blank">
+        <i class="fab fa-github"></i> Click here for more
+      </a>
     </div>
   </div>
 </template>
@@ -20,7 +23,11 @@ export default {
     src: {
       default: "https://source.unsplash.com/500x500",
       type: String
-    }
+    },
+    heading: String,
+    date: String,
+    url: String,
+    body: String
   }
 };
 </script>

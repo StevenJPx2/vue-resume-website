@@ -1,9 +1,12 @@
 from app import db
 from datetime import datetime
 import re
+from github import GithubException
 from github import Github
 import os
 import json
+
+DATABASE_PATH = os.path.abspath('database/projects_plchldr.json')
 
 
 class Post(db.Document):
@@ -39,20 +42,24 @@ class ProjectPost(Post):
 def load_all_repo_data():
     g = Github(os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASS"))
     repo_list = []
-    for repo in g.get_repos():
-        json_d = {
-            "title": repo.name,
-            "date": repo.created_at.strftime(format="%b %d, %Y"),
-            "github_url": repo.url,
-            "body": repo.description
-        }
+    for repo in g.get_user('StevenJPx2').get_repos():
+        try:
+            print(f"Saved {repo}")
+            json_d = {
+                "title": repo.name,
+                "date": repo.created_at.strftime(format="%b %d, %Y"),
+                "github_url": repo.html_url,
+                "body": repo.description
+            }
+        except GithubException:
+            print(f"Skipped {repo}")
         repo_list.append(json_d)
 
-        p = ProjectPost(title=repo.name,
-                        date=repo.created_at.strftime(format="%b %d, %Y"),
-                        github_url=repo.url,
-                        body=repo.description
-                        )
-        p.save()
+        # p = ProjectPost(title=repo.name,
+        #                 date=repo.created_at.strftime(format="%b %d, %Y"),
+        #                 github_url=repo.url,
+        #                 body=repo.description
+        #                 )
+        # p.save()
 
-    json.dump(repo_list, open('../database/projects_plchldr.json'))
+    json.dump(repo_list, open(DATABASE_PATH, 'w'))

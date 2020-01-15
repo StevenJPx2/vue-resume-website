@@ -13,7 +13,21 @@
         <hr />
       </div>
       <div class="card-grid">
-        <Card :key="i" v-for="i in 10" :class="i == 1 ? 'head-card' : ''" />
+        <Card
+          :heading="projects[0].title"
+          :date="projects[0].date"
+          :url="projects[0].github_url"
+          :body="projects[0].body"
+          class="head-card"
+        />
+        <Card
+          :key="project"
+          v-for="project in projects.slice(1)"
+          :heading="project.title"
+          :date="project.date"
+          :url="project.github_url"
+          :body="project.body"
+        />
       </div>
     </div>
   </div>
@@ -22,12 +36,37 @@
 <script>
 import Icon from "./components/Icon.vue";
 import Card from "./components/Card.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     Icon,
     Card
+  },
+  data() {
+    return {
+      projects: []
+    };
+  },
+  methods: {
+    getProjects() {
+      const path = "http://localhost:5000/projects";
+      axios
+        .get(path)
+        .then(res => {
+          this.projects = res.data.content;
+          // eslint-disable-next-line no-console
+          console.log(this.projects);
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
+    }
+  },
+  created() {
+    this.getProjects();
   }
 };
 </script>

@@ -1,16 +1,18 @@
 from flask import jsonify
 from app import app
-from app.models import ProjectPost
+import json
+from app.models import ProjectPost, load_all_repo_data
 
-DEBUG = True
+# load_all_repo_data()
 
 
 @app.route('/projects', methods=['GET'])
 def return_projects():
+    project_list = json.load(open('database/projects_plchldr.json', 'r'))
     return jsonify(
         {
             "status": "200",
-            "content": ProjectPost(title="Hi")
+            "content": project_list
         }
     )
 
