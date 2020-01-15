@@ -2,6 +2,8 @@ from flask import jsonify
 from app import app
 from app.models import ProjectPost
 
+DEBUG = True
+
 
 @app.route('/projects', methods=['GET'])
 def return_projects():
