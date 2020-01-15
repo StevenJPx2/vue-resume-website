@@ -63,3 +63,8 @@ def load_all_repo_data():
         # p.save()
 
     json.dump(repo_list, open(DATABASE_PATH, 'w'))
+
+
+def return_repo_data():
+    load_all_repo_data()
+    return json.load(open(DATABASE_PATH, 'r'))

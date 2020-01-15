@@ -10,7 +10,7 @@
       <small>{{ date }}</small>
       <p>{{ body }}</p>
       <a :href="url" class="button" target="_blank">
-        <i class="fab fa-github"></i> Click here for more
+        <i class="fab fa-github"></i> Github Link
       </a>
     </div>
   </div>
