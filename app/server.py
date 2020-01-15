@@ -1,7 +1,7 @@
 from flask import jsonify
 from app import app
 import json
-from app.models import ProjectPost, load_all_repo_data
+# from app.models import ProjectPost, load_all_repo_data
 
 # load_all_repo_data()
 
@@ -15,7 +15,3 @@ def return_projects():
             "content": project_list
         }
     )
-
-
-if __name__ == '__main__':
-    app.run()
