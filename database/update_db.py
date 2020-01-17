@@ -31,5 +31,5 @@ def load_all_repo_data():
 
 if __name__ == "__main__":
     while True:
-        time.sleep(120)
+        time.sleep(5*60)
         load_all_repo_data()
