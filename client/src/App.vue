@@ -2,8 +2,16 @@
   <div id="app">
     <h1>Steven John</h1>
     <div class="container flex">
-      <Icon _class="fab fa-medium" desc="Medium" />
-      <Icon _class="fab fa-codepen" desc="Codepen" />
+      <Icon
+        _class="fab fa-medium"
+        desc="Medium"
+        link="https://medium.com/@stevenjohn"
+      />
+      <Icon
+        _class="fab fa-jsfiddle"
+        desc="JSFiddle"
+        link="https://jsfiddle.net/user/StevenJPx2/fiddles/"
+      />
       <Icon
         _class="fab fa-github"
         desc="Github"
@@ -76,6 +84,37 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width: 768px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+
+  .heading {
+    grid-column: 1/ 1;
+  }
+
+  .card-grid {
+    grid-column: 2/ 5;
+  }
+
+  .head-card {
+    grid-column: 1 / 3;
+    grid-auto-rows: 100%;
+  }
+}
+
 h1 {
   text-align: center;
 }
@@ -94,7 +133,6 @@ hr {
 .container {
   text-align: center;
   margin: 60px auto 0px auto;
-  width: 1200px;
 }
 
 .flex {
@@ -110,19 +148,8 @@ hr {
   grid-gap: 20px;
 }
 
-.heading {
-  grid-column: 1/ 1;
-}
-
 .card-grid {
-  grid-column: 2/ 5;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 15px;
-}
-
-.head-card {
-  grid-column: 1 / 3;
-  grid-auto-rows: 100%;
 }
 </style>
