@@ -1,5 +1,6 @@
-import json
 import os
+import json
+import time
 
 from github import Github, GithubException
 
@@ -28,5 +29,7 @@ def load_all_repo_data():
     json.dump(rps_sorted, open(DATABASE_PATH, 'w'))
 
 
-def return_repo_data():
-    return json.load(open(DATABASE_PATH, 'r'))
+if __name__ == "__main__":
+    while True:
+        time.sleep(120)
+        load_all_repo_data()

@@ -1,11 +1,7 @@
 from flask import jsonify
-import asyncio as a
 
 from app import app
-from app.models import return_repo_data, clock_update_repos
-
-a.tasks(clock_update_repos())
-a.run()
+from app.models import return_repo_data
 
 
 @app.route('/projects', methods=['GET'])
