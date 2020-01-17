@@ -41,7 +41,7 @@ class ProjectPost(Post):
 
 def load_all_repo_data():
     g = Github(os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASS"))
-    repo_list = []
+    repo_list = {}
     for repo in g.get_user('StevenJPx2').get_repos():
         try:
             print(f"Saved {repo}")
@@ -53,7 +53,7 @@ def load_all_repo_data():
             }
         except GithubException:
             print(f"Skipped {repo}")
-        repo_list.append(json_d)
+        repo_list[repo.updated_at] = json_d
 
         # p = ProjectPost(title=repo.name,
         #                 date=repo.created_at.strftime(format="%b %d, %Y"),
@@ -62,7 +62,9 @@ def load_all_repo_data():
         #                 )
         # p.save()
 
-    json.dump(repo_list, open(DATABASE_PATH, 'w'))
+    rps_sorted = list(zip(*sorted(repo_list.items(), key=lambda x: x[0], reverse=True)))[1]
+
+    json.dump(rps_sorted, open(DATABASE_PATH, 'w'))
 
 
 def return_repo_data():

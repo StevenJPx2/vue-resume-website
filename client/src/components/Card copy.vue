@@ -45,6 +45,36 @@ img {
   object-fit: cover;
 }
 
+i.fa-play {
+  font-size: 1.5rem;
+  color: white;
+  position: absolute;
+  display: none;
+  z-index: 100;
+  top: 43%;
+  left: 46%;
+}
+
+.img-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.demo-link {
+  position: relative;
+  transition: all ease-out 0.2s;
+  display: none;
+}
+
+.demo-link:hover i.fa-play,
+.demo-link:hover .img-overlay {
+  display: block;
+}
+
 h2 {
   margin-bottom: 3px;
 }

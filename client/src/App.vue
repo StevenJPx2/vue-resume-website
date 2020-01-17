@@ -4,7 +4,11 @@
     <div class="container flex">
       <Icon _class="fab fa-medium" desc="Medium" />
       <Icon _class="fab fa-codepen" desc="Codepen" />
-      <Icon _class="fab fa-github" desc="Github" />
+      <Icon
+        _class="fab fa-github"
+        desc="Github"
+        link="https://www.github.com/StevenJPx2"
+      />
       <Icon _class="fas fa-file" desc="Resume" />
     </div>
     <div class="container project-grid">
@@ -55,7 +59,7 @@ export default {
       axios
         .get(path)
         .then(res => {
-          this.projects = res.data.content;
+          this.projects = res.data;
           // eslint-disable-next-line no-console
           console.log(this.projects);
         })
@@ -113,8 +117,7 @@ hr {
 .card-grid {
   grid-column: 2/ 5;
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: 350px auto;
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 15px;
 }
 

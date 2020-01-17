@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="icon">
+  <a :href="link" class="icon" :target="link != '#' ? '_blank' : ''">
     <i :class="_class" :style="style_"></i>
     <p>{{ desc }}</p>
   </a>
@@ -11,7 +11,8 @@ export default {
   props: {
     _class: String,
     desc: String,
-    size: { default: 32, type: Number }
+    size: { default: 32, type: Number },
+    link: { default: "#", type: String }
   },
   data: function() {
     return {
