@@ -44,7 +44,6 @@ def load_all_repo_data():
     repo_list = {}
     for repo in g.get_user('StevenJPx2').get_repos():
         try:
-            print(f"Saved {repo}")
             json_d = {
                 "title": repo.name,
                 "date": repo.created_at.strftime(format="%b %d, %Y"),
@@ -52,7 +51,6 @@ def load_all_repo_data():
                 "body": repo.description
             }
         except GithubException:
-            print(f"Skipped {repo}")
         repo_list[repo.updated_at] = json_d
 
         # p = ProjectPost(title=repo.name,

@@ -17,7 +17,11 @@
         desc="Github"
         link="https://www.github.com/StevenJPx2"
       />
-      <Icon _class="fas fa-file" desc="Resume" />
+      <Icon
+        _class="fas fa-file"
+        desc="Resume"
+        link="https://drive.google.com/file/d/15aUasdl3vPyJUK3LdoHs7ektqL7kRrj1/view?usp=sharing"
+      />
     </div>
     <div class="container project-grid">
       <div class="heading">
@@ -30,6 +34,7 @@
           :date="projects[0].date"
           :url="projects[0].github_url"
           :body="projects[0].body"
+          :head="true"
           class="head-card"
         />
         <Card
@@ -42,6 +47,11 @@
         />
       </div>
     </div>
+    <footer>
+      <hr />
+      Created using <i class="fab fa-vuejs"></i> and
+      <i class="fas fa-flask"></i> with <i class="fas fa-heart"></i>
+    </footer>
   </div>
 </template>
 
@@ -88,6 +98,10 @@ export default {
   .container {
     width: auto;
   }
+
+  footer > hr {
+    width: auto;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -112,6 +126,10 @@ export default {
   .head-card {
     grid-column: 1 / 3;
     grid-auto-rows: 100%;
+  }
+
+  footer > hr {
+    width: 1200px;
   }
 }
 
@@ -151,5 +169,11 @@ hr {
 .card-grid {
   display: grid;
   grid-gap: 15px;
+}
+
+footer {
+  color: #777;
+  text-align: center;
+  margin: 30px auto 10px auto;
 }
 </style>
