@@ -3,6 +3,7 @@
 *.mp4
 *.sketch
 database/Dockerfile
+database/projects_plchldr.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
