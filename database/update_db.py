@@ -1,4 +1,3 @@
-import os
 import json
 import time
 
@@ -8,7 +7,7 @@ DATABASE_PATH = '/database/projects_plchldr.json'
 
 
 def load_all_repo_data():
-    g = Github(os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASS"))
+    g = Github()
     repo_list = {}
     for repo in g.get_user('StevenJPx2').get_repos():
         try:
@@ -32,4 +31,7 @@ def load_all_repo_data():
 if __name__ == "__main__":
     while True:
         time.sleep(10)
-        load_all_repo_data()
+        try:
+            load_all_repo_data()
+        except GithubException:
+            time.sleep(20)

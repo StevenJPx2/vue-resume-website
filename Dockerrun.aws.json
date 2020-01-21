@@ -1,0 +1,58 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "volumes": [
+        {
+            "name": "data",
+            "sourcePath": "database/"
+        }
+    ],
+    "containerDefinitions": [
+        {
+            "name": "my-app",
+            "image": "stevenjp/resume-website",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 8080,
+                    "containerPort": 80
+                }
+            ]
+
+        }, 
+        {
+            "name": "my-api",
+            "image": "stevenjp/my-api",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 5000,
+                    "containerPort": 5000
+                }
+            ],
+            "links": [
+                "data-update"
+            ],
+            "mountPoints": [
+                {
+                    "sourceVolume": "data",
+                    "containerPath": "/database",
+                    "readOnly": true
+                }
+            ]
+        },
+        {
+            "name": "data-update",
+            "image": "stevenjp/database",
+            "memory": 128,
+            "mountPoints": [
+                {
+                    "sourceVolume": "data",
+                    "containerPath": "/database"
+                }
+            ]
+        }
+
+    ]
+}
