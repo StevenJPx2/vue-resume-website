@@ -2,7 +2,7 @@
 .DS_Store
 *.mp4
 *.sketch
-
+database/Dockerfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

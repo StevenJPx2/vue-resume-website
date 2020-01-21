@@ -4,7 +4,7 @@ import time
 
 from github import Github, GithubException
 
-DATABASE_PATH = os.path.abspath('database/projects_plchldr.json')
+DATABASE_PATH = '/database/projects_plchldr.json'
 
 
 def load_all_repo_data():
@@ -31,5 +31,5 @@ def load_all_repo_data():
 
 if __name__ == "__main__":
     while True:
-        time.sleep(5*60)
+        time.sleep(10)
         load_all_repo_data()
