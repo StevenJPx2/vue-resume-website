@@ -3,6 +3,7 @@
 *.mp4
 *.sketch
 database/projects_plchldr.json
+Dockerrun.aws.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -133,3 +134,4 @@ dmypy.json
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+Dockerrun.aws.json

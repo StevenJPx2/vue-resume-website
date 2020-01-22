@@ -1,6 +1,7 @@
 import json
 import time
 
+import requests
 from github import Github, GithubException
 
 DATABASE_PATH = '/database/projects_plchldr.json'
@@ -33,5 +34,5 @@ if __name__ == "__main__":
         time.sleep(10)
         try:
             load_all_repo_data()
-        except GithubException:
+        except requests.exceptions.ReadTimeout:
             time.sleep(20)
