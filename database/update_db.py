@@ -1,4 +1,5 @@
 import json
+import os
 import time
 
 import requests
@@ -8,7 +9,7 @@ DATABASE_PATH = '/database/projects_plchldr.json'
 
 
 def load_all_repo_data():
-    g = Github()
+    g = Github(os.getenv("GITHUB_USER"), os.getenv("GITHUB_PASS"))
     repo_list = {}
     for repo in g.get_user('StevenJPx2').get_repos():
         try:
