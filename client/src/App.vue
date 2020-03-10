@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     getProjects() {
-      const path = "http://localhost:5000/projects";
+      const path = "/projects";
       axios
         .get(path)
         .then(res => {

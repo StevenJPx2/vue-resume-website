@@ -3,23 +3,47 @@
     "volumes": [
         {
             "name": "data",
-            "sourcePath": "database/"
+            "host": {
+                "sourcePath": "/var/app/current/database"
+            }
+        },
+        {
+            "name": "client-vol",
+            "host": {
+                "sourcePath": "/var/app/current/client"
+            }
+        },
+        {
+            "name": "app-vol",
+            "host": {
+                "sourcePath": "/var/app/current/"
+            }
         }
+
+
     ],
     "containerDefinitions": [
         {
-            "name": "my-app",
-            "image": "stevenjp/resume-website",
-            "essential": true,
+            "name": "data-update",
+            "image": "stevenjp/database",
             "memory": 128,
-            "portMappings": [
+            "mountPoints": [
                 {
-                    "hostPort": 8080,
-                    "containerPort": 80
+                    "sourceVolume": "data",
+                    "containerPath": "/database"
+                }
+            ],
+            "environment": [
+                {
+                    "name": "GITHUB_USER",
+                    "value": "stevenjpx2"
+                }, 
+                {
+                    "name": "GITHUB_PASS",
+                    "value": "tojqyb-0fisme-vUnbas"
                 }
             ]
-
-        }, 
+        },
         {
             "name": "my-api",
             "image": "stevenjp/my-api",
@@ -39,20 +63,38 @@
                     "sourceVolume": "data",
                     "containerPath": "/database",
                     "readOnly": true
+                },
+                {
+                    "sourceVolume": "app-vol",
+                    "containerPath": "/app",
+                    "readOnly": true
                 }
+
             ]
         },
         {
-            "name": "data-update",
-            "image": "stevenjp/database",
+            "name": "my-app",
+            "image": "stevenjp/resume-website",
+            "essential": true,
             "memory": 128,
-            "mountPoints": [
+            "portMappings": [
                 {
-                    "sourceVolume": "data",
-                    "containerPath": "/database"
+                    "hostPort": 80,
+                    "containerPort": 80
                 }
-            ]
-        }
+            ],
+            "links": [
+                "my-api"
+            ],
+            "mountPoints": [
+				{
+					"sourceVolume": "client-vol",
+					"containerPath": "/client",
+					"readOnly": true
+				}
 
+            ]
+
+        } 
     ]
 }
