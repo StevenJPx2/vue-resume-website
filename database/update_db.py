@@ -35,5 +35,6 @@ if __name__ == "__main__":
         time.sleep(10)
         try:
             load_all_repo_data()
-        except requests.exceptions.ReadTimeout:
+        except (requests.exceptions.ReadTimeout, GithubException) as e:
+            print(f"Sleeping for 20 seconds... {e}")
             time.sleep(20)
