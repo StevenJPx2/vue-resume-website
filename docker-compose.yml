@@ -1,0 +1,11 @@
+version: '3'
+services:
+    resume-website:
+        image: "stevenjp/resume-website"
+        ports: 
+            - "80:80"
+        volumes:
+            - ./data:/database
+        environment:
+            - GITHUB_USER
+            - GITHUB_PASS
