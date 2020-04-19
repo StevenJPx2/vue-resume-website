@@ -45,4 +45,5 @@ def return_repo_data():
         start_time = time.time()
         open(SAVED_TIME_PATH, 'w').write(str(start_time))
         load_all_repo_data()
+
     return json.load(open(DATABASE_PATH, 'r'))
