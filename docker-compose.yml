@@ -1,11 +1,21 @@
 version: '3'
 services:
-    resume-website:
-        image: "stevenjp/resume-website"
-        ports: 
-            - "80:80"
-        volumes:
-            - ./data:/database
-        environment:
-            - GITHUB_USER
-            - GITHUB_PASS
+  resume-website:
+    image: "stevenjp/resume-website:secure"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data:/database
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    environment:
+      - GITHUB_USER
+      - GITHUB_PASS
+    certbot:
+      image: "certbot/certbot"
+      volumes:
+        - ./data/certbot/conf:/etc/letsencrypt
+        - ./data/certbot/www:/var/www/certbot
+      entrypoint:
+        "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
