@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from flask import request, jsonify
 from flask_restful import Resource
@@ -25,46 +25,52 @@ class Projects(Resource):
             },
         },
     }
-    collection = Db("website").get_collection("projects").find_one()
-    try:
-        project_list = list(collection["projects"])
-        time = collection["time"]
-    except TypeError:
-        project_list = []
-        time = datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT")
+    collection = Db("website").get_collection("projects")
+
+    def __init__(self):
+        try:
+            self.entry = self.collection.find_one({"id": 0})
+            self.project_list = list(self.entry["projects"])
+            self.time = self.entry["time"]
+        except TypeError:
+            self.project_list = []
+            self.time = datetime.utcnow()
+
+    def update_db(self):
+        res = requests.get(
+            "https://api.github.com/user/repos",
+            params={"sort": "pushed"},
+            headers={"Authorization": f"token {self.auth_token}"},
+        )
+        full_json = res.json()
+        self.project_list = [
+            {
+                **{key: project[key] for key in ["name", "html_url", "description"]},
+                **{
+                    "created_at": (
+                        datetime.fromisoformat(project["created_at"][:-1]).strftime(
+                            "%b %d, %Y"
+                        )
+                    )
+                },
+            }
+            for project in full_json
+        ]
+        jsonschema.validate(self.project_list, schema=self.schema)
+        self.time = datetime.utcnow()
+        self.collection.update_one(
+            {"id": 0},
+            {"$set": {"projects": self.project_list, "time": self.time, "id": 0}},
+            upsert=True,
+        )
 
     def get(self):
         " Gets all the projects from my Github repo "
 
-        is_changed = requests.get(
-            "https://api.github.com/user",
-            headers={
-                "Authorization": f"token {self.auth_token}",
-                "If-Modified-Since": self.time,
-            },
-        ).status_code
-
-        if is_changed == 200 or not self.project_list:
-            res = requests.get(
-                "https://api.github.com/user/repos",
-                params={"sort": "updated"},
-                headers={"Authorization": f"token {self.auth_token}"},
-            )
-            full_json = res.json()
-            self.project_list = [
-                {
-                    key: project[key]
-                    for key in ["name", "created_at", "html_url", "description"]
-                }
-                for project in full_json
-            ]
-            jsonschema.validate(self.project_list, schema=self.schema)
-            self.collection.insert_one(
-                {
-                    "projects": self.project_list,
-                    "time": datetime.utcnow().strftime("%a, %d %b %Y %H:%M:%S GMT"),
-                }
-            )
+        if self.project_list == [] or datetime.utcnow() - self.time >= timedelta(
+            seconds=10
+        ):
+            self.update_db()
         else:
             print("304 Not Changed")
 

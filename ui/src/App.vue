@@ -66,14 +66,14 @@ export default {};
 
 .hr {
   margin: 10px auto;
-  width: 100%;
+  width: auto;
   height: 1px;
   background-color: #aaa;
 }
 
 @media only screen and (min-width: 1200px) {
   .hr {
-    width: 1200px;
+    width: 1200px !important;
   }
 }
 </style>

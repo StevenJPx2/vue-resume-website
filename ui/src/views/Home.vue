@@ -27,38 +27,41 @@
         <h1>Projects</h1>
         <div class="hr"></div>
       </div>
-      <!-- <div class="card-grid"> -->
-      <!--   <Card -->
-      <!--     :heading="projects[0].title" -->
-      <!--     :date="projects[0].date" -->
-      <!--     :url="projects[0].github_url" -->
-      <!--     :body="projects[0].body" -->
-      <!--     :head="true" -->
-      <!--     class="head-card" -->
-      <!--   /> -->
-      <!--   <Card -->
-      <!--     :key="project" -->
-      <!--     v-for="project in projects.slice(1)" -->
-      <!--     :heading="project.title" -->
-      <!--     :date="project.date" -->
-      <!--     :url="project.github_url" -->
-      <!--     :body="project.body" -->
-      <!--   /> -->
-      <!-- </div> -->
+      <div class="card-grid" v-if="projects != []">
+        <Card
+          :heading="projects[0].name"
+          :date="projects[0].created_at"
+          :url="projects[0].html_url"
+          :body="projects[0].description"
+          :head="true"
+          class="head-card"
+        />
+        <Card
+          :key="project"
+          v-for="project in projects.slice(1)"
+          :heading="project.name"
+          :date="project.created_at"
+          :url="project.html_url"
+          :body="project.description"
+        />
+      </div>
+      <div v-else>
+        <center>No projects loaded yet.</center>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Icon from "@/components/Icon.vue";
-// import Card from "@/components/Card.vue";
+import Card from "@/components/Card.vue";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    Icon
-    //Card
+    Icon,
+    Card
   },
   data() {
     return {
@@ -67,7 +70,7 @@ export default {
   },
   methods: {
     getProjects() {
-      const path = "/projects";
+      const path = "http://localhost:5000/projects";
       axios
         .get(path)
         .then(res => {
@@ -121,6 +124,10 @@ export default {
 
 h1 {
   text-align: center;
+}
+
+.heading > .hr {
+  width: auto !important;
 }
 
 .container {
