@@ -2,3 +2,5 @@ flask
 flask_restful
 flask_cors
 pymongo
+dnspython
+jsonschema
