@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <h1>Steven John</h1>
     <div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/meetings">Meetings</router-link>
     </div>
-    <router-view />
+    <transition name="slide">
+      <router-view />
+    </transition>
     <footer>
       <div class="hr"></div>
       Created using <i class="fab fa-vuejs"></i> and
@@ -15,10 +17,25 @@
 </template>
 
 <script>
-export default {};
+export default { name: "App" };
 </script>
 
 <style lang="scss">
+$rad: 5px;
+$mainColor: grey;
+$offsetColor: #ddd;
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -31,9 +48,6 @@ export default {};
   padding: 30px;
 
   a {
-    $rad: 5px;
-    $mainColor: grey;
-    $offsetColor: #ddd;
     padding: 5px 15px 5px 15px;
     margin: -1px;
     border: 1px solid $mainColor;
@@ -49,8 +63,7 @@ export default {};
     }
 
     &:hover {
-      // color: white;
-      background-color: $offsetColor;
+      background-color: darken(white, 10%);
     }
 
     &.router-link-exact-active {
@@ -64,6 +77,19 @@ export default {};
   }
 }
 
+.container {
+  text-align: center;
+  margin: 60px auto 0px auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
 .hr {
   margin: 10px auto;
   width: auto;
@@ -71,9 +97,9 @@ export default {};
   background-color: #aaa;
 }
 
-@media only screen and (min-width: 1200px) {
-  .hr {
-    width: 1200px !important;
-  }
+footer {
+  color: #777;
+  text-align: center;
+  margin: 30px auto 10px auto;
 }
 </style>

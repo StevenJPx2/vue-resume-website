@@ -27,7 +27,10 @@
         <h1>Projects</h1>
         <div class="hr"></div>
       </div>
-      <div class="card-grid" v-if="projects != []">
+      <div v-if="projects.length == 0">
+        <center>Loading projects...</center>
+      </div>
+      <div class="card-grid" v-else>
         <Card
           :heading="projects[0].name"
           :date="projects[0].created_at"
@@ -45,9 +48,6 @@
           :body="project.description"
         />
       </div>
-      <div v-else>
-        <center>No projects loaded yet.</center>
-      </div>
     </div>
   </div>
 </template>
@@ -56,21 +56,35 @@
 import Icon from "@/components/Icon.vue";
 import Card from "@/components/Card.vue";
 import axios from "axios";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 export default {
-  name: "App",
+  name: "Home",
   components: {
     Icon,
     Card
   },
-  data() {
+  data: () => {
     return {
       projects: []
     };
   },
   methods: {
     getProjects() {
-      const path = "http://localhost:5000/projects";
+      const path = "http://" + location.hostname + ":5000/projects";
+
+      // before a request is made start the nprogress
+      axios.interceptors.request.use(config => {
+        NProgress.start();
+        return config;
+      });
+
+      // before a response is returned stop nprogress
+      axios.interceptors.response.use(response => {
+        NProgress.done();
+        return response;
+      });
       axios
         .get(path)
         .then(res => {
@@ -91,12 +105,6 @@ export default {
 </script>
 
 <style lang="scss">
-@media only screen and (max-width: 768px) {
-  .container {
-    width: auto;
-  }
-}
-
 @media only screen and (min-width: 768px) {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -104,10 +112,6 @@ export default {
 }
 
 @media only screen and (min-width: 1200px) {
-  .container {
-    width: 1200px;
-  }
-
   .heading {
     grid-column: 1/ 1;
   }
@@ -130,19 +134,6 @@ h1 {
   width: auto !important;
 }
 
-.container {
-  text-align: center;
-  margin: 60px auto 0px auto;
-}
-
-.flex {
-  display: flex;
-}
-
-.grid {
-  display: grid;
-}
-
 .project-grid {
   display: grid;
   grid-gap: 20px;
@@ -151,11 +142,5 @@ h1 {
 .card-grid {
   display: grid;
   grid-gap: 15px;
-}
-
-footer {
-  color: #777;
-  text-align: center;
-  margin: 30px auto 10px auto;
 }
 </style>
