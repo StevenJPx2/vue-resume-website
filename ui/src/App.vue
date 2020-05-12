@@ -5,9 +5,7 @@
       <router-link to="/">Home</router-link>
       <router-link to="/meetings">Meetings</router-link>
     </div>
-    <transition name="slide">
-      <router-view />
-    </transition>
+    <router-view />
     <footer>
       <div class="hr"></div>
       Created using <i class="fab fa-vuejs"></i> and
@@ -24,6 +22,7 @@ export default { name: "App" };
 $rad: 5px;
 $mainColor: grey;
 $offsetColor: #ddd;
+$transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
 
 @media only screen and (max-width: 768px) {
   .container {
@@ -101,5 +100,76 @@ footer {
   color: #777;
   text-align: center;
   margin: 30px auto 10px auto;
+}
+
+label {
+  margin: 20px 0 0 0;
+  display: block;
+}
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px 10px;
+  margin: 10px 0;
+  width: 50%;
+  height: 35px;
+  transition: border $transition, box-shadow $transition;
+
+  &:focus {
+    border: 1px solid darken(#ddd, 20%);
+    box-shadow: inset 0px 0px 4px darken(#ddd, 20%);
+  }
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+button,
+.button {
+  padding: 10px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #eee;
+  transition: background-color $transition;
+
+  &:hover {
+    background-color: darken(#ddd, 20%);
+  }
+
+  &.black {
+    transition: background-color $transition, color $transition;
+    &:hover {
+      color: white;
+      background-color: black;
+    }
+  }
 }
 </style>

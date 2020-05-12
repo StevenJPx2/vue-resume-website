@@ -18,9 +18,12 @@ const routes = [
       import(/* webpackChunkName: "meetings" */ "../views/Meetings.vue"),
     children: [
       {
-        path: "",
+        path: "edit_slides",
         component: () =>
-          import(/* webpackChunkName: "meetings" */ "../views/Meetings.vue")
+          import(
+            /* webpackChunkName: "editSlides" */ "../views/EditSlides.vue"
+          ),
+        props: true
       }
     ]
   }

@@ -58,6 +58,7 @@ a:visited {
   border-radius: 5px;
   text-transform: uppercase;
   color: black;
+  background-color: white;
   transition: all ease-out 0.2s;
   display: table;
 }

@@ -1,68 +1,95 @@
 <template>
-  <div
-    id="card-modal-background"
-    :style="setStyle()"
-    @click="isClicked = false"
-  >
-    <div id="card-modal">
-      <h2>{{ heading }}</h2>
-      <div class="hr"></div>
-      <slot />
+  <transition appear name="fade" @after-enter="showModal = true">
+    <div id="card-modal-wrapper" @click="showModal = false">
+      <transition name="slide-fade" @after-leave="$emit('destroy')">
+        <div id="card-modal" v-if="showModal" @click.stop>
+          <h2>{{ heading }}</h2>
+          <div class="hr"></div>
+          <slot />
+        </div>
+      </transition>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 export default {
   name: "MeetingCardModal",
-  props: {
-    heading: { type: String },
-    isClicked: { type: Boolean, default: false }
+  data() {
+    return {
+      showModal: false
+    };
   },
-  methods: {
-    setStyle() {
-      return this.isClicked ? "display: block;" : "display: none;";
-    }
-  }
+  props: {
+    heading: { type: String }
+  },
+  methods: {}
 };
 </script>
 
 <style lang="scss">
-#card-modal-background {
+.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter {
+  transform: translateY(50px);
+}
+.slide-fade-leave-to {
+  transform: translateY(-50px);
+}
+
+.fade-enter,
+.fade-leave-to {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+#card-modal-wrapper {
   position: absolute;
-  z-index: 9999;
   width: 100%;
   height: 100%;
-  background-color: transparentize(black, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
   left: 0;
   top: 0;
 }
 
 #card-modal {
   position: relative;
-  top: 50vh;
+  top: 10vh;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 90%;
+  width: 80%;
+  max-width: 700px;
   margin: 0 auto;
   padding: 30px;
   background-color: white;
-  text-align: left;
 
-  h1 {
-    text-align: left;
+  h2 {
+    text-align: center;
   }
-}
 
-@media only screen and (min-width: 1200px) {
-  #card-modal {
-    width: 60%;
+  .hr {
+    margin-bottom: 30px;
+    background-color: #ddd;
   }
-}
 
-@media only screen and (min-width: 1400px) {
-  #card-modal {
-    width: 30%;
+  input {
+    width: 90%;
+    max-width: 270px;
+    display: block;
+    margin: 15px auto;
   }
 }
 </style>

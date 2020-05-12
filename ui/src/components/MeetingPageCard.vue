@@ -1,5 +1,5 @@
 <template>
-  <a :href="link">
+  <a>
     <div class="meeting-card">
       <i :class="_class"></i>
       <slot />
@@ -11,8 +11,7 @@
 export default {
   name: "MeetingPageCard",
   props: {
-    _class: String,
-    link: { default: "#", type: String }
+    _class: String
   }
 };
 </script>
@@ -21,6 +20,7 @@ export default {
 $rad: 5px;
 $mainColor: grey;
 $offsetColor: #bbb;
+$transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.8s;
 
 #meeting-option-grid {
   display: grid;
@@ -30,6 +30,7 @@ $offsetColor: #bbb;
 a {
   text-decoration: none;
   color: #2c3e50;
+  cursor: pointer;
 
   &:hover {
     .meeting-card {
@@ -53,6 +54,7 @@ a {
   border: 1px solid $offsetColor;
   border-radius: $rad;
   font-size: 20px;
+  transition: background-color $transition;
 
   i {
     font-size: 25px;
