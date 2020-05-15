@@ -15,6 +15,7 @@
     <MeetingCardModal
       :showContent="true"
       v-if="modal == 'create'"
+      ref="bruh"
       heading="Create a new meeting"
       @destroy="modal = ''"
     >
@@ -46,10 +47,16 @@
     <MeetingCardModal
       v-if="modal == 'join'"
       heading="Join a meeting"
+      ref="bruh"
       @destroy="modal = ''"
     >
       <FormattedNumberInput placeholder="10-digit Meeting ID" />
-      <IconInput name="password" id="password" placeholder="Password" />
+      <IconInput
+        name="password"
+        id="password"
+        placeholder="Password"
+        :prompt="{}"
+      />
       <div class="mx-auto">
         <button class="black" style="margin-right: 15px;" href="#">
           Join as Host
@@ -78,6 +85,7 @@ export default {
       prompt: {}
     };
   },
+
   methods: {
     compPasswords() {
       if (
@@ -95,6 +103,7 @@ export default {
         return false;
       }
     },
+
     createSlides() {
       const path = "http://" + location.hostname + ":5000/create_new";
       console.log(this.meetingID);
@@ -106,7 +115,7 @@ export default {
         })
         .then(res => {
           this.$router.push({
-            path: "edit_slides",
+            name: "edit_slides",
             params: { hash: res.data }
           });
         })
@@ -125,7 +134,9 @@ export default {
     }
   },
   computed: {},
+
   filters: {},
+
   components: {
     MeetingPageCard,
     MeetingCardModal,

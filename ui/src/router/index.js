@@ -8,24 +8,29 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
-  },
-  {
-    path: "/meetings",
-    name: "Meetings",
-    component: () =>
-      import(/* webpackChunkName: "meetings" */ "../views/Meetings.vue"),
+    component: () => import(/* webpackChunkName: "home" */ "../views/Nav.vue"),
     children: [
       {
-        path: "edit_slides",
-        component: () =>
-          import(
-            /* webpackChunkName: "editSlides" */ "../views/EditSlides.vue"
-          ),
-        props: true
+        path: "",
+        components: {
+          win: () => import(/* webpackChunkName: "home" */ "../views/Home.vue")
+        }
+      },
+      {
+        path: "meetings",
+        components: {
+          win: () =>
+            import(/* webpackChunkName: "meetings" */ "../views/Meetings.vue")
+        }
       }
     ]
+  },
+  {
+    path: "/meetings/edit_slides/:hash",
+    name: "edit_slides",
+    component: () =>
+      import(/* webpackChunkName: "editSlides" */ "../views/EditSlides.vue"),
+    props: true
   }
 ];
 

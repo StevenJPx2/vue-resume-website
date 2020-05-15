@@ -10,7 +10,7 @@ api = Api(app)
 
 api.add_resource(Projects, "/projects")
 api.add_resource(CreateMeeting, "/create_new")
-api.add_resource(CreateSlides, "/create_new/<int:meeting_id>")
+api.add_resource(CreateSlides, "/create_new/<meeting_hash>")
 
 if __name__ == "__main__":
     app.run()

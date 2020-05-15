@@ -89,8 +89,6 @@ export default {
         .get(path)
         .then(res => {
           this.projects = res.data;
-          // eslint-disable-next-line no-console
-          console.log(this.projects);
         })
         .catch(error => {
           // eslint-disable-next-line no-console

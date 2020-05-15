@@ -1,11 +1,13 @@
 from datetime import datetime, timedelta
 import random
 import hashlib
+import json
 
 from flask import request
 from flask_restful import Resource
 import jsonschema
 import requests
+from bson.json_util import dumps
 
 from db import Db
 from functions import access_secrets
@@ -97,7 +99,7 @@ class CreateMeeting(Resource):
         mi_exists = True
         while mi_exists:
             mi = random.randint(1_000_000_000, 9_999_999_999)
-            mi_exists = self.collection.find_one({"mi": mi}) and True
+            mi_exists = self.collection.find_one({"meeting_id": mi}) and True
         return mi
 
     def post(self):
@@ -119,14 +121,32 @@ class CreateMeeting(Resource):
         if any(list(zip(*errors))[1]):
             return errors, 400
 
-        response["slides"] = {}
+        response["slides"] = [[]]
+
+        meeting_hash = hashlib.sha512(
+            (meeting_id + host_password).encode("utf-8")
+        ).hexdigest()[:20]
+
+        response["meeting_hash"] = meeting_hash
 
         self.collection.update_one(
-            {"meeting_id": int(meeting_id)}, {"$set": response}, upsert=True
+            {"meeting_hash": meeting_hash}, {"$set": response}, upsert=True
         )
 
-        return hashlib.sha512((meeting_id + host_password).encode("utf-8")).hexdigest()
+        return meeting_hash
 
 
 class CreateSlides(Resource):
     collection = Db("website").get_collection("meetings")
+
+    def get(self, meeting_hash):
+        out = json.loads(
+            dumps(self.collection.find_one({"meeting_hash": meeting_hash}))
+        )
+        return out["slides"]
+
+    def post(self, meeting_hash):
+        updated_slides = request.get_json()
+        self.collection.update_one(
+            {"meeting_hash": meeting_hash}, {"$set": {"slides": updated_slides}}
+        )
