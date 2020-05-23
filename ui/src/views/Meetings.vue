@@ -13,9 +13,7 @@
       >
     </div>
     <MeetingCardModal
-      :showContent="true"
       v-if="modal == 'create'"
-      ref="bruh"
       heading="Create a new meeting"
       @destroy="modal = ''"
     >
@@ -44,24 +42,34 @@
         Create Slides
       </button>
     </MeetingCardModal>
+
     <MeetingCardModal
       v-if="modal == 'join'"
       heading="Join a meeting"
-      ref="bruh"
       @destroy="modal = ''"
     >
-      <FormattedNumberInput placeholder="10-digit Meeting ID" />
+      <FormattedNumberInput
+        @update-mi="updateJMI"
+        placeholder="10-digit Meeting ID"
+      />
       <IconInput
         name="password"
         id="password"
         placeholder="Password"
-        :prompt="{}"
+        v-model="joinPassword"
+        :prompt="joinPrompt"
       />
       <div class="mx-auto">
-        <button class="black" style="margin-right: 15px;" href="#">
+        <button
+          class="black"
+          style="margin-right: 15px;"
+          @click="joinMeeting(true)"
+        >
           Join as Host
         </button>
-        <button class="black" href="#">Join as Attendee</button>
+        <button class="black" @click="joinMeeting(false)">
+          Join as Attendee
+        </button>
       </div>
     </MeetingCardModal>
   </div>
@@ -73,16 +81,20 @@ import MeetingCardModal from "@/components/MeetingCardModal.vue";
 import FormattedNumberInput from "@/components/FormattedNumberInput.vue";
 import IconInput from "@/components/IconInput.vue";
 import axios from "axios";
+import NProgress from "nprogress";
 
 export default {
   name: "Meetings",
   data: function() {
     return {
       modal: "",
+      joinMeetingID: "",
       meetingID: null,
       hostPassword: null,
       attendeePassword: null,
-      prompt: {}
+      joinPassword: null,
+      prompt: {},
+      joinPrompt: {}
     };
   },
 
@@ -106,7 +118,16 @@ export default {
 
     createSlides() {
       const path = "http://" + location.hostname + ":5000/create_new";
-      console.log(this.meetingID);
+      axios.interceptors.request.use(config => {
+        NProgress.start();
+        return config;
+      });
+
+      // before a response is returned stop nprogress
+      axios.interceptors.response.use(response => {
+        NProgress.done();
+        return response;
+      });
       axios
         .post(path, {
           meeting_id: this.meetingID,
@@ -116,7 +137,7 @@ export default {
         .then(res => {
           this.$router.push({
             name: "edit_slides",
-            params: { hash: res.data }
+            params: { hash: res.data, checkedIn: true }
           });
         })
         .catch(error => {
@@ -129,8 +150,52 @@ export default {
           });
         });
     },
+
     updateMI(e) {
       this.meetingID = e;
+    },
+
+    updateJMI(e) {
+      this.joinMeetingID = e;
+    },
+
+    joinMeeting(isHost) {
+      if (this.joinMeetingID.length == 0) {
+        this.joinPrompt = { error: ["danger", "Meeting ID is empty"] };
+        return;
+      }
+      axios.interceptors.request.use(config => {
+        NProgress.start();
+        return config;
+      });
+
+      // before a response is returned stop nprogress
+      axios.interceptors.response.use(response => {
+        NProgress.done();
+        return response;
+      });
+      axios
+        .post("http://" + location.hostname + ":5000/join", {
+          id: this.joinMeetingID,
+          is_host: isHost,
+          password: this.joinPassword
+        })
+        .then(res => {
+          if (isHost === true) {
+            this.$router.push({
+              name: "join_host",
+              params: { hash: res.data, checkedIn: true }
+            });
+          } else {
+            this.$router.push({
+              name: "join",
+              params: { hash: res.data, checkedIn: true }
+            });
+          }
+        })
+        .catch(error => {
+          this.joinPrompt = { error: ["danger", error.response.data[1]] };
+        });
     }
   },
   computed: {},

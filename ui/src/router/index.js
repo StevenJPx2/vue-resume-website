@@ -31,6 +31,20 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "editSlides" */ "../views/EditSlides.vue"),
     props: true
+  },
+  {
+    path: "/meetings/join/:hash",
+    name: "join",
+    component: () =>
+      import(/* webpackChunkName: "join" */ "../views/JoinMeeting.vue"),
+    props: true
+  },
+  {
+    path: "/meetings/join/host/:hash",
+    name: "join_host",
+    component: () =>
+      import(/* webpackChunkName: "joinHost" */ "../views/JoinMeetingHost.vue"),
+    props: true
   }
 ];
 

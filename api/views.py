@@ -3,14 +3,39 @@ import random
 import hashlib
 import json
 
-from flask import request
-from flask_restful import Resource
 import jsonschema
 import requests
+from flask import request
+from flask_restful import Resource
 from bson.json_util import dumps
+import boto3
 
 from db import Db
 from functions import access_secrets
+
+project_collection = Db("website").get_collection("projects")
+meeting_collection = Db("website").get_collection("meetings")
+
+aws_access, aws_secret = list(map(lambda x: x.strip(), access_secrets(".s3").split()))
+
+s3 = boto3.client("s3", aws_access_key_id=aws_access, aws_secret_access_key=aws_secret)
+
+
+def open_bson(bson_obj):
+    return json.loads(dumps(bson_obj))
+
+
+def either_or_password_validate(meeting_values, validation_values):
+    if validation_values["is_host"] is True:
+        if meeting_values["host_password"] == validation_values["password"]:
+            return True, 200
+        else:
+            return False, 400
+    else:
+        if meeting_values["attendee_password"] == validation_values["password"]:
+            return True, 200
+        else:
+            return False, 400
 
 
 class Projects(Resource):
@@ -29,7 +54,7 @@ class Projects(Resource):
             },
         },
     }
-    collection = Db("website").get_collection("projects")
+    collection = project_collection
 
     def __init__(self):
         try:
@@ -85,7 +110,7 @@ class Projects(Resource):
 
 
 class CreateMeeting(Resource):
-    collection = Db("website").get_collection("meetings")
+    collection = meeting_collection
     schema = {
         "type": "object",
         "properties": {
@@ -103,12 +128,12 @@ class CreateMeeting(Resource):
         return mi
 
     def post(self):
-        response = request.get_json()
+        response = request.json
         print(response)
         meeting_id, host_password, attendee_password = (
             response["meeting_id"],
-            response["host_password"],
-            response["attendee_password"],
+            response["host_password"].strip(),
+            response["attendee_password"].strip(),
         )
         meeting_id = meeting_id.replace("-", "")
         response["meeting_id"] = int(meeting_id)
@@ -128,6 +153,7 @@ class CreateMeeting(Resource):
         ).hexdigest()[:20]
 
         response["meeting_hash"] = meeting_hash
+        response["live"] = {"attendees": {}, "slide_no": 0}
 
         self.collection.update_one(
             {"meeting_hash": meeting_hash}, {"$set": response}, upsert=True
@@ -136,17 +162,116 @@ class CreateMeeting(Resource):
         return meeting_hash
 
 
-class CreateSlides(Resource):
-    collection = Db("website").get_collection("meetings")
+class SlideResponse(Resource):
+    collection = meeting_collection
+
+    def post(self):
+        data = request.json
+        meeting_values = open_bson(
+            self.collection.find_one({"meeting_hash": data["hash"]})
+        )
+        try:
+            return meeting_values["live"]["attendees"][data["user_index"]][
+                "slide_responses"
+            ][data["slide_no"]]
+        except IndexError:
+            return None
+
+
+class AccessMeeting(Resource):
+    collection = meeting_collection
 
     def get(self, meeting_hash):
-        out = json.loads(
-            dumps(self.collection.find_one({"meeting_hash": meeting_hash}))
-        )
-        return out["slides"]
+        out = open_bson(self.collection.find_one({"meeting_hash": meeting_hash}))
+        return out
 
     def post(self, meeting_hash):
-        updated_slides = request.get_json()
+        updated_slides = request.json
         self.collection.update_one(
             {"meeting_hash": meeting_hash}, {"$set": {"slides": updated_slides}}
         )
+
+
+class UploadImage(Resource):
+    def post(self):
+        img_binary = request.json
+        print(img_binary)
+        generated_file_name = str(random.randint(1_000_000_000, 9_999_999_999)) + ".png"
+        s3.upload_fileobj("website-meetings", img_binary, generated_file_name)
+
+        return {
+            "url": "https://website-meetings.s3-ap-south-1.amazonaws.com/"
+            + generated_file_name
+        }
+
+
+class ValidatePassword(Resource):
+    collection = meeting_collection
+
+    def post(self):
+        validation_values = request.json
+        meeting_values = open_bson(
+            self.collection.find_one({"meeting_hash": validation_values["hash"]})
+        )
+        return either_or_password_validate(meeting_values, validation_values)
+
+
+class JoinMeeting(Resource):
+    collection = meeting_collection
+
+    def post(self):
+        login_credentials = request.json
+        validation_id = int(login_credentials["id"].replace("-", ""))
+
+        meeting_values = open_bson(
+            self.collection.find_one({"meeting_id": validation_id})
+        )
+        if meeting_values is None:
+            return ["id", "This meeting ID does not exist."], 400
+
+        validated = either_or_password_validate(meeting_values, login_credentials)
+        if validated[0] is True:
+            return meeting_values["meeting_hash"], 200
+        else:
+            return ["password", "This password is incorrect"], 400
+
+
+class Attendee(Resource):
+    collection = meeting_collection
+
+    def post(self):
+        data = request.json
+        if data["action"] == "new":
+            user_data = {"name": data["display_name"], "slide_responses": []}
+            user_id = f"user{random.randint(1_000_000, 9_999_999)}"
+            self.collection.update_one(
+                {"meeting_hash": data["meeting_hash"]},
+                {"$set": {f"live.attendees.{user_id}": user_data}},
+            )
+            meeting_values = self.collection.find_one(
+                {"meeting_hash": data["meeting_hash"]}
+            )
+
+            return (
+                (user_id, meeting_values["live"]["slide_no"],),
+                200,
+            )
+
+
+class AccessSlide(Resource):
+    collection = meeting_collection
+
+    def post(self):
+        values = request.json
+        meeting_meta = open_bson(
+            self.collection.find_one({"meeting_hash": values["hash"]})
+        )
+        return meeting_meta["slides"][values["slide_no"]]
+
+    def get(self):
+        meeting_hash = request.args.get("hash")
+        meeting_meta = open_bson(
+            self.collection.find_one({"meeting_hash": meeting_hash})
+        )
+
+        return meeting_meta["live"]["slide_no"]

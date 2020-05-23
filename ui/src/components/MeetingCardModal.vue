@@ -1,6 +1,6 @@
 <template>
   <transition appear name="fade" @after-enter="showModal = true">
-    <div id="card-modal-wrapper" @click="showModal = false">
+    <div id="card-modal-wrapper" @click="destroyModal(true)">
       <transition name="slide-fade" @after-leave="$emit('destroy')">
         <div id="card-modal" v-if="showModal" @click.stop>
           <h2>{{ heading }}</h2>
@@ -21,9 +21,16 @@ export default {
     };
   },
   props: {
-    heading: { type: String }
+    heading: { type: String },
+    noClickDestroy: { type: Boolean, default: false }
   },
-  methods: {}
+  methods: {
+    destroyModal(outOfBoundsClick) {
+      if (outOfBoundsClick === true && this.noClickDestroy === false) {
+        this.showModal = false;
+      }
+    }
+  }
 };
 </script>
 
@@ -66,6 +73,7 @@ export default {
 }
 
 #card-modal {
+  z-index: 9999;
   position: relative;
   top: 10vh;
   border: 1px solid #ddd;

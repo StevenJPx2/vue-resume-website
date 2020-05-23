@@ -1,7 +1,10 @@
 flask
 flask_restful
+flask-socketio
+gevent-websocket
 flask_cors
 pymongo
 dnspython
 jsonschema
 bson
+boto3
