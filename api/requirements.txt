@@ -1,0 +1,11 @@
+flask
+flask_restful
+flask-socketio
+eventlet
+gunicorn
+requests
+flask_cors
+pymongo
+dnspython
+jsonschema
+boto3

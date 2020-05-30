@@ -1,11 +1,23 @@
 version: '3'
+
 services:
-    resume-website:
-        image: "stevenjp/resume-website"
-        ports: 
-            - "80:80"
-        volumes:
-            - ./data:/database
-        environment:
-            - GITHUB_USER
-            - GITHUB_PASS
+  api:
+    build: ./api
+    container_name: api
+    volumes:
+      - ./api/:/app/
+    expose:
+      - 9000
+
+  ui:
+    build: ./ui
+    container_name: ui
+    expose:
+      - 80
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    ports:
+      - 5000:5000
+      - 80:80
