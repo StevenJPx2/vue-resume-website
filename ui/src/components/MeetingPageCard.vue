@@ -33,12 +33,15 @@ a {
   cursor: pointer;
 
   &:hover {
+    text-decoration: none;
+    color: #2c3e50;
     .meeting-card {
       background-color: darken(white, 20%);
     }
   }
 
   &:active {
+    color: #2c3e50;
     .meeting-card {
       background-color: darken(white, 60%);
       color: white;

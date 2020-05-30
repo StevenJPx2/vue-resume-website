@@ -1,10 +1,11 @@
 flask
 flask_restful
 flask-socketio
-gevent-websocket
+eventlet
+gunicorn
+requests
 flask_cors
 pymongo
 dnspython
 jsonschema
-bson
 boto3

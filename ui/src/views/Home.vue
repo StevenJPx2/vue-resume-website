@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <vue-headful title="Steven John - Home" />
     <div class="container flex">
       <Icon
         _class="fab fa-medium"
@@ -28,6 +29,7 @@
         <div class="hr"></div>
       </div>
       <div v-if="projects.length == 0">
+        <clip-loader :loading="projects.length == 0" color="#ddd"></clip-loader>
         <center>Loading projects...</center>
       </div>
       <div class="card-grid" v-else>
@@ -58,10 +60,12 @@ import Card from "@/components/Card.vue";
 import axios from "axios";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 
 export default {
   name: "Home",
   components: {
+    ClipLoader,
     Icon,
     Card
   },

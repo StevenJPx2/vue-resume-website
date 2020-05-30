@@ -80,9 +80,9 @@ class Projects(Resource):
                     },
                     **{
                         "created_at": (
-                            datetime.fromisoformat(project["created_at"][:-1]).strftime(
-                                "%b %d, %Y"
-                            )
+                            datetime.strptime(
+                                project["created_at"][:-1], "%Y-%m-%dT%H:%M:%S"
+                            ).strftime("%b %d, %Y")
                         )
                     },
                 }
@@ -107,6 +107,15 @@ class Projects(Resource):
             print("304 Not Changed")
 
         return self.project_list
+
+
+class MeetingNo(Resource):
+    collection = meeting_collection
+
+    def get(self, meeting_hash):
+        return open_bson(self.collection.find_one({"meeting_hash": meeting_hash}))[
+            "meeting_id"
+        ]
 
 
 class CreateMeeting(Resource):
@@ -153,6 +162,7 @@ class CreateMeeting(Resource):
         ).hexdigest()[:20]
 
         response["meeting_hash"] = meeting_hash
+        response["meeting_name"] = ""
         response["live"] = {"attendees": {}, "slide_no": 0}
 
         self.collection.update_one(
@@ -173,8 +183,9 @@ class SlideResponse(Resource):
         try:
             return meeting_values["live"]["attendees"][data["user_index"]][
                 "slide_responses"
-            ][data["slide_no"]]
-        except IndexError:
+            ][str(data["slide_no"])]
+        except IndexError as e:
+            print(e, data)
             return None
 
 
@@ -183,12 +194,18 @@ class AccessMeeting(Resource):
 
     def get(self, meeting_hash):
         out = open_bson(self.collection.find_one({"meeting_hash": meeting_hash}))
+        if out is None:
+            return "Meeting does not exist", 404
+
         return out
 
     def post(self, meeting_hash):
-        updated_slides = request.json
+        updated_slides = request.json["slides"]
+        meeting_name = request.json["meeting_name"]
+
         self.collection.update_one(
-            {"meeting_hash": meeting_hash}, {"$set": {"slides": updated_slides}}
+            {"meeting_hash": meeting_hash},
+            {"$set": {"slides": updated_slides, "meeting_name": meeting_name}},
         )
 
 

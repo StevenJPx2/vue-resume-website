@@ -1,5 +1,6 @@
 <template>
   <div id="meeting" class="container">
+    <vue-headful title="Steven John - Meetings" />
     <h1>Meetings</h1>
     <div class="hr"></div>
     <div id="meeting-option-grid" class="container">
