@@ -1,4 +1,8 @@
 # vue-resume-website
-I'm creating a simpler version of resume-website but using Vue and Flask, and making everything production-ready
+## dev
 
-This branch makes everything much simpler such that we can use multiple docker containers.
+This will be my attempt at doing my entire website again using Tailwind
+and Nuxt as the frontend, and Rust as the backend. This will be uncharted territory, as I'm
+only familiar with Vue and Flask (Python).
+
+I'm excited tho.
