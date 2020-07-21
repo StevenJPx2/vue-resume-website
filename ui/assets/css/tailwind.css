@@ -1,0 +1,54 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+  src: url('Neue Montreal/NeueMontreal-Regular.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: normal;
+  font-style: italic;
+  src: url('Neue Montreal/NeueMontreal-Italic.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 700;
+  src: url('Neue Montreal/NeueMontreal-Medium.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 700;
+  src: url('Neue Montreal/NeueMontreal-MediumItalic.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 700;
+  src: url('Neue Montreal/NeueMontreal-Bold.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 900;
+  font-style: italic;
+  src: url('Neue Montreal/NeueMontreal-BoldItalic.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 200;
+  src: url('Neue Montreal/NeueMontreal-Light.otf') format('otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  font-weight: 200;
+  font-style: italic;
+  src: url('Neue Montreal/NeueMontreal-LightItalic.otf') format('otf');
+}

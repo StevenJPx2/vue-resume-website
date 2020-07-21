@@ -4,6 +4,7 @@
 *.sketch
 database/projects_plchldr.json
 Dockerrun.aws.json
+node_modules/
 .secrets/
 
 # Byte-compiled / optimized / DLL files
