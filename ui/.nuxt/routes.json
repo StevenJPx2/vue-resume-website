@@ -3,7 +3,6 @@
     "name": "index",
     "path": "/",
     "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_73b77808"
+    "chunkName": "pages/index"
   }
 ]

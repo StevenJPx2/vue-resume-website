@@ -1,62 +1,96 @@
 <template>
   <div>
+    <nav class="flex flex-row">
+      <h1 class="mr-auto">Steven John</h1>
+      <button @click="openMenu()">Menu</button>
+      <div
+        class="absolute top-0 flex flex-col w-full h-full pt-5 overflow-hidden text-right shadow-xl duration-500 ease-in-out transition-all lg:block lg:bg-transparent lg:w-auto lg:h-auto lg:static lg:shadow-none lg:pt-0"
+        id="side-items"
+        ref="sidebar"
+      >
+        <button class="text-6xl text-right" @click="closeMenu()">
+          <i class="fas fa-times"></i>
+        </button>
+        <a>Home</a>
+        <a>Meetings</a>
+        <a>Projects</a>
+      </div>
+    </nav>
+
     <Nuxt />
   </div>
 </template>
 
-<style>
-html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  methods: {
+    openMenu() {
+      let sidebar = this.$refs.sidebar as HTMLElement
+      document.body.classList.add('no-scroll')
+      sidebar.classList.add('left-0')
+      sidebar.classList.remove('disappear')
+    },
+
+    closeMenu() {
+      let sidebar = this.$refs.sidebar as HTMLElement
+      document.body.classList.remove('no-scroll')
+      sidebar.classList.add('disappear')
+      sidebar.classList.remove('left-0')
+    },
+  },
+})
+</script>
+
+<style lang="scss">
+nav {
+  button {
+    @apply font-medium;
+    @apply text-2xl;
+  }
+
+  button:active + .side-items {
+    @apply grid;
+  }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+#side-items {
+  background-color: var(--background-color);
+
+  a {
+    @apply font-semibold;
+    @apply h-auto;
+    @apply py-3;
+    @apply text-5xl;
+  }
+
+  & a:focus,
+  & a:hover {
+    @apply underline;
+  }
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.disappear {
+  left: 100% !important;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
+#side-items a,
+nav button {
+  @apply cursor-pointer;
+  @apply px-6;
 }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+@screen lg {
+  nav button {
+    @apply hidden;
+  }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+  #side-items a,
+  nav button {
+    @apply font-medium;
+    @apply pl-12;
+    @apply text-lg;
+  }
 }
 </style>

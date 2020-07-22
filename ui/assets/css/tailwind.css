@@ -17,13 +17,14 @@
 
 @font-face {
   font-family: 'Neue Montreal';
-  font-weight: 700;
+  font-weight: 500;
   src: url('Neue Montreal/NeueMontreal-Medium.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Neue Montreal';
-  font-weight: 700;
+  font-weight: 500;
+  font-style: italic;
   src: url('Neue Montreal/NeueMontreal-MediumItalic.otf') format('otf');
 }
 
@@ -35,20 +36,20 @@
 
 @font-face {
   font-family: 'Neue Montreal';
-  font-weight: 900;
+  font-weight: 700;
   font-style: italic;
   src: url('Neue Montreal/NeueMontreal-BoldItalic.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Neue Montreal';
-  font-weight: 200;
+  font-weight: 300;
   src: url('Neue Montreal/NeueMontreal-Light.otf') format('otf');
 }
 
 @font-face {
   font-family: 'Neue Montreal';
-  font-weight: 200;
+  font-weight: 300;
   font-style: italic;
   src: url('Neue Montreal/NeueMontreal-LightItalic.otf') format('otf');
 }
