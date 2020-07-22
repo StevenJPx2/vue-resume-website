@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <nav class="flex flex-row">
-      <a class="mr-auto"
-        ><h1 class="ease-all-transition-200">Steven John</h1></a
+      <nuxt-link to="/" class="mr-auto"
+        ><h1 class="ease-all-transition-200">Steven John</h1></nuxt-link
       >
       <button @click="openMenu()">Menu</button>
       <div class="ease-all-transition-500" id="side-items" ref="sidebar">
         <button class="text-6xl text-right" @click="closeMenu()">
           <i class="fas fa-times"></i>
         </button>
-        <a>Meetings</a>
-        <a>Projects</a>
+        <nuxt-link to="/meetings">Meetings</nuxt-link>
+        <nuxt-link to="/projects">Projects</nuxt-link>
       </div>
     </nav>
 
@@ -112,7 +112,7 @@ nav button {
   #side-items a,
   nav button {
     @apply font-medium;
-    @apply pl-12;
+    @apply pl-10;
     @apply text-lg;
   }
 }
