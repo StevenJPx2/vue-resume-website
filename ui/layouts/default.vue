@@ -3,11 +3,7 @@
     <nav class="flex flex-row">
       <h1 class="mr-auto">Steven John</h1>
       <button @click="openMenu()">Menu</button>
-      <div
-        class="absolute top-0 flex flex-col w-full h-full pt-5 overflow-hidden text-right shadow-xl duration-500 ease-in-out transition-all lg:block lg:bg-transparent lg:w-auto lg:h-auto lg:static lg:shadow-none lg:pt-0"
-        id="side-items"
-        ref="sidebar"
-      >
+      <div id="side-items" ref="sidebar">
         <button class="text-6xl text-right" @click="closeMenu()">
           <i class="fas fa-times"></i>
         </button>
@@ -56,6 +52,20 @@ nav {
 }
 
 #side-items {
+  @apply absolute;
+  @apply top-0;
+  @apply flex;
+  @apply flex-col;
+  @apply w-full;
+  @apply h-full;
+  @apply pt-5;
+  @apply overflow-hidden;
+  @apply text-right;
+  @apply shadow-xl;
+  @apply duration-500;
+  @apply ease-in-out;
+  @apply transition-all;
+
   background-color: var(--background-color);
 
   a {
@@ -81,7 +91,17 @@ nav button {
   @apply px-6;
 }
 
-@screen lg {
+@screen md {
+  #side-items {
+    @apply block;
+    @apply bg-transparent;
+    @apply w-auto;
+    @apply h-auto;
+    @apply static;
+    @apply shadow-none;
+    @apply pt-0;
+  }
+
   nav button {
     @apply hidden;
   }
