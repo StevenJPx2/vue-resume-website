@@ -13,6 +13,50 @@ body {
   background-color: var(--background-color);
 }
 
+.container {
+  @apply mx-auto;
+}
+
+.ease-all-transition-75 {
+  @apply transition-all;
+  @apply duration-75;
+  @apply ease-in-out;
+}
+
+.ease-all-transition-100 {
+  @apply transition-all;
+  @apply duration-100;
+  @apply ease-in-out;
+}
+
+.ease-all-transition-150 {
+  @apply transition-all;
+  @apply duration-150;
+  @apply ease-in-out;
+}
+
+.ease-all-transition-200 {
+  @apply transition-all;
+  @apply duration-200;
+  @apply ease-in-out;
+}
+
+.ease-all-transition-300 {
+  @apply transition-all;
+  @apply duration-300;
+  @apply ease-in-out;
+}
+
+.ease-all-transition-500 {
+  @apply transition-all;
+  @apply duration-500;
+  @apply ease-in-out;
+}
+
+a {
+  @apply cursor-pointer;
+}
+
 p {
   @apply mt-1;
   @apply text-3xl;

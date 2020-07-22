@@ -1,13 +1,14 @@
 <template>
-  <div>
+  <div class="container">
     <nav class="flex flex-row">
-      <h1 class="mr-auto">Steven John</h1>
+      <a class="mr-auto"
+        ><h1 class="ease-all-transition-200">Steven John</h1></a
+      >
       <button @click="openMenu()">Menu</button>
-      <div id="side-items" ref="sidebar">
+      <div class="ease-all-transition-500" id="side-items" ref="sidebar">
         <button class="text-6xl text-right" @click="closeMenu()">
           <i class="fas fa-times"></i>
         </button>
-        <a>Home</a>
         <a>Meetings</a>
         <a>Projects</a>
       </div>
@@ -49,6 +50,10 @@ nav {
   button:active + .side-items {
     @apply grid;
   }
+
+  & > a:hover h1 {
+    color: rgba($color: #000000, $alpha: 0.75);
+  }
 }
 
 #side-items {
@@ -59,12 +64,10 @@ nav {
   @apply w-full;
   @apply h-full;
   @apply pt-5;
+  @apply pr-8;
   @apply overflow-hidden;
   @apply text-right;
   @apply shadow-xl;
-  @apply duration-500;
-  @apply ease-in-out;
-  @apply transition-all;
 
   background-color: var(--background-color);
 
@@ -87,7 +90,6 @@ nav {
 
 #side-items a,
 nav button {
-  @apply cursor-pointer;
   @apply px-6;
 }
 
@@ -100,6 +102,7 @@ nav button {
     @apply static;
     @apply shadow-none;
     @apply pt-0;
+    @apply pr-0;
   }
 
   nav button {
