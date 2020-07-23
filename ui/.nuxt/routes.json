@@ -1,8 +1,23 @@
 [
   {
+    "name": "meetings",
+    "path": "/meetings",
+    "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/meetings/index.vue",
+    "chunkName": "pages/meetings/index",
+    "_name": "_04de4961"
+  },
+  {
+    "name": "projects",
+    "path": "/projects",
+    "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/projects/index.vue",
+    "chunkName": "pages/projects/index",
+    "_name": "_5541b1c3"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_73b77808"
   }
 ]
