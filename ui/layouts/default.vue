@@ -9,8 +9,12 @@
         <button class="text-6xl text-right" @click="closeMenu()">
           <i class="fas fa-times"></i>
         </button>
-        <nuxt-link to="/meetings">Meetings</nuxt-link>
-        <nuxt-link to="/projects">Projects</nuxt-link>
+        <nuxt-link :class="activePage == 1 ? 'active' : ''" to="/meetings"
+          >Meetings</nuxt-link
+        >
+        <nuxt-link :class="activePage == 2 ? 'active' : ''" to="/projects"
+          >Projects</nuxt-link
+        >
       </div>
     </nav>
 
@@ -22,6 +26,17 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  data() {
+    return {
+      activePage: this.$store.state.activePage,
+    }
+  },
+
+  head() {
+    return {
+      title: this.$store.state.title,
+    }
+  },
   methods: {
     openMenu() {
       let sidebar = this.$refs.sidebar as HTMLElement
@@ -79,7 +94,8 @@ nav {
   }
 
   & a:focus,
-  & a:hover {
+  & a:hover,
+  & .active {
     @apply underline;
   }
 }
