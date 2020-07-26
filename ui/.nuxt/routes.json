@@ -14,6 +14,13 @@
     "_name": "_5541b1c3"
   },
   {
+    "name": "meetings-id-edit",
+    "path": "/meetings/:id/edit",
+    "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/meetings/_id/edit.vue",
+    "chunkName": "pages/meetings/_id/edit",
+    "_name": "_686bae00"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/stevenjohn/Documents/Projects/vue-resume-website/ui/pages/index.vue",

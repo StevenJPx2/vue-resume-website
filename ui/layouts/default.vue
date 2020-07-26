@@ -1,18 +1,22 @@
 <template>
   <div class="container">
-    <nav class="flex flex-row">
+    <nav class="flex flex-row mb-16">
       <nuxt-link to="/" class="mr-auto"
         ><h1 class="ease-all-transition-200">Steven John</h1></nuxt-link
       >
       <button @click="openMenu()">Menu</button>
       <div class="ease-all-transition-500" id="side-items" ref="sidebar">
         <button class="text-6xl text-right" @click="closeMenu()">
-          <i class="fas fa-times"></i>
+          <ion-icon name="close-sharp"></ion-icon>
         </button>
-        <nuxt-link :class="activePage == 1 ? 'active' : ''" to="/meetings"
+        <nuxt-link
+          :class="this.$store.state.activePage == 1 ? 'active' : ''"
+          to="/meetings"
           >Meetings</nuxt-link
         >
-        <nuxt-link :class="activePage == 2 ? 'active' : ''" to="/projects"
+        <nuxt-link
+          :class="this.$store.state.activePage == 2 ? 'active' : ''"
+          to="/projects"
           >Projects</nuxt-link
         >
       </div>
@@ -26,10 +30,8 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  data() {
-    return {
-      activePage: this.$store.state.activePage,
-    }
+  updated() {
+    this.closeMenu()
   },
 
   head() {
@@ -37,6 +39,7 @@ export default Vue.extend({
       title: this.$store.state.title,
     }
   },
+
   methods: {
     openMenu() {
       let sidebar = this.$refs.sidebar as HTMLElement

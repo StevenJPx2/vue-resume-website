@@ -1,5 +1,8 @@
 :root {
-  --background-color: #fdf6f0;
+  --background-color: #FFF3E6;
+  --sec-dark-color: #E6CDB3;
+  --sec-light-color: #FDF6F0;
+  --compl-color: #A11B1B;
 }
 
 html {
@@ -11,6 +14,7 @@ body {
   @apply p-10;
   @apply overflow-x-hidden;
   background-color: var(--background-color);
+
 }
 
 .container {
@@ -57,14 +61,6 @@ a {
   @apply cursor-pointer;
 }
 
-p {
-  @apply mt-1;
-  @apply text-3xl;
-  @apply font-medium;
-  @apply leading-9;
-}
-
-
 h1 {
   @apply text-4xl;
   @apply font-black;
@@ -78,7 +74,7 @@ h1 {
 
 h2 {
   @apply text-3xl;
-  @apply font-black;
+  @apply font-bold;
 }
 
 h3 {
@@ -94,6 +90,35 @@ h4 {
 .no-scroll {
   @apply h-full;
   @apply overflow-hidden;
+}
+
+hr {
+  height: 1.5px;
+  @apply text-black;
+  @apply bg-black;
+  @apply border-0;
+}
+
+input {
+  @apply px-4;
+  background-color: var(--sec-dark-color);
+}
+
+input::placeholder {
+  @apply text-black;
+}
+
+.btn {
+  @apply px-3;
+  @apply py-4;
+  @apply text-center;
+  @apply text-sm;
+  @apply text-white;
+  @apply font-black;
+  @apply uppercase;
+  @apply tracking-wide;
+  @apply w-auto;
+  background-color: var(--compl-color);
 }
 
 @screen md {

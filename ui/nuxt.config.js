@@ -17,8 +17,7 @@ export default {
     title: 'Steven John',
     script: [
       {
-        src:
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/js/all.min.js',
+        src: 'https://unpkg.com/ionicons@5.1.2/dist/ionicons.js'
       },
     ],
     meta: [
@@ -32,11 +31,6 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css',
-      },
     ],
   },
   /*

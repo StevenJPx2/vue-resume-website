@@ -4,4 +4,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setActive(state, active) {
+    state.activePage = active
+  },
+  setTitle(state, newTitle){
+    state.title = newTitle
+  }
 }

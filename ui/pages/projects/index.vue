@@ -1,11 +1,13 @@
-<template> </template>
+<template>
+  <div class="container"></div>
+</template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
   created() {
-    this.$store.state.title = 'Steven John - Projects'
-    this.$store.state.activePage = 2
+    this.$store.commit('setTitle', 'Steven John - Projects')
+    this.$store.commit('setActive', 2)
   },
 })
 </script>
