@@ -1,1 +1,8 @@
-{}
+{
+  "TextBlock": {
+    "description": "Auto imported from components/TextBlock.vue"
+  },
+  "LazyTextBlock": {
+    "description": "Auto imported from components/TextBlock.vue"
+  }
+}

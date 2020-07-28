@@ -86,6 +86,7 @@ nav {
   @apply overflow-hidden;
   @apply text-right;
   @apply shadow-xl;
+  @apply z-50;
 
   background-color: var(--background-color);
 
