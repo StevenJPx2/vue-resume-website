@@ -4,9 +4,9 @@
       <nuxt-link to="/" class="mr-auto"
         ><h1 class="ease-all-transition-200">Steven John</h1></nuxt-link
       >
-      <button @click="openMenu()">Menu</button>
+      <button class="px-1" @click="openMenu()">Menu</button>
       <div class="ease-all-transition-500" id="side-items" ref="sidebar">
-        <button class="text-6xl text-right" @click="closeMenu()">
+        <button class="pr-2 text-6xl text-right" @click="closeMenu()">
           <ion-icon name="close-sharp"></ion-icon>
         </button>
         <nuxt-link

@@ -3,8 +3,9 @@
     <div class="flex flex-col sm:flex-row">
       <h1 class="mr-auto display-1">Digital Resume</h1>
       <div class="flex flex-row pt-6 sm:pt-0 icons">
-        <a><ion-icon name="logo-medium"></ion-icon></a>
-        <a><ion-icon name="logo-github"></ion-icon></a>
+        <a><icon name="medium" type="fab"></icon></a>
+        <a><icon name="github" type="fab"></icon></a>
+        <a><icon name="jsfiddle" type="fab"></icon></a>
       </div>
     </div>
     <h1 class="mt-10">TL;DR</h1>

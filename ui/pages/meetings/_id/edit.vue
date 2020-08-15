@@ -2,6 +2,10 @@
   <div class="container">
     <h1 class="mb-10">Untitled meeting</h1>
     <h4 class="font-bold">{{ meeting_id }}</h4>
+
+    <no-ssr :placeholder="loading">
+      <text-block></text-block>
+    </no-ssr>
   </div>
 </template>
 

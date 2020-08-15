@@ -11,10 +11,22 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "@nuxt/components": "^1.0.7",
     "@nuxt/typescript-runtime": "^0.4.10",
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "nuxt": "^2.13.0",
-    "tiptap": "^1.29.1"
+    "nuxt-fontawesome": "^0.4.0",
+    "tiptap": "^1.29.1",
+    "tiptap-extensions": "^1.31.1",
+    "vue-script2": "^2.1.0"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^1.0.3",

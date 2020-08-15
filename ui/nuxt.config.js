@@ -4,15 +4,18 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'universal',
+
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
+
   target: 'server',
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
    */
+
   head: {
     title: 'Steven John',
     script: [
@@ -54,6 +57,7 @@ export default {
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/fontawesome',
   ],
   /*
    ** Nuxt.js modules
@@ -61,15 +65,24 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    ['nuxt-fontawesome', {component: 'fa'}],
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true,
+    }
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
+
   build: {},
 }

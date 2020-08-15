@@ -6,7 +6,7 @@
 }
 
 html {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 body {
@@ -85,6 +85,35 @@ h3 {
 h4 {
   @apply text-xl;
   @apply font-black;
+}
+
+p {
+  @apply text-lg;
+}
+
+blockquote {
+  @apply border-l-4;
+  @apply border-gray-800;
+  @apply pl-4;
+  @apply italic;
+  @apply font-semibold;
+  @apply text-lg;
+}
+
+code {
+  @apply bg-black;
+  @apply text-white;
+  @apply p-4;
+  @apply rounded-md;
+  @apply block;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol {
+  @apply list-decimal;
 }
 
 .no-scroll {

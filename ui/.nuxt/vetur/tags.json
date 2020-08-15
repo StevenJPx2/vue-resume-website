@@ -1,4 +1,10 @@
 {
+  "Icon": {
+    "description": "Auto imported from components/Icon.vue"
+  },
+  "LazyIcon": {
+    "description": "Auto imported from components/Icon.vue"
+  },
   "TextBlock": {
     "description": "Auto imported from components/TextBlock.vue"
   },
