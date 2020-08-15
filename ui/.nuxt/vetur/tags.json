@@ -1,9 +1,33 @@
 {
+  "FillBlock": {
+    "description": "Auto imported from components/FillBlock.vue"
+  },
+  "LazyFillBlock": {
+    "description": "Auto imported from components/FillBlock.vue"
+  },
   "Icon": {
     "description": "Auto imported from components/Icon.vue"
   },
   "LazyIcon": {
     "description": "Auto imported from components/Icon.vue"
+  },
+  "MatchBlock": {
+    "description": "Auto imported from components/MatchBlock.vue"
+  },
+  "LazyMatchBlock": {
+    "description": "Auto imported from components/MatchBlock.vue"
+  },
+  "PollBlock": {
+    "description": "Auto imported from components/PollBlock.vue"
+  },
+  "LazyPollBlock": {
+    "description": "Auto imported from components/PollBlock.vue"
+  },
+  "QrBlock": {
+    "description": "Auto imported from components/QRBlock.vue"
+  },
+  "LazyQrBlock": {
+    "description": "Auto imported from components/QRBlock.vue"
   },
   "TextBlock": {
     "description": "Auto imported from components/TextBlock.vue"
