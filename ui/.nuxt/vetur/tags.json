@@ -5,6 +5,12 @@
   "LazyFillBlock": {
     "description": "Auto imported from components/FillBlock.vue"
   },
+  "Handle": {
+    "description": "Auto imported from components/Handle.vue"
+  },
+  "LazyHandle": {
+    "description": "Auto imported from components/Handle.vue"
+  },
   "Icon": {
     "description": "Auto imported from components/Icon.vue"
   },

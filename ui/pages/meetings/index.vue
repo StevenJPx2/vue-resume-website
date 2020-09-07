@@ -23,12 +23,12 @@
       </h2>
       <nuxt-link
         to="/meetings/1234/edit"
-        class="btn row-start-2 md:row-start-1 md:col-start-2"
+        class="btn btn-sd row-start-2 md:row-start-1 md:col-start-2"
       >
         Create meeting
       </nuxt-link>
       <input
-        class="row-start-2 md:row-start-1 md:col-start-3"
+        class="input row-start-2 md:row-start-1 md:col-start-3"
         type="text"
         placeholder="Join a meeting"
       />
@@ -71,6 +71,7 @@ p {
 .card {
   background-color: var(--sec-light-color);
   @apply shadow-md;
+  @apply rounded-md;
   @apply p-8;
   @apply w-auto;
 

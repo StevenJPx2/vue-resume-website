@@ -1,7 +1,10 @@
 <template>
   <div class="editor">
     <editor-menu-bar :editor="editor" v-slot="{ commands, isActive, focused }">
-      <div class="menubar is-hidden" :class="{ 'is-focused': focused }">
+      <div
+        class="menubar is-hidden"
+        :class="{ 'is-focused': focused && editable }"
+      >
         <button
           class="menubar__button"
           :class="{ 'is-active': isActive.bold() }"
@@ -36,57 +39,79 @@
 
         <button
           class="menubar__button"
-          :class="{ 'is-active': isActive.code() }"
-          @click="commands.code"
+          :class="{ 'is-active': isActive.link() }"
+          @click="showLinkPrompt = !showLinkPrompt"
         >
-          <icon name="code" />
+          <icon name="link" />
         </button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-          @click="commands.heading({ level: 1 })"
-        >
-          <icon name="heading" />
-        </button>
+        <template v-if="showLinkPrompt">
+          <input
+            type="text"
+            placeholder="Link"
+            v-model="linkUrl"
+            ref="linkInput"
+            @keypress.enter="setLinkUrl(commands.link, linkUrl)"
+          />
+          <button class="ml-1" @click="setLinkUrl(commands.link, '')">
+            <icon name="times-circle" />
+          </button>
+        </template>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.bullet_list() }"
-          @click="commands.bullet_list"
-        >
-          <icon name="list-ul" />
-        </button>
+        <template v-else>
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.code() }"
+            @click="commands.code"
+          >
+            <icon name="code" />
+          </button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.ordered_list() }"
-          @click="commands.ordered_list"
-        >
-          <icon name="list-ol" />
-        </button>
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.heading({ level: 1 }) }"
+            @click="commands.heading({ level: 1 })"
+          >
+            <icon name="heading" />
+          </button>
 
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.blockquote() }"
-          @click="commands.blockquote"
-        >
-          <icon name="quote-right" />
-        </button>
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.bullet_list() }"
+            @click="commands.bullet_list"
+          >
+            <icon name="list-ul" />
+          </button>
+
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.ordered_list() }"
+            @click="commands.ordered_list"
+          >
+            <icon name="list-ol" />
+          </button>
+
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.blockquote() }"
+            @click="commands.blockquote"
+          >
+            <icon name="quote-right" />
+          </button>
+        </template>
       </div>
     </editor-menu-bar>
     <editor-content :editor="editor" />
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
   Blockquote,
   BulletList,
   CodeBlock,
-  HardBreak,
   Heading,
   ListItem,
   OrderedList,
@@ -98,7 +123,7 @@ import {
   Link,
   Strike,
   Underline,
-  History,
+  Placeholder,
 } from 'tiptap-extensions'
 
 export default Vue.extend({
@@ -112,8 +137,6 @@ export default Vue.extend({
       extensions: [
         new Blockquote(),
         new BulletList(),
-        new CodeBlock(),
-        new HardBreak(),
         new Heading({ levels: [1, 2, 3] }),
         new ListItem(),
         new OrderedList(),
@@ -125,31 +148,72 @@ export default Vue.extend({
         new Italic(),
         new Strike(),
         new Underline(),
-        new History(),
+        new Placeholder({
+          emptyEditorClass: 'is-editor-empty',
+          emptyNodeClass: 'is-empty',
+          emptyNodeText: this.placeholderText,
+          showOnlyCurrent: true,
+        }),
       ],
-      content: '<p>Replace this text...</p>',
+      content:
+        this.content == '' && this.editable == false
+          ? this.placeholderText
+          : this.content,
+      editable: this.editable,
     })
+  },
+
+  methods: {
+    setLinkUrl(command: any, url: string) {
+      command({ href: url })
+      this.linkUrl = ''
+      this.showLinkPrompt = false
+    },
+  },
+
+  props: {
+    placeholderText: {
+      default: 'Write something…',
+      type: String,
+    },
+    content: {
+      default: '',
+      type: String,
+    },
+    editable: {
+      default: true,
+      type: Boolean,
+    },
   },
 
   data() {
     return {
       editor: null,
+      showLinkPrompt: false,
+      linkUrl: '',
     }
   },
 
   beforeDestroy() {
-    this.editor.destroy()
+    let editor = this.editor as any
+    editor.destroy()
   },
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $color-black: #000000;
 $color-white: #ffffff;
 $color-grey: #dddddd;
 
-.editor {
-  @apply mt-4;
+.editor p.is-editor-empty:first-child::before {
+  content: attr(data-empty-text);
+  @apply opacity-50;
+  @apply float-left;
+  @apply pointer-events-none;
+  @apply h-0;
+  @apply bg-black;
+  @apply italic;
 }
 
 .menubar {
@@ -162,7 +226,7 @@ $color-grey: #dddddd;
   @apply border-t;
   border-color: #b99671;
   height: 3.5rem;
-  width: 100%;
+  @apply w-full;
   @apply overflow-x-scroll;
   @apply overflow-y-hidden;
 
@@ -198,18 +262,34 @@ $color-grey: #dddddd;
     }
   }
 
+  input {
+    @apply pl-2;
+    @apply rounded-sm;
+    @apply border;
+    border-color: var(--sec-dark-color);
+  }
+
   span#{&}__button {
     font-size: 13.3333px;
   }
 }
 
 @screen md {
+  .editor {
+    @apply relative;
+  }
+
   .menubar {
-    @apply static;
-    @apply pl-0;
-    @apply py-0;
+    @apply absolute;
+    @apply z-40;
+    bottom: 100%;
+    @apply py-2;
+    @apply px-3;
     @apply mb-2;
     @apply border-none;
+    background-color: var(--background-color);
+    @apply shadow-lg;
+    @apply rounded-sm;
 
     @apply h-auto;
     transition: visibility 0.2s 0.4s, opacity 0.2s 0.4s;

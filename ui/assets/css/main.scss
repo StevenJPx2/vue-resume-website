@@ -17,6 +17,11 @@ body {
 
 }
 
+*:focus {
+  outline: dotted 1px black;
+
+}
+
 .container {
   @apply mx-auto;
 }
@@ -110,15 +115,29 @@ code {
 
 ul {
   @apply list-disc;
+  @apply list-inside;
+
+  p {
+    @apply inline;
+  }
 }
 
 ol {
   @apply list-decimal;
+  @apply list-inside;
+
+  p {
+    @apply inline;
+  }
 }
 
 .no-scroll {
   @apply h-full;
   @apply overflow-hidden;
+}
+
+a {
+  @apply underline;
 }
 
 hr {
@@ -128,26 +147,45 @@ hr {
   @apply border-0;
 }
 
-input {
+input.input {
   @apply px-4;
-  background-color: var(--sec-dark-color);
-}
+  @apply pl-5;
+  @apply relative;
+  @apply rounded-md;
+  @apply shadow-md;
 
-input::placeholder {
-  @apply text-black;
+  background-color: var(--sec-light-color);
+
+
+  &::placeholder {
+    @apply text-black;
+  }
 }
 
 .btn {
-  @apply px-3;
   @apply py-4;
   @apply text-center;
-  @apply text-sm;
+  @apply text-lg;
   @apply text-white;
-  @apply font-black;
-  @apply uppercase;
-  @apply tracking-wide;
-  @apply w-auto;
+  @apply font-bold;
+  @apply rounded-full;
   background-color: var(--compl-color);
+  background-color: black;
+}
+
+.btn-sd {
+  @apply shadow-md;
+  @apply transition-shadow;
+  @apply duration-200;
+  @apply ease-in-out;
+
+  &:hover {
+    @apply shadow-sm;
+  }
+
+  &:focus {
+    @apply shadow-none;
+  }
 }
 
 @screen md {
