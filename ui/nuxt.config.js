@@ -77,6 +77,7 @@ export default {
     icons: {
       solid: true,
       brands: true,
+      regular: true,
     }
   },
   /*
@@ -84,5 +85,9 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
 
-  build: {},
+  build: {
+    extend(config) {
+      config.resolve.alias['vue'] = 'vue/dist/vue.common'
+    }
+  },
 }

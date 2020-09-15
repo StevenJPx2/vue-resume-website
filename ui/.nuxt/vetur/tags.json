@@ -17,6 +17,12 @@
   "LazyIcon": {
     "description": "Auto imported from components/Icon.vue"
   },
+  "Iframe": {
+    "description": "Auto imported from components/Iframe.js"
+  },
+  "LazyIframe": {
+    "description": "Auto imported from components/Iframe.js"
+  },
   "MatchBlock": {
     "description": "Auto imported from components/MatchBlock.vue"
   },

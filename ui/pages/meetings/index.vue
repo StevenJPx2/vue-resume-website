@@ -17,25 +17,22 @@
       able to stay anonymous.
     </p>
 
-    <div class="info-bar grid-rows-2 md:grid-rows-1">
-      <h2 class="col-start-1 col-end-3 md:col-end-1">
+    <div class="flex flex-wrap mb-4 gap-3">
+      <h2 class="w-1/3 leading-tight lg:w-auto lg:flex-grow">
         Previously viewed meetings
       </h2>
-      <nuxt-link
-        to="/meetings/1234/edit"
-        class="btn btn-sd row-start-2 md:row-start-1 md:col-start-2"
-      >
+      <nuxt-link to="/meetings/1234/edit" class="flex-none mr-3 btn btn-sd">
         Create meeting
       </nuxt-link>
-      <input
-        class="input row-start-2 md:row-start-1 md:col-start-3"
-        type="text"
-        placeholder="Join a meeting"
-      />
+      <input class="flex-1 input" type="text" placeholder="Join a meeting" />
     </div>
     <div class="h-px mb-8 bg-black" />
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div v-for="i in 10" :key="i" class="card ease-all-transition-300">
+    <div class="flex flex-wrap">
+      <div
+        v-for="i in 10"
+        :key="i"
+        class="flex-auto mb-4 ml-4 card ease-all-transition-300"
+      >
         <h3>Meeting name</h3>
         <p>Scheduled for 10:00PM</p>
         <p class="-mt-1">5 slides</p>
@@ -60,12 +57,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 p {
   @apply text-lg;
-}
-
-.info-bar {
-  @apply grid;
-  @apply mb-4;
-  @apply gap-3;
 }
 
 .card {

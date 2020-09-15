@@ -14,9 +14,14 @@ import {
   fab as freeFabFab
 } from '@fortawesome/free-brands-svg-icons'
 
+import {
+  far as freeFarFar
+} from '@fortawesome/free-regular-svg-icons'
+
 library.add(
   freeFasFas,
-  freeFabFab
+  freeFabFab,
+  freeFarFar
 )
 
 config.autoAddCss = false

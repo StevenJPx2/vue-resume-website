@@ -136,9 +136,6 @@ ol {
   @apply overflow-hidden;
 }
 
-a {
-  @apply underline;
-}
 
 hr {
   height: 1.5px;
@@ -153,17 +150,21 @@ input.input {
   @apply relative;
   @apply rounded-md;
   @apply shadow-md;
+  min-height: 50px;
+  max-width: 400px;
 
   background-color: var(--sec-light-color);
 
 
   &::placeholder {
-    @apply text-black;
+    color: rgba($color: #000000, $alpha: 0.5)
   }
 }
 
 .btn {
+  @apply self-center;
   @apply py-4;
+  @apply px-5;
   @apply text-center;
   @apply text-lg;
   @apply text-white;

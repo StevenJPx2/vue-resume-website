@@ -1,6 +1,9 @@
 <template>
   <div class="editor">
-    <editor-menu-bar :editor="editor" v-slot="{ commands, isActive, focused }">
+    <editor-menu-bar
+      :editor="editor"
+      v-slot="{ commands, isActive, focused, getMarkAttrs }"
+    >
       <div
         class="menubar is-hidden"
         :class="{ 'is-focused': focused && editable }"
@@ -40,15 +43,18 @@
         <button
           class="menubar__button"
           :class="{ 'is-active': isActive.link() }"
-          @click="showLinkPrompt = !showLinkPrompt"
+          @click="
+            linkUrl = getMarkAttrs('link').href
+            showLinkPrompt = !showLinkPrompt
+          "
         >
           <icon name="link" />
         </button>
 
-        <template v-if="showLinkPrompt">
+        <div class="link__input" v-if="showLinkPrompt">
           <input
             type="text"
-            placeholder="Link"
+            placeholder="https://"
             v-model="linkUrl"
             ref="linkInput"
             @keypress.enter="setLinkUrl(commands.link, linkUrl)"
@@ -56,7 +62,7 @@
           <button class="ml-1" @click="setLinkUrl(commands.link, '')">
             <icon name="times-circle" />
           </button>
-        </template>
+        </div>
 
         <template v-else>
           <button
@@ -98,6 +104,13 @@
           >
             <icon name="quote-right" />
           </button>
+          <button
+            class="menubar__button"
+            :class="{ 'is-active': isActive.iframe() }"
+            @click="commands.iframe"
+          >
+            <icon name="photo-video" />
+          </button>
         </template>
       </div>
     </editor-menu-bar>
@@ -124,7 +137,9 @@ import {
   Strike,
   Underline,
   Placeholder,
+  TrailingNode,
 } from 'tiptap-extensions'
+import Iframe from './Iframe.js'
 
 export default Vue.extend({
   components: {
@@ -148,6 +163,8 @@ export default Vue.extend({
         new Italic(),
         new Strike(),
         new Underline(),
+        new Iframe(),
+        new TrailingNode(),
         new Placeholder({
           emptyEditorClass: 'is-editor-empty',
           emptyNodeClass: 'is-empty',
@@ -165,9 +182,9 @@ export default Vue.extend({
 
   methods: {
     setLinkUrl(command: any, url: string) {
-      command({ href: url })
-      this.linkUrl = ''
+      command({ href: url.match('^https?:\/\/') ? url : `https://${url}` })
       this.showLinkPrompt = false
+      this.linkUrl = ''
     },
   },
 
@@ -177,7 +194,7 @@ export default Vue.extend({
       type: String,
     },
     content: {
-      default: '',
+      default: ``,
       type: String,
     },
     editable: {
@@ -205,6 +222,30 @@ export default Vue.extend({
 $color-black: #000000;
 $color-white: #ffffff;
 $color-grey: #dddddd;
+
+.editor {
+  a {
+    @apply underline;
+  }
+
+  .iframe__embed {
+    @apply w-full;
+    min-height: 350px;
+  }
+
+  .iframe__input {
+    @apply w-full;
+    @apply text-lg;
+    @apply py-2;
+    @apply px-3;
+    @apply rounded-md;
+    @apply shadow-md;
+
+    &::placeholder {
+      color: rgba($color-black, 0.5);
+    }
+  }
+}
 
 .editor p.is-editor-empty:first-child::before {
   content: attr(data-empty-text);
@@ -262,15 +303,48 @@ $color-grey: #dddddd;
     }
   }
 
-  input {
-    @apply pl-2;
-    @apply rounded-sm;
-    @apply border;
-    border-color: var(--sec-dark-color);
+  .link__input {
+    input {
+      @apply absolute;
+      @apply inset-0;
+      @apply h-full;
+      @apply w-full;
+      @apply text-lg;
+      @apply pl-2;
+      @apply rounded-sm;
+      @apply border;
+      border-color: var(--sec-dark-color);
+    }
+
+    button {
+      @apply absolute;
+      right: 10px;
+      top: 5px;
+      @apply text-3xl;
+      @apply z-10;
+    }
   }
 
   span#{&}__button {
     font-size: 13.3333px;
+  }
+
+  .iframe {
+    &__embed {
+      width: 100%;
+      height: 15rem;
+      border: 0;
+    }
+
+    &__input {
+      display: block;
+      width: 100%;
+      font: inherit;
+      border: 0;
+      border-radius: 5px;
+      background-color: rgba($color-black, 0.1);
+      padding: 0.3rem 0.5rem;
+    }
   }
 }
 
@@ -301,6 +375,15 @@ $color-grey: #dddddd;
     &__button {
       @apply text-base;
       @apply mr-1;
+    }
+
+    .link__input {
+      input {
+        @apply static;
+        @apply h-auto;
+        @apply w-auto;
+        @apply text-base;
+      }
     }
   }
 }
