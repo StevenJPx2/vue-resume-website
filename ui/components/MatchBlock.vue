@@ -63,27 +63,45 @@ export default Vue.extend({
 }
 
 .poll {
+  @apply mt-2;
+  max-width: 50rem;
+
   &__item {
-    @apply flex;
+    @apply grid;
+    @apply gap-2;
 
     input {
       @apply w-full;
-      @apply mt-2;
-
-      &:last-of-type {
-        @apply ml-2;
-      }
+      @apply col-start-1;
+      @apply col-end-8;
     }
 
     button {
-      @apply mr-1;
-      @apply ml-4;
+      @apply ml-1;
+      @apply align-middle;
+      @apply col-start-8;
+      @apply row-start-1;
+      @apply row-end-3;
+
       .poll__button {
-        @apply relative;
-        top: 0.4rem;
         @apply text-3xl;
         color: black;
       }
+    }
+  }
+}
+
+@screen md {
+  .poll__item {
+    grid-template-columns: repeat(2, auto) max-content;
+
+    input {
+      @apply col-auto;
+    }
+
+    button {
+      @apply col-auto;
+      @apply row-auto;
     }
   }
 }

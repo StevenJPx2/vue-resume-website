@@ -266,6 +266,7 @@ $color-grey: #dddddd;
   @apply py-3;
   @apply border-t;
   border-color: #b99671;
+  background-color: var(--background-color);
   height: 3.5rem;
   @apply w-full;
   @apply overflow-x-scroll;
