@@ -18,10 +18,13 @@
     </p>
 
     <div class="flex flex-wrap mb-4 gap-3">
-      <h2 class="w-1/3 leading-tight lg:w-auto lg:flex-grow">
+      <h2 class="flex-grow w-full leading-tight lg:w-auto">
         Previously viewed meetings
       </h2>
-      <nuxt-link to="/meetings/1234/edit" class="flex-none mr-3 btn btn-sd">
+      <nuxt-link
+        to="/meetings/1234/edit"
+        class="w-full md:mr-3 md:w-auto flex-0 btn btn-sd"
+      >
         Create meeting
       </nuxt-link>
       <input class="flex-1 input" type="text" placeholder="Join a meeting" />
@@ -31,7 +34,7 @@
       <div
         v-for="i in 10"
         :key="i"
-        class="flex-auto mb-4 ml-4 card ease-all-transition-300"
+        class="flex-auto m-2 card ease-all-transition-300"
       >
         <h3>Meeting name</h3>
         <p>Scheduled for 10:00PM</p>

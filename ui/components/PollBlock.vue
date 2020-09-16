@@ -21,12 +21,21 @@
         </button>
       </div>
     </section>
+
+    <code v-show="debug" class="mt-3"> {{ pollData }} </code>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  props: {
+    debug: {
+      type: String,
+      default: true,
+    },
+  },
+
   data() {
     return {
       pollData: [''],

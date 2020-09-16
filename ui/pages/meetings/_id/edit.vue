@@ -20,6 +20,7 @@ import QRBlock from '@/components/QRBlock.vue'
 import PollBlock from '@/components/PollBlock.vue'
 import MatchBlock from '@/components/MatchBlock.vue'
 import FillBlock from '@/components/FillBlock.vue'
+
 export default Vue.extend({
   layout: 'none',
   data() {
