@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="matchData.push(['', ''])" class="btn btn-sd button-new">
-      <icon class="button-new__icon" name="plus" /> New Match Group
+      <icon class="mr-1" name="plus" /> New Match Group
     </button>
     <section class="poll">
       <div
@@ -51,22 +51,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.button-new {
-  @apply rounded-md;
-  @apply py-3;
-  @apply text-base;
-
-  &__icon {
-    @apply text-base;
-    @apply mr-1;
-  }
-}
-
 .poll {
-  @apply mt-2;
   max-width: 50rem;
 
   &__item {
+    @apply mt-2;
     @apply grid;
     @apply gap-2;
 

@@ -1,4 +1,5 @@
 # General
+.nuxt/
 .DS_Store
 *.mp4
 *.sketch

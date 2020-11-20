@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="pollData.push('')" class="btn btn-sd button-new">
-      <icon class="button-new__icon" name="plus" /> New Poll Item
+      <icon class="mr-1" name="plus" /> New Poll Item
     </button>
     <section class="poll">
       <div
@@ -47,17 +47,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.button-new {
-  @apply rounded-md;
-  @apply py-3;
-  @apply text-base;
-
-  &__icon {
-    @apply text-base;
-    @apply mr-1;
-  }
-}
-
 .poll {
   @apply relative;
 

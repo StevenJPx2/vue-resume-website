@@ -23,7 +23,7 @@
       </h2>
       <nuxt-link
         to="/meetings/1234/edit"
-        class="w-full md:mr-3 md:w-auto flex-0 btn btn-sd"
+        class="w-full md:mr-3 md:w-auto flex-0 btn btn-sd btn-lg"
       >
         Create meeting
       </nuxt-link>
@@ -59,6 +59,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 p {
+  @apply text-lg;
+}
+
+.btn-lg {
   @apply text-lg;
 }
 

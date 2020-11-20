@@ -258,6 +258,7 @@ $color-grey: #dddddd;
 }
 
 .menubar {
+  @apply z-30;
   @apply fixed;
   @apply flex;
   @apply bottom-0;
@@ -383,6 +384,11 @@ $color-grey: #dddddd;
         @apply static;
         @apply h-auto;
         @apply w-auto;
+        @apply text-base;
+      }
+
+      button {
+        @apply static;
         @apply text-base;
       }
     }
