@@ -4,22 +4,6 @@
       <nuxt-link to="/" class="mr-auto"
         ><h1 class="ease-all-transition-200">Steven John</h1></nuxt-link
       >
-      <button class="px-1" @click="openMenu()">Menu</button>
-      <div class="ease-all-transition-500" id="side-items" ref="sidebar">
-        <button class="pr-2 text-6xl text-right" @click="closeMenu()">
-          <ion-icon name="close-sharp"></ion-icon>
-        </button>
-        <nuxt-link
-          :class="this.$store.state.activePage == 1 ? 'active' : ''"
-          to="/meetings"
-          >Meetings</nuxt-link
-        >
-        <nuxt-link
-          :class="this.$store.state.activePage == 2 ? 'active' : ''"
-          to="/projects"
-          >Projects</nuxt-link
-        >
-      </div>
     </nav>
 
     <Nuxt />
