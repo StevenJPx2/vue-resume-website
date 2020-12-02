@@ -1,8 +1,8 @@
 :root {
-  --background-color: #FFF3E6;
-  --sec-dark-color: #E6CDB3;
-  --sec-light-color: #FDF6F0;
-  --compl-color: #A11B1B;
+  --background-color: #fff3e6;
+  --sec-dark-color: #e6cdb3;
+  --sec-light-color: #fdf6f0;
+  --compl-color: #a11b1b;
 }
 
 html {
@@ -14,16 +14,15 @@ body {
   @apply p-10;
   @apply overflow-x-hidden;
   background-color: var(--background-color);
-
 }
 
 *:focus {
   outline: dotted 1px black;
-
 }
 
 .container {
   @apply mx-auto;
+  max-width: 1000px;
 }
 
 .ease-all-transition-75 {
@@ -136,7 +135,6 @@ ol {
   @apply overflow-hidden;
 }
 
-
 hr {
   height: 1.5px;
   @apply text-black;
@@ -155,9 +153,8 @@ input.input {
 
   background-color: var(--sec-light-color);
 
-
   &::placeholder {
-    color: rgba($color: #000000, $alpha: 0.5)
+    color: rgba($color: #000000, $alpha: 0.5);
   }
 }
 
@@ -196,5 +193,4 @@ input.input {
 }
 
 @screen lg {
-
 }
