@@ -205,11 +205,13 @@ input.input {
   @apply ease-in-out;
   @apply duration-300;
 
-  &:hover {
+  &:hover,
+  &:focus {
     @apply shadow-lg;
     @apply translate-x-2;
     @apply translate-y-2;
   }
+
   h3 {
     @apply font-bold;
     @apply text-3xl;
