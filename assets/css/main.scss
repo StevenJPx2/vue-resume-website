@@ -5,6 +5,56 @@
   --compl-color: #a11b1b;
 }
 
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-Italic.otf');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-Bold.otf');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-BoldItalic.otf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-Medium.otf');
+  @apply font-medium;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-MediumItalic.otf');
+  @apply font-medium;
+  @apply italic;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-Light.otf');
+  @apply font-light;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('./Neue Montreal/NeueMontreal-LightItalic.otf');
+  @apply font-light;
+  @apply italic;
+}
+
 html {
   font-size: 14px;
 }
