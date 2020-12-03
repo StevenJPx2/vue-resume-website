@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 
 export default Vue.extend({
@@ -26,14 +26,14 @@ export default Vue.extend({
 
   methods: {
     openMenu() {
-      let sidebar = this.$refs.sidebar as HTMLElement
+      let sidebar = this.$refs.sidebar
       document.body.classList.add('no-scroll')
       sidebar.classList.add('left-0')
       sidebar.classList.remove('disappear')
     },
 
     closeMenu() {
-      let sidebar = this.$refs.sidebar as HTMLElement
+      let sidebar = this.$refs.sidebar
       document.body.classList.remove('no-scroll')
       sidebar.classList.add('disappear')
       sidebar.classList.remove('left-0')

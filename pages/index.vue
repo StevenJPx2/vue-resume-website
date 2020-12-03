@@ -65,9 +65,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-import { Octokit } from '@octokit/rest'
+import { Octokit } from '@octokit/core'
 
 const octokit = new Octokit()
 
@@ -80,18 +80,13 @@ export default Vue.extend({
       .request('GET /users/{username}/repos', {
         username: 'StevenJPx2',
       })
+
       .then((value) => {
-        let sanistisedRepos: {
-          name: string
-          created_at: Date
-          updated_at: Date
-          html_url: string
-          description: string | null
-        }[] = value.data.map((repo) => {
+        let sanistisedRepos = value.data.map((repo) => {
           return {
             name: repo.name,
-            created_at: new Date(repo.created_at!),
-            updated_at: new Date(repo.updated_at!),
+            created_at: new Date(repo.created_at),
+            updated_at: new Date(repo.updated_at),
             html_url: repo.html_url,
             description: repo.description,
           }
@@ -101,13 +96,14 @@ export default Vue.extend({
           (a, b) => -a.updated_at.valueOf() + b.updated_at.valueOf()
         )
       })
+
       .catch((err) => {
         console.error(err)
       })
   },
   data() {
     return {
-      repoData: new Array<{}>(),
+      repoData: new Array(),
     }
   },
   methods: {},
