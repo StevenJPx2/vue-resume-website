@@ -24,6 +24,7 @@
     "@nuxt/typescript-runtime": "^0.4.10",
     "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/fontawesome": "^1.1.2",
+    "@octokit/rest": "^18.0.10",
     "nuxt": "^2.13.0",
     "nuxt-fontawesome": "^0.4.0",
     "tiptap": "^1.29.1",

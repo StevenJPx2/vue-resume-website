@@ -167,13 +167,22 @@ input.input {
   @apply text-white;
   @apply font-bold;
   @apply rounded-md;
+
   background-color: var(--compl-color);
   background-color: black;
+
+  &:hover {
+    background-color: lighten($color: #000000, $amount: 20%);
+  }
+
+  &:focus {
+    background-color: lighten($color: #000000, $amount: 40%);
+  }
 }
 
 .btn-sd {
   @apply shadow-md;
-  @apply transition-shadow;
+  @apply transition-all;
   @apply duration-200;
   @apply ease-in-out;
 
@@ -183,6 +192,29 @@ input.input {
 
   &:focus {
     @apply shadow-none;
+  }
+}
+
+.card {
+  background-color: var(--sec-light-color);
+  @apply shadow-md;
+  @apply rounded-md;
+  @apply p-8;
+  @apply w-auto;
+  @apply transition-all;
+  @apply ease-in-out;
+  @apply duration-300;
+
+  &:hover {
+    @apply shadow-lg;
+    @apply translate-x-2;
+    @apply translate-y-2;
+  }
+  h3 {
+    @apply font-bold;
+    @apply text-3xl;
+    @apply leading-7;
+    @apply mb-2;
   }
 }
 
