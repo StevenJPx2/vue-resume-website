@@ -1,5 +1,5 @@
 <template>
-  <div class="editor">
+  <div class="editor--text-block">
     <editor-menu-bar
       :editor="editor"
       v-slot="{ commands, isActive, focused, getMarkAttrs }"
@@ -64,7 +64,7 @@
           </button>
         </div>
 
-        <template v-else>
+        <div class="flex" v-else>
           <button
             class="menubar__button"
             :class="{ 'is-active': isActive.code() }"
@@ -111,7 +111,7 @@
           >
             <icon name="photo-video" />
           </button>
-        </template>
+        </div>
       </div>
     </editor-menu-bar>
     <editor-content :editor="editor" />
@@ -147,6 +147,29 @@ export default Vue.extend({
     EditorMenuBar,
   },
 
+  model: {
+    prop: 'content',
+    event: 'input',
+  },
+
+  props: {
+    debug: Boolean,
+    placeholderText: {
+      default: 'Write something…',
+      type: String,
+    },
+    content: String,
+    editable: Boolean,
+  },
+
+  data() {
+    return {
+      editor: null,
+      showLinkPrompt: false,
+      linkUrl: '',
+    }
+  },
+
   mounted() {
     this.editor = new Editor({
       extensions: [
@@ -172,43 +195,70 @@ export default Vue.extend({
           showOnlyCurrent: true,
         }),
       ],
-      content:
-        this.content == '' && this.editable == false
-          ? this.placeholderText
-          : this.content,
+
       editable: this.editable,
+
+      onUpdate: ({ getHTML }: { getHTML: Function }) => {
+        this.$emit('input', getHTML())
+      },
     })
+
+    if (this.editable == true) {
+      ;(this.editor as any).setContent(this.content)
+    } else {
+      ;(this.editor as any).setContent({
+        type: 'doc',
+        content: [
+          {
+            type: 'paragraph',
+            content: [{ type: 'text', text: this.placeholderText }],
+          },
+        ],
+      })
+    }
+  },
+
+  watch: {
+    editable() {
+      ;(this.editor! as any).setOptions({
+        editable: this.editable,
+      })
+      const jsonData = (this.editor! as any).getJSON().content
+
+      if (
+        (jsonData[0].content === undefined ||
+          (jsonData[0].content[0].text == this.placeholderText &&
+            jsonData[1] === undefined &&
+            jsonData[0].content[1] === undefined)) &&
+        this.editable === true
+      ) {
+        ;(this.editor! as any).setContent('')
+      } else if (
+        (jsonData == [] || jsonData[0].content === undefined) &&
+        this.editable === false
+      ) {
+        ;(this.editor as any).setContent({
+          type: 'doc',
+          content: [
+            {
+              type: 'paragraph',
+              content: [{ type: 'text', text: this.placeholderText }],
+            },
+          ],
+        })
+      }
+    },
   },
 
   methods: {
     setLinkUrl(command: any, url: string) {
-      command({ href: url.match('^https?:\/\/') ? url : `https://${url}` })
+      if (url != '')
+        command({ href: url.match('^https?:\/\/') ? url : `https://${url}` })
+      else command({ href: '' })
+
       this.showLinkPrompt = false
       this.linkUrl = ''
     },
-  },
-
-  props: {
-    placeholderText: {
-      default: 'Write something…',
-      type: String,
-    },
-    content: {
-      default: ``,
-      type: String,
-    },
-    editable: {
-      default: true,
-      type: Boolean,
-    },
-  },
-
-  data() {
-    return {
-      editor: null,
-      showLinkPrompt: false,
-      linkUrl: '',
-    }
   },
 
   beforeDestroy() {
@@ -223,7 +273,7 @@ $color-black: #000000;
 $color-white: #ffffff;
 $color-grey: #dddddd;
 
-.editor {
+.editor--text-block {
   a {
     @apply underline;
   }
@@ -245,16 +295,16 @@ $color-grey: #dddddd;
       color: rgba($color-black, 0.5);
     }
   }
-}
 
-.editor p.is-editor-empty:first-child::before {
-  content: attr(data-empty-text);
-  @apply opacity-50;
-  @apply float-left;
-  @apply pointer-events-none;
-  @apply h-0;
-  @apply bg-black;
-  @apply italic;
+  p.is-editor-empty:only-child::before {
+    content: attr(data-empty-text);
+    @apply opacity-50;
+    @apply float-left;
+    @apply pointer-events-none;
+    @apply h-0;
+    @apply bg-black;
+    @apply italic;
+  }
 }
 
 .menubar {
@@ -351,7 +401,7 @@ $color-grey: #dddddd;
 }
 
 @screen md {
-  .editor {
+  .editor--text-block {
     @apply relative;
   }
 

@@ -101,6 +101,7 @@ nav {
   & a:hover,
   & .active {
     @apply underline;
+    @apply outline-none;
   }
 }
 

@@ -14,9 +14,7 @@
       Front-end: Vue.js, Nuxt.js, Tailwind CSS <br />
       Back-end: Flask, Actix, Docker, Kubernetes
     </p>
-    <p class="mt-3">
-      I made this website using Nuxt.js and Actix-web.
-    </p>
+    <p class="mt-3">I made this website using Nuxt.js and Actix-web.</p>
     <p class="mt-3">
       I’ve done deep-learning projects with Tensorflow and Keras, with GANs and
       more, but I’m still a novice.
@@ -34,6 +32,11 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  head() {
+    return {
+      title: 'Steven John',
+    }
+  },
   created() {
     this.$store.commit('setTitle', 'Steven John - Meetings')
     this.$store.commit('setActive', 0)

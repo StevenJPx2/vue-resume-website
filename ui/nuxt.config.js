@@ -1,11 +1,5 @@
 export default {
   /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  mode: 'universal',
-
-  /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
    */
@@ -20,7 +14,7 @@ export default {
     title: 'Steven John',
     script: [
       {
-        src: 'https://unpkg.com/ionicons@5.1.2/dist/ionicons.js'
+        src: 'https://unpkg.com/ionicons@5.1.2/dist/ionicons.js',
       },
     ],
     meta: [
@@ -32,9 +26,7 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Global CSS
@@ -44,7 +36,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/directives.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -65,7 +57,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    ['nuxt-fontawesome', {component: 'fa'}],
+    ['nuxt-fontawesome', { component: 'fa' }],
   ],
   /*
    ** Axios module configuration
@@ -78,7 +70,7 @@ export default {
       solid: true,
       brands: true,
       regular: true,
-    }
+    },
   },
   /*
    ** Build configuration
@@ -88,6 +80,6 @@ export default {
   build: {
     extend(config) {
       config.resolve.alias['vue'] = 'vue/dist/vue.common'
-    }
+    },
   },
 }
