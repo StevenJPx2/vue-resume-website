@@ -40,4 +40,4 @@ jobs:
           # docker-compose File Path
           docker_compose_file: docker-compose.yml
           # List of Docker Images generated from docker-compose and Heroku app names with type
-          heroku_apps: '[{"imagename":"api","appname":"api","apptype":"web"}, {"imagename":"ui","appname":"ui","apptype":"web"}, {"imagename":"nginx","appname":"nginx","apptype":"web"}]'
+          heroku_apps: '[{"imagename":"api","appname":"api","apptype":"worker"}, {"imagename":"ui","appname":"ui","apptype":"worker"}, {"imagename":"nginx","appname":"nginx","apptype":"web"}]'
