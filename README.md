@@ -6,3 +6,5 @@ and Nuxt as the frontend, and Rust as the backend. This will be uncharted territ
 only familiar with Vue and Flask (Python).
 
 I'm excited tho.
+
+Please work.
