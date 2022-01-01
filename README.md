@@ -1,8 +1,29 @@
-# vue-resume-website
-### branch: dev
+# Nuxt 3 Minimal Starter
 
-This will be my attempt at doing my entire website again using Tailwind
-and Nuxt as the frontend, and Rust as the backend. This will be uncharted territory, as I'm
-only familiar with Vue and Flask (Python).
+We recommend to look at the [documentation](https://v3.nuxtjs.org).
 
-I'm excited tho.
+## Setup
+
+Make sure to install the dependencies
+
+```bash
+yarn install
+```
+
+## Development
+
+Start the development server on http://localhost:3000
+
+```bash
+yarn dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+yarn build
+```
+
+Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).

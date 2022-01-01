@@ -1,59 +1,19 @@
 {
-  "name": "ui",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt-ts build",
-    "generate": "nuxt generate",
-    "start": "nuxt-ts start",
-    "export": "nuxt-ts export",
-    "serve": "nuxt-ts serve",
-    "test": "jest"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.8",
-    "@fortawesome/fontawesome-free-brands": "^5.0.13",
-    "@fortawesome/fontawesome-free-solid": "^5.0.13",
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-brands-svg-icons": "^5.14.0",
-    "@fortawesome/free-regular-svg-icons": "^5.14.0",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/vue-fontawesome": "^0.1.10",
-    "@nuxt/components": "^1.2.0",
-    "@nuxt/typescript-runtime": "^0.4.10",
-    "@nuxtjs/axios": "^5.12.3",
-    "@nuxtjs/fontawesome": "^1.1.2",
-    "@octokit/core": "^3.2.1",
-    "nuxt": "^2.14.9",
-    "nuxt-fontawesome": "^0.4.0",
-    "tiptap": "^1.29.1",
-    "tiptap-commands": "^1.14.6",
-    "tiptap-extensions": "^1.31.1",
-    "vue-script2": "^2.1.0"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^1.0.3",
-    "@nuxtjs/tailwindcss": "^2.0.0",
-    "@typescript-eslint/eslint-plugin": "^3.7.0",
-    "@typescript-eslint/parser": "^3.7.0",
-    "@vue/test-utils": "^1.0.3",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^26.0.1",
-    "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.2.2",
-    "jest": "^26.0.1",
-    "node-sass": "^4.14.1",
-    "prettier": "^2.2.1",
-    "sass-loader": "^9.0.2",
-    "ts-jest": "^26.1.0",
-    "vue-jest": "^3.0.4"
+    "autoprefixer": "^10.4.0",
+    "nuxt3": "latest",
+    "postcss": "^8.4.5",
+    "sass": "^1.45.1",
+    "tailwindcss": "^3.0.8",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "nuxt-use-motion": "^2.0.0-beta.11"
   }
 }
