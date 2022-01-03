@@ -8,7 +8,18 @@ const emit = defineEmits(["update:pageNo"]);
 
 <template>
   <div
-    class="grid absolute top-0 left-0 z-50 w-screen h-screen pointer-events-none clip"
+    class="
+      grid
+      absolute
+      top-0
+      left-0
+      z-50
+      w-screen
+      h-[90vh]
+      sm:h-screen
+      pointer-events-none
+      clip
+    "
   >
     <div
       class="
@@ -18,7 +29,7 @@ const emit = defineEmits(["update:pageNo"]);
         flex
         self-end
         translate-y-[-25vw]
-        md:translate-y-0 md:self-center
+        sm:translate-y-0 sm:self-center
         px-[5vw]
       "
     >
@@ -31,7 +42,8 @@ const emit = defineEmits(["update:pageNo"]);
           <img
             src="~/assets/arrow.webp"
             alt="Left"
-            class="rotate-180 w-[24vw] md:w-[10vw]"
+            loading="eager"
+            class="rotate-180 w-[24vw] sm:w-[10vw]"
           />
         </button>
       </transition>
@@ -45,7 +57,8 @@ const emit = defineEmits(["update:pageNo"]);
           <img
             src="~/assets/arrow.webp"
             alt="Right"
-            class="w-[24vw] md:w-[10vw]"
+            loading="eager"
+            class="w-[24vw] sm:w-[10vw]"
           />
         </button>
       </transition>
@@ -65,12 +78,12 @@ const emit = defineEmits(["update:pageNo"]);
       <div
         class="
           hidden
-          md:block
+          sm:block
           h-[21vw]
           bg-zinc-900
           blur-3xl
           row-start-1
-          md:col-start-11 md:col-end-21
+          sm:col-start-11 sm:col-end-21
           -z-10
           rounded-[50%]
         "
@@ -82,7 +95,7 @@ const emit = defineEmits(["update:pageNo"]);
           row-start-1
           col-start-3 col-end-14
           space-x-[4.3vw]
-          md:col-start-13 md:col-end-19 md:space-x-[1.2vw] md:mt-[9vw]
+          sm:col-start-13 sm:col-end-19 sm:space-x-[1.2vw] sm:mt-[9vw]
           mt-[-19vw]
           z-10
           pointer-events-auto
@@ -105,9 +118,9 @@ const emit = defineEmits(["update:pageNo"]);
   @apply bg-slate-50/70;
   @apply w-full;
   @apply h-[0.35vw];
-  @apply md:h-[0.1vw];
+  @apply sm:h-[0.1vw];
   @apply transition-transform;
-  @apply origin-center;
+  @apply origin-bottom;
   @apply ease-css-out;
 
   &.active {

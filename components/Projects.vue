@@ -4,47 +4,75 @@
       class="
         row-start-1
         col-start-2 col-end-16
-        md:col-span-full
+        sm:col-span-full
         justify-self-center
         mt-[10vw]
-        md:mt-[5vw]
-        md:mb-[2vw]
+        sm:mt-[5vw] sm:mb-[2vw]
+        animate
       "
     >
       Projects I've done
     </h2>
     <a
-      href="#"
-      class="z-10 col-start-2 col-end-13 row-start-2 md:col-start-12 md:col-end-19"
+      href="https://areopagus.saftapologetics.com"
+      target="_blank"
+      class="
+        z-10
+        col-start-2 col-end-13
+        row-start-2
+        delay-75
+        sm:col-start-12
+        animate
+        sm:col-end-19
+        transition-transform
+        ease-out-back
+        hover:translate-y-[-1vw]
+      "
     >
-      <img src="~/assets/areopagus.webp" alt="Areopagus" />
+      <img src="~/assets/areopagus.webp" alt="Areopagus" loading="eager" />
     </a>
 
     <a
-      href="#"
+      href="https://onlineads.ca"
+      target="_blank"
       class="
         row-start-2
         col-start-3 col-end-15
-        md:col-start-6 md:col-end-13
+        sm:col-start-6 sm:col-end-13
         mt-[40vw]
-        md:mt-[3vw]
+        sm:mt-[3vw]
+        animate
+        delay-100
+        transition-transform
+        ease-out-back
+        hover:translate-y-[-1vw]
       "
     >
-      <img src="~/assets/onlineads.webp" alt="OnlineAds.ca" />
+      <img src="~/assets/onlineads.webp" alt="OnlineAds.ca" loading="eager" />
     </a>
 
     <a
-      href="#"
+      href="https://saftapologetics.com"
+      target="_blank"
       class="
         row-start-2
         col-start-2 col-end-14
-        md:col-start-9 md:col-end-16
+        sm:col-start-9 sm:col-end-16
         mt-[80vw]
-        md:mt-[18.6vw]
+        sm:mt-[18.6vw]
         z-20
+        animate
+        delay-150
+        transition-transform
+        ease-out-back
+        hover:translate-y-[-1vw]
       "
     >
-      <img src="~/assets/saftapologetics.webp" alt="SAFT Apologetics" />
+      <img
+        src="~/assets/saftapologetics.webp"
+        alt="SAFT Apologetics"
+        loading="eager"
+      />
     </a>
   </div>
 </template>

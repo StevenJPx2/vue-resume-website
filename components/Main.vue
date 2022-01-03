@@ -1,38 +1,41 @@
 <template>
-  <div class="h-screen wrapper isolate">
+  <div class="wrapper isolate">
     <img
       src="~/assets/head-photo.webp"
       alt="My photo"
+      loading="eager"
       class="
         col-start-1 col-end-16
         scale-125
-        translate-x-[30vw]
-        translate-y-[-15vw]
-        md:scale-100
-        md:col-start-11 md:col-end-22 md:h-[94vh]
+        translate-x-[30vw] translate-y-[20vw]
+        sm:translate-x-0
+        sm:translate-y-0
+        sm:scale-100
+        sm:col-start-11
+        sm:col-end-22
+        sm:h-[94vh]
         row-start-1 row-end-3
         self-end
         -z-20
+        object-contain object-bottom
+        animate
+        delay-75
       "
     />
     <div
-      class="
-        h-screen
-        w-screen
-        row-start-1 row-end-3
-        col-start-1 col-end-16
-        md:hidden
-        bg-zinc-900/70
-        -z-10
-      "
+      class="absolute top-0 w-screen h-screen sm:hidden bg-zinc-900/80 -z-10"
     ></div>
     <h2
       class="
-        col-start-2 col-end-16
+        col-start-2
         row-start-1
-        self-end
+        self-start
+        mt-[-20vw]
+        sm:mt-[0] sm:self-end
         uppercase
-        md:col-start-3 md:col-end-10
+        sm:col-start-3 sm:col-end-10
+        col-end-16
+        animate
       "
     >
       Steven John
@@ -40,16 +43,21 @@
     <section
       class="
         col-start-2 col-end-14
-        md:col-start-3 md:col-end-12
+        sm:col-start-3 sm:col-end-12
         space-y-[1.2vw]
-        mt-[2vw]
+        self-start
+        sm:self-start sm:mt-[2.3vw]
         row-start-2
+        animate
       "
     >
       <p>
-        I’m a multi-hyphenate engineer, mainly focusing on interactive design.
-        Animation and micro-interaction is an addiction for me right now.
+        I’m a full-stack web developer, with laser focus on everything such as,
+        next-gen image formats, SEO optimization, interactive design to
+        Kubernetes and Docker to create the most engaging experiences with the
+        least running cost.
       </p>
+      <p>Animation and micro-interaction is an addiction for me right now.</p>
       <p>I love graphic design, reading and singing.</p>
       <p>My current IDE is Neovim. Yes, it is my IDE.</p>
     </section>

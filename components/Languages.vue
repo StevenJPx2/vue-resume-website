@@ -22,85 +22,117 @@ const knowledge = [
 </script>
 
 <template>
-  <div class="place-content-center wrapper isolate touch-none">
+  <div class="wrapper isolate touch-none mt-[-35vw] sm:mt-0">
     <div
       class="
         wrapper
         col-start-1 col-end-16
         translate-x-[25vw]
-        md:translate-x-0
-        md:col-start-14 md:col-end-22
+        sm:translate-x-0 sm:col-start-14 sm:col-end-22
         place-self-center
         !w-full
         row-start-1 row-end-6
-        z-[-2]
+        -z-20
+        animate
+        delay-75
       "
     >
       <img
         src="~/assets/rust-logo.svg"
         alt="Rust Logo"
-        class="col-start-2 col-end-11 row-start-1 md:col-start-3 md:col-end-13"
+        loading="eager"
+        class="
+          col-start-2 col-end-11
+          row-start-1
+          sm:col-start-3 sm:col-end-13
+          lang-logo
+          delay-[600ms]
+        "
       />
       <img
         src="~/assets/nuxt-logo.svg"
         alt="Nuxt Logo"
-        class="col-start-10 row-start-1 md:col-start-12 col-end-15 md:col-end-18"
+        loading="eager"
+        class="
+          col-start-10
+          row-start-1
+          sm:col-start-12
+          col-end-15
+          lang-logo
+          sm:col-end-18
+          delay-[625ms]
+        "
       />
       <img
         src="~/assets/python-logo.svg"
         alt="Python Logo"
+        loading="eager"
         class="
           row-start-1
           col-start-9 col-end-15
-          md:col-start-11 md:col-end-19
+          sm:col-start-11 sm:col-end-19
           mt-[34vw]
-          md:mt-[9vw]
+          sm:mt-[9vw]
+          lang-logo
+          delay-[575ms]
         "
       />
       <img
         src="~/assets/vue-logo.svg"
         alt="Vue Logo"
+        loading="eager"
         class="
           row-start-1
           col-start-2 col-end-5
-          md:col-start-3 md:col-end-8
+          sm:col-start-3 sm:col-end-8
           mt-[51vw]
-          md:mt-[12vw]
+          sm:mt-[12vw]
+          lang-logo
+          delay-[550ms]
         "
       />
       <img
         src="~/assets/ts-logo.svg"
         alt="Typescript Logo"
+        loading="eager"
         class="
           row-start-1
           col-start-5 col-end-9
-          md:col-start-7 md:col-end-13
+          sm:col-start-7 sm:col-end-13
           mt-[57vw]
-          md:mt-[13.4vw]
+          sm:mt-[13.4vw]
+          lang-logo
+          delay-[525ms]
         "
       />
       <img
         src="~/assets/mongodb-logo.svg"
         alt="MongoDB Logo"
+        loading="eager"
+        f
         class="
           row-start-1
           col-start-9 col-end-12
-          md:col-start-11 md:col-end-15
+          sm:col-start-11 sm:col-end-15
           mt-[71vw]
-          md:mt-[17vw]
+          sm:mt-[17vw]
+          lang-logo
+          delay-500
         "
       />
     </div>
     <div
-      class="absolute top-0 w-screen h-screen bg-zinc-900/80 md:hidden z-[-1]"
+      class="absolute top-0 w-screen h-screen sm:hidden bg-zinc-900/80 -z-10"
     ></div>
 
     <h2
       class="
         row-start-1
         col-start-2 col-end-16
-        md:col-start-5 md:col-end-13
+        sm:col-start-5 sm:col-end-13
         mb-[3vw]
+        sm:mt-0
+        animate
       "
     >
       What I know
@@ -108,8 +140,8 @@ const knowledge = [
     <div
       v-for="({ button, info }, index) in knowledge"
       :key="button"
-      class="col-start-2 md:col-start-5 md:col-end-13 col-end-14"
-      :class="`row-start-${index+2}`"
+      class="col-start-2 sm:col-start-5 sm:col-end-13 col-end-14 animate"
+      :class="`row-start-${index + 2}`"
     >
       <h3
         @click="

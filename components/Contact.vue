@@ -1,12 +1,12 @@
 <template>
-  <div class="wrapper self-start sm:self-center mt-[18vw]">
+  <div class="wrapper self-start sm:self-center mt-[13vw]">
     <h2
-      class="col-start-2 sm:col-span-full sm:mx-auto sm:text-center col-end-16"
+      class="col-start-2 sm:col-span-full sm:mx-auto sm:text-center col-end-16 animate"
     >
       Contact me
     </h2>
     <p
-      class="col-start-2 sm:col-start-7 sm:text-center col-end-14 sm:col-end-18"
+      class="col-start-2 sm:col-start-7 sm:text-center col-end-14 animate sm:col-end-18"
     >
       Hope you liked my website; I constantly try to improve my skills! You can
       print this page to get my resume.
@@ -19,21 +19,23 @@
         col-start-3 col-end-14
         sm:col-start-7 sm:col-end-18
         mt-[12vw]
-        sm:mt-[3vw]
-        sm:flex-nowrap
+        sm:mt-[3vw] sm:flex-nowrap
       "
     >
-      <a href="#">
-        <img src="~/assets/resume-icon.webp" alt="Resume" />
+      <a href="#" class="delay-75 animate">
+        <img src="~/assets/resume-icon.webp" alt="Resume" loading="eager" />
       </a>
-      <a href="https://www.linkedin.com/in/steven-john-87b796146/">
-        <img src="~/assets/linkedin-icon.webp" alt="LinkedIn" />
+      <a
+        href="https://www.linkedin.com/in/steven-john-87b796146/"
+        class="delay-100 animate"
+      >
+        <img src="~/assets/linkedin-icon.webp" alt="LinkedIn" loading="eager" />
       </a>
-      <a href="https://github.com/StevenJPx2">
-        <img src="~/assets/github-icon.webp" alt="Github" />
+      <a href="https://github.com/StevenJPx2" class="delay-[125ms] animate">
+        <img src="~/assets/github-icon.webp" alt="Github" loading="eager" />
       </a>
-      <a href="mailto:stevenjpx2@gmail.com">
-        <img src="~/assets/email-icon.webp" alt="Email" />
+      <a href="mailto:stevenjpx2@gmail.com" class="delay-150 animate">
+        <img src="~/assets/email-icon.webp" alt="Email" loading="eager" />
       </a>
     </div>
   </div>
