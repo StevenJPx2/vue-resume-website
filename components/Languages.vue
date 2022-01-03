@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const openDisclosure: -1 | 0 | 1 | 2 | 3 = ref(0);
+const openDisclosure = ref(0);
 const knowledge = [
   {
     button: "Languages",
@@ -18,6 +18,7 @@ const knowledge = [
     info: " Diam ornare cras pellentesque tempor auctor elementum iaculis quis non. Neque, cras a elementum dolor et ac nulla proin. Iaculis facilisis rhoncus tincidunt dolor feugiat a tristique. ",
   },
 ];
+// for tailwind row-start-3 row-start-4 row-start-5
 </script>
 
 <template>
@@ -25,9 +26,9 @@ const knowledge = [
     <div
       class="
         wrapper
-        absolute
-        right-[-20vw]
-        md:static
+        col-start-1 col-end-16
+        translate-x-[25vw]
+        md:translate-x-0
         md:col-start-14 md:col-end-22
         place-self-center
         !w-full
@@ -91,7 +92,7 @@ const knowledge = [
       />
     </div>
     <div
-      class="absolute top-0 w-screen h-screen bg-black/80 md:hidden z-[-1]"
+      class="absolute top-0 w-screen h-screen bg-zinc-900/80 md:hidden z-[-1]"
     ></div>
 
     <h2
@@ -108,6 +109,7 @@ const knowledge = [
       v-for="({ button, info }, index) in knowledge"
       :key="button"
       class="col-start-2 md:col-start-5 md:col-end-13 col-end-14"
+      :class="`row-start-${index+2}`"
     >
       <h3
         @click="

@@ -1,13 +1,18 @@
 <template>
-  <div class="h-screen wrapper">
+  <div class="h-screen wrapper isolate">
     <img
       src="~/assets/head-photo.webp"
       alt="My photo"
       class="
         col-start-1 col-end-16
+        scale-125
+        translate-x-[30vw]
+        translate-y-[-15vw]
+        md:scale-100
         md:col-start-11 md:col-end-22 md:h-[94vh]
         row-start-1 row-end-3
         self-end
+        -z-20
       "
     />
     <div
@@ -17,7 +22,8 @@
         row-start-1 row-end-3
         col-start-1 col-end-16
         md:hidden
-        bg-black/50
+        bg-zinc-900/70
+        -z-10
       "
     ></div>
     <h2
