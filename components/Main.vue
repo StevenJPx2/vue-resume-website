@@ -20,6 +20,7 @@
         object-contain object-bottom
         animate
         delay-75
+        pointer-events-none
       "
     />
     <div
@@ -43,7 +44,7 @@
       "
     >
       <p>
-        I’m a full-stack web developer, with laser focus on everything such as,
+        I’m a full-stack web developer, with laser focus on everything, such as
         next-gen image formats, SEO optimization, interactive design to
         Kubernetes and Docker to create the most engaging experiences with the
         least running cost.

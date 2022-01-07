@@ -4,6 +4,8 @@ import Main from "~/components/Main.vue";
 import Languages from "~/components/Languages.vue";
 import Projects from "~/components/Projects.vue";
 import Contact from "~/components/Contact.vue";
+
+const currentPage = ref<HTMLElement>();
 const pageNo = ref(0);
 const pressedNumber = ref(0);
 const pages = [Main, Languages, Projects, Contact];
@@ -13,6 +15,21 @@ const backOrForward = ref<"back" | "forward">("forward");
 const { left, right, space, Ctrl_P, Cmd_P, current } = useMagicKeys();
 const pageLink =
   "https://drive.google.com/file/d/1TFPiWAhvc8DtcoF6zMpUx1SPG8oi5qof/view?usp=sharing";
+
+usePointerSwipe(currentPage, {
+  onSwipeEnd: (_, direction) => {
+    pageNo.value =
+      direction === "RIGHT"
+        ? pageNo.value > 0
+          ? pageNo.value - 1
+          : 0
+        : direction === "LEFT"
+        ? pageNo.value < noOfPages
+          ? pageNo.value + 1
+          : pageNo.value
+        : pageNo.value;
+  },
+});
 
 watch(pageNo, (oldPageNo, newPageNo) => {
   backOrForward.value = oldPageNo < newPageNo ? "forward" : "back";
@@ -63,7 +80,7 @@ tryOnMounted(() => {
       <Meta property="og:title" content="Steven John" />
       <Meta
         name="description"
-        content="I am a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
+        content="I am a full-stack web developer, with laser focus on everything, such as next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
       />
       <Meta
         name="keywords"
@@ -76,14 +93,14 @@ tryOnMounted(() => {
       <Meta property="og:url" content="https://stevenjohn.co" />
       <Meta
         property="og:description"
-        content="I am a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
+        content="I am a full-stack web developer, with laser focus on everything, such as next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
       />
       <Meta property="og:type" content="website" />
     </Head>
   </Html>
-
   <div
     class="grid place-items-center w-screen h-screen bg-zinc-900 text-slate-50 clip touch-none"
+    ref="currentPage"
   >
     <transition
       name="slide-bottom"
