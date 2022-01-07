@@ -24,7 +24,7 @@ usePointerSwipe(currentPage, {
           ? pageNo.value - 1
           : 0
         : direction === "LEFT"
-        ? pageNo.value < noOfPages
+        ? pageNo.value < noOfPages - 1
           ? pageNo.value + 1
           : pageNo.value
         : pageNo.value;
@@ -42,7 +42,7 @@ whenever(left, () => {
 whenever(
   () => right.value || space.value,
   () => {
-    pageNo.value = pageNo.value < noOfPages ? pageNo.value + 1 : pageNo.value;
+    pageNo.value = pageNo.value < noOfPages - 1 ? pageNo.value + 1 : pageNo.value;
   }
 );
 whenever(
