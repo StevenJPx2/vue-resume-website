@@ -139,6 +139,7 @@ tryOnMounted(() => {
   .mobile-scroll {
     @apply overflow-x-hidden;
     @apply overflow-y-scroll;
+    @apply touch-pan-y;
     @apply max-h-[50vh];
   }
 
