@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import * as imagesLoaded from "imagesloaded";
+import imagesLoaded from "imagesloaded";
 import Main from "~/components/Main.vue";
 import Languages from "~/components/Languages.vue";
 import Projects from "~/components/Projects.vue";
