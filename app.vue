@@ -11,6 +11,8 @@ const noOfPages = pages.length;
 const loading = ref(true);
 const backOrForward = ref<"back" | "forward">("forward");
 const { left, right, space, Ctrl_P, Cmd_P, current } = useMagicKeys();
+const pageLink =
+  "https://drive.google.com/file/d/1TFPiWAhvc8DtcoF6zMpUx1SPG8oi5qof/view?usp=sharing";
 
 watch(pageNo, (oldPageNo, newPageNo) => {
   backOrForward.value = oldPageNo < newPageNo ? "forward" : "back";
@@ -28,7 +30,9 @@ whenever(
 );
 whenever(
   () => Ctrl_P.value || Cmd_P.value,
-  () => {}
+  () => {
+    window.location.assign(pageLink);
+  }
 );
 watch(current, () => {
   Array.from(Array(noOfPages).keys()).some((val) =>

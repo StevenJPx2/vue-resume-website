@@ -22,19 +22,32 @@
         sm:mt-[3vw] sm:flex-nowrap
       "
     >
-      <a href="#" class="delay-75 animate">
+      <a
+        href="https://drive.google.com/file/d/1TFPiWAhvc8DtcoF6zMpUx1SPG8oi5qof/view?usp=sharing"
+        class="delay-75 animate"
+        target="_blank"
+      >
         <img src="~/assets/resume-icon.webp" alt="Resume" loading="eager" />
       </a>
       <a
         href="https://www.linkedin.com/in/steven-john-87b796146/"
         class="delay-100 animate"
+        target="_blank"
       >
         <img src="~/assets/linkedin-icon.webp" alt="LinkedIn" loading="eager" />
       </a>
-      <a href="https://github.com/StevenJPx2" class="delay-[125ms] animate">
+      <a
+        href="https://github.com/StevenJPx2"
+        class="delay-[125ms] animate"
+        target="_blank"
+      >
         <img src="~/assets/github-icon.webp" alt="Github" loading="eager" />
       </a>
-      <a href="mailto:stevenjpx2@gmail.com" class="delay-150 animate">
+      <a
+        href="mailto:stevenjpx2@gmail.com"
+        class="delay-150 animate"
+        target="_blank"
+      >
         <img src="~/assets/email-icon.webp" alt="Email" loading="eager" />
       </a>
     </div>
