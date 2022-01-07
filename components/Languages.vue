@@ -3,19 +3,19 @@ const openDisclosure = ref(0);
 const knowledge = [
   {
     button: "Languages",
-    info: " Diam ornare cras pellentesque tempor auctor elementum iaculis quis non. Neque, cras a elementum dolor et ac nulla proin. Iaculis facilisis rhoncus tincidunt dolor feugiat a tristique. ",
+    info: "I'm a language-agnostic coder which means that I can learn new languages quickly. Some of the languages I know are Python, Rust, TypeScript, Swift, Dart, etc.",
   },
   {
     button: "Frameworks",
-    info: " Diam ornare cras pellentesque tempor auctor elementum iaculis quis non. Neque, cras a elementum dolor et ac nulla proin. Iaculis facilisis rhoncus tincidunt dolor feugiat a tristique. ",
+    info: "Apache Beam, React, Next.js, Vue, Nuxt, Docker, Kubernetes, Tensorflow, Flask, Actix, Expressjs, Flutter, Tailwind CSS, GraphQL, REST, SOAP, Firebase, etc.",
   },
   {
     button: "Databases",
-    info: " Diam ornare cras pellentesque tempor auctor elementum iaculis quis non. Neque, cras a elementum dolor et ac nulla proin. Iaculis facilisis rhoncus tincidunt dolor feugiat a tristique. ",
+    info: "MongoDB, PostgresQL, Bigquery SQL, Algolia, etc.",
   },
   {
     button: "Cloud Platforms",
-    info: " Diam ornare cras pellentesque tempor auctor elementum iaculis quis non. Neque, cras a elementum dolor et ac nulla proin. Iaculis facilisis rhoncus tincidunt dolor feugiat a tristique. ",
+    info: "GCP, AWS, Heroku.",
   },
 ];
 // for tailwind row-start-3 row-start-4 row-start-5

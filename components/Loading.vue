@@ -1,3 +1,3 @@
 <template>
-  <h1 class="uppercase animate-pulse">Steven John</h1> 
+  <h1 class="uppercase animate animate-pulse">Steven John</h1> 
 </template>

@@ -21,30 +21,63 @@ tryOnMounted(() => {
 </script>
 
 <template>
+  <Html>
+    <Head>
+      <Title>Steven John</Title>
+      <Meta name="title" content="Steven John" />
+      <Meta property="og:title" content="Steven John" />
+      <Meta
+        name="description"
+        content="I am a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
+      />
+      <Meta
+        name="keywords"
+        content="Web Design, Graphic Design, Animation, micro-interaction, SEO, Kubernetes, Docker, Python, Rust, TypeScript, JavaScript, Swift, C, Dart, MongoDB, PostgresQL, GraphQL spec, Java, Tensorflow, Keras, Flask, Pygame, Flutter, Actix, Websockets, Vuejs, Nuxtjs, Tailwind CSS, React, Expressjs"
+      />
+      <Meta name="robots" content="index, follow" />
+      <Meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <Meta name="language" content="English" />
+      <Meta property="og:site_name" content="The Areopagus Project" />
+      <Meta property="og:url" content="https://areopagus.saftapologetics.com" />
+      <Meta
+        property="og:description"
+        content="I am a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
+      />
+      <Meta property="og:type" content="website" />
+    </Head>
+  </Html>
+
   <div
     class="grid place-items-center w-screen h-screen bg-zinc-900 text-slate-50 clip touch-none"
   >
-    <div v-if="loading">
-      <Loading />
-      <div class="hidden">
-        <Main />
-        <Languages />
-        <Projects />
-        <Contact />
+    <transition
+      name="slide-bottom"
+      mode="out-in"
+      :duration="{ enter: 1000, leave: 300 }"
+    >
+      <div v-if="loading">
+        <Loading />
+        <div class="hidden">
+          <Main />
+          <Languages />
+          <Projects />
+          <Contact />
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <Navigator v-model:page-no="pageNo" :no-of-pages="pages.length" />
-      <transition
-        :name="`slide-${backOrForward}`"
-        mode="out-in"
-        :duration="{ enter: 1000, leave: 300 }"
-      >
-        <keep-alive>
-          <component :is="pages[pageNo]" />
-        </keep-alive>
-      </transition>
-    </div>
+
+      <div v-else>
+        <Navigator v-model:page-no="pageNo" :no-of-pages="pages.length" />
+        <transition
+          :name="`slide-${backOrForward}`"
+          mode="out-in"
+          :duration="{ enter: 1000, leave: 300 }"
+        >
+          <keep-alive>
+            <component :is="pages[pageNo]" />
+          </keep-alive>
+        </transition>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -122,88 +155,108 @@ tryOnMounted(() => {
   }
 }
 
-.slide-back,
-.slide-forward {
-  &-enter-active {
+.slide {
+  &-back,
+  &-forward,
+  &-bottom,
+  &-top {
+    &-enter-active {
+      .animate {
+        @apply transition;
+        @apply ease-out-expo;
+        @apply duration-1000;
+        @apply pointer-events-none;
+      }
+
+      .lang-logo {
+        @apply transition;
+        @apply ease-out-back;
+        @apply duration-500;
+      }
+    }
+
+    &-leave-active {
+      .animate {
+        @apply transition;
+        @apply ease-in-out-sine;
+        @apply duration-300;
+      }
+    }
+
+    &-enter-from {
+      .lang-logo {
+        @apply origin-bottom;
+        @apply scale-0;
+      }
+    }
+
+    &-leave-to {
+      .lang-logo {
+        @apply origin-bottom;
+        @apply scale-100;
+      }
+    }
+  }
+
+  &-bottom-enter-from,
+  &-top-leave-to {
     .animate {
-      @apply transition;
-      @apply ease-out-expo;
-      @apply duration-1000;
-      @apply pointer-events-none;
-    }
-
-    .lang-logo {
-      @apply transition;
-      @apply ease-out-back;
-      @apply duration-500;
-    }
-  }
-
-  &-leave-active {
-    .animate {
-      @apply transition;
-      @apply ease-in-out-sine;
-      @apply duration-300;
-    }
-  }
-
-  &-enter-from {
-    .lang-logo {
-      @apply origin-bottom;
-      @apply scale-0;
-    }
-  }
-
-  &-leave-to {
-    .lang-logo {
-      @apply origin-bottom;
-      @apply scale-100;
-    }
-  }
-}
-
-.slide-back-enter-from,
-.slide-forward-leave-to {
-  .animate {
-    @apply translate-x-[100vw];
-    @apply opacity-0;
-  }
-}
-
-.slide-back-leave-to,
-.slide-forward-enter-from {
-  .animate {
-    @apply translate-x-[-100vw];
-    @apply opacity-0;
-  }
-}
-
-.slide-fade {
-  &-enter {
-    &-active {
-      @apply transition;
-      @apply ease-out-sine;
-      @apply duration-500;
-      @apply pointer-events-none;
-    }
-
-    &-from {
-      @apply translate-y-[5vw];
+      @apply translate-y-[100vw];
       @apply opacity-0;
     }
   }
 
-  &-leave {
-    &-active {
-      @apply transition;
-      @apply ease-in-out-sine;
-      @apply duration-300;
-      @apply pointer-events-none;
+  &-bottom-leave-to,
+  &-top-enter-from {
+    .animate {
+      @apply translate-y-[-100vw];
+      @apply opacity-0;
+    }
+  }
+
+  &-back-enter-from,
+  &-forward-leave-to {
+    .animate {
+      @apply translate-x-[100vw];
+      @apply opacity-0;
+    }
+  }
+
+  &-back-leave-to,
+  &-forward-enter-from {
+    .animate {
+      @apply translate-x-[-100vw];
+      @apply opacity-0;
+    }
+  }
+
+  &-fade {
+    &-enter {
+      &-active {
+        @apply transition;
+        @apply ease-out-sine;
+        @apply duration-500;
+        @apply pointer-events-none;
+      }
+
+      &-from {
+        @apply translate-y-[5vw];
+        @apply opacity-0;
+      }
     }
 
-    &-to {
-      @apply translate-y-[-5vw];
-      @apply opacity-0;
+    &-leave {
+      &-active {
+        @apply transition;
+        @apply ease-in-out-sine;
+        @apply duration-300;
+        @apply pointer-events-none;
+      }
+
+      &-to {
+        @apply translate-y-[-5vw];
+        @apply opacity-0;
+      }
     }
   }
 }
