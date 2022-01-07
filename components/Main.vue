@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper isolate">
+  <div class="wrapper isolate mt-[-50vw] sm:mt-0">
     <img
       src="~/assets/head-photo.webp"
       alt="My photo"
@@ -7,7 +7,7 @@
       class="
         col-start-1 col-end-16
         scale-125
-        translate-x-[30vw] translate-y-[20vw]
+        translate-x-[30vw] translate-y-[55vw]
         sm:translate-x-0
         sm:translate-y-0
         sm:scale-100
@@ -26,22 +26,13 @@
       class="absolute top-0 w-screen h-screen sm:hidden bg-zinc-900/80 -z-10"
     ></div>
     <h2
-      class="
-        col-start-2
-        row-start-1
-        self-start
-        mt-[-20vw]
-        sm:mt-[0] sm:self-end
-        uppercase
-        sm:col-start-3 sm:col-end-10
-        col-end-16
-        animate
-      "
+      class="col-start-2 row-start-1 self-start uppercase sm:col-start-3 sm:col-end-10 sm:self-end col-end-16 animate"
     >
       Steven John
     </h2>
     <section
       class="
+        mobile-scroll
         col-start-2 col-end-14
         sm:col-start-3 sm:col-end-12
         space-y-[1.2vw]

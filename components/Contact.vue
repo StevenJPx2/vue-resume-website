@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper self-start sm:self-center mt-[13vw]">
+  <div class="wrapper mt-[-35vw] sm:mt-[13vw]">
     <h2
       class="col-start-2 sm:col-span-full sm:mx-auto sm:text-center col-end-16 animate"
     >

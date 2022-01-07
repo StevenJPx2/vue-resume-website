@@ -1,5 +1,5 @@
 <template>
-  <div class="place-self-start wrapper isolate">
+  <div class="mt-[-40vw] sm:mt-0 wrapper isolate">
     <h2
       class="
         row-start-1

@@ -22,7 +22,7 @@ const knowledge = [
 </script>
 
 <template>
-  <div class="wrapper isolate touch-none mt-[-35vw] sm:mt-0">
+  <div class="wrapper isolate mt-[-50vw] sm:mt-0">
     <div
       class="
         wrapper
@@ -31,7 +31,7 @@ const knowledge = [
         sm:translate-x-0 sm:col-start-14 sm:col-end-22
         place-self-center
         !w-full
-        row-start-1 row-end-6
+        row-start-1 row-end-3
         -z-20
         animate
         delay-75
@@ -72,7 +72,7 @@ const knowledge = [
           col-start-9 col-end-15
           sm:col-start-11 sm:col-end-19
           mt-[34vw]
-          sm:mt-[9vw]
+          sm:mt-[8vw]
           lang-logo
           delay-[575ms]
         "
@@ -84,9 +84,9 @@ const knowledge = [
         class="
           row-start-1
           col-start-2 col-end-5
-          sm:col-start-3 sm:col-end-8
+          sm:col-start-3 sm:col-end-7
           mt-[51vw]
-          sm:mt-[12vw]
+          sm:mt-[13vw]
           lang-logo
           delay-[550ms]
         "
@@ -98,9 +98,9 @@ const knowledge = [
         class="
           row-start-1
           col-start-5 col-end-9
-          sm:col-start-7 sm:col-end-13
+          sm:col-start-7 sm:col-end-12
           mt-[57vw]
-          sm:mt-[13.4vw]
+          sm:mt-[14.4vw]
           lang-logo
           delay-[525ms]
         "
@@ -115,7 +115,7 @@ const knowledge = [
           col-start-9 col-end-12
           sm:col-start-11 sm:col-end-15
           mt-[71vw]
-          sm:mt-[17vw]
+          sm:mt-[19vw]
           lang-logo
           delay-500
         "
@@ -130,36 +130,44 @@ const knowledge = [
         row-start-1
         col-start-2 col-end-16
         sm:col-start-5 sm:col-end-13
-        mb-[3vw]
-        sm:mt-0
         animate
+        sm:mb-[2vw]
       "
     >
       What I know
     </h2>
     <div
-      v-for="({ button, info }, index) in knowledge"
-      :key="button"
-      class="col-start-2 sm:col-start-5 sm:col-end-13 col-end-14 animate"
-      :class="`row-start-${index + 2}`"
+      class="
+        mobile-scroll
+        col-start-2
+        sm:col-start-5 sm:col-end-13
+        col-end-14
+        animate
+        row-start-2
+      "
     >
-      <h3
-        @click="
-          if (openDisclosure != index) openDisclosure = index;
-          else openDisclosure = -1;
-        "
-        class="
-          pb-[1.2vw]
-          mb-[1.2vw]
-          border-slate-50/70 border-b-[0.2vw]
-          cursor-pointer
-        "
+      <div
+        v-for="({ button, info }, index) in knowledge"
+        :key="button"
       >
-        {{ button }}
-      </h3>
-      <p :class="{ hidden: openDisclosure != index }">
-        {{ info }}
-      </p>
+        <h3
+          @click="
+            if (openDisclosure != index) openDisclosure = index;
+            else openDisclosure = -1;
+          "
+          class="
+            pb-[1.2vw]
+            mb-[1.2vw]
+            border-slate-50/70 border-b-[0.2vw]
+            cursor-pointer
+          "
+        >
+          {{ button }}
+        </h3>
+        <p :class="{ hidden: openDisclosure != index }">
+          {{ info }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

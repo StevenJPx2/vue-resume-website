@@ -1,56 +1,50 @@
 <script lang="ts" setup>
+import * as imagesLoaded from "imagesloaded";
 import Main from "~/components/Main.vue";
 import Languages from "~/components/Languages.vue";
 import Projects from "~/components/Projects.vue";
 import Contact from "~/components/Contact.vue";
 const pageNo = ref(0);
 const pages = [Main, Languages, Projects, Contact];
+const loading = ref(true);
 const backOrForward = ref<"back" | "forward">("forward");
 
 watch(pageNo, (oldPageNo, newPageNo) => {
   backOrForward.value = oldPageNo < newPageNo ? "forward" : "back";
 });
+
+tryOnMounted(() => {
+  imagesLoaded(document.querySelectorAll("img"), { background: true }, () => {
+    loading.value = false;
+  });
+});
 </script>
 
 <template>
-  <Html>
-    <Head>
-      <Title>Steven John</Title>
-      <Meta name="title" content="Steven John" />
-      <Meta property="og:title" content="Steven John" />
-      <Meta
-        name="description"
-        content="I’m a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
-      />
-      <Meta
-        name="keywords"
-        content="Web Design, Graphic Design, Animation, micro-interaction, SEO, Kubernetes, Docker, Python, Rust, TypeScript, JavaScript, Swift, C, Dart, MongoDB, PostgresQL, GraphQL spec, Java, Tensorflow, Keras, Flask, Pygame, Flutter, Actix, Websockets, Vuejs, Nuxtjs, Tailwind CSS, React, Expressjs"
-      />
-      <Meta name="robots" content="index, follow" />
-      <Meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <Meta name="language" content="English" />
-      <Meta property="og:site_name" content="The Areopagus Project" />
-      <Meta property="og:url" content="https://areopagus.saftapologetics.com" />
-      <Meta
-        property="og:description"
-        content="I’m a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
-      />
-      <Meta property="og:type" content="website" />
-    </Head>
-  </Html>
   <div
-    class="grid place-items-center w-screen h-screen bg-zinc-900 text-slate-50 clip"
+    class="grid place-items-center w-screen h-screen bg-zinc-900 text-slate-50 clip touch-none"
   >
-    <Navigator v-model:page-no="pageNo" :no-of-pages="pages.length" />
-    <transition
-      :name="`slide-${backOrForward}`"
-      mode="out-in"
-      :duration="{ enter: 1000, leave: 300 }"
-    >
-      <keep-alive>
-        <component :is="pages[pageNo]" />
-      </keep-alive>
-    </transition>
+    <div v-if="loading">
+      <Loading />
+      <div class="hidden">
+        <Main />
+        <Languages />
+        <Projects />
+        <Contact />
+      </div>
+    </div>
+    <div v-else>
+      <Navigator v-model:page-no="pageNo" :no-of-pages="pages.length" />
+      <transition
+        :name="`slide-${backOrForward}`"
+        mode="out-in"
+        :duration="{ enter: 1000, leave: 300 }"
+      >
+        <keep-alive>
+          <component :is="pages[pageNo]" />
+        </keep-alive>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -107,6 +101,12 @@ watch(pageNo, (oldPageNo, newPageNo) => {
 @layer utilities {
   .clip {
     @apply overflow-hidden;
+  }
+
+  .mobile-scroll {
+    @apply overflow-x-hidden;
+    @apply overflow-y-scroll;
+    @apply max-h-[50vh];
   }
 
   .wrapper {

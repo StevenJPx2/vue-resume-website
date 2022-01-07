@@ -6,6 +6,8 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@types/imagesloaded": "^4.1.2",
+    "@vueuse/nuxt": "^7.5.3",
     "autoprefixer": "^10.4.0",
     "nuxt3": "3.0.0-27272804.ca557e7",
     "postcss": "^8.4.5",
@@ -13,5 +15,7 @@
     "tailwindcss": "^3.0.8",
     "typescript": "^4.5.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "imagesloaded": "^4.1.4"
+  }
 }
