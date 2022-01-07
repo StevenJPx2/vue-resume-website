@@ -72,8 +72,8 @@ tryOnMounted(() => {
       <Meta name="robots" content="index, follow" />
       <Meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <Meta name="language" content="English" />
-      <Meta property="og:site_name" content="The Areopagus Project" />
-      <Meta property="og:url" content="https://areopagus.saftapologetics.com" />
+      <Meta property="og:site_name" content="Steven John" />
+      <Meta property="og:url" content="https://stevenjohn.co" />
       <Meta
         property="og:description"
         content="I am a full-stack web developer, with laser focus on everything such as, next-gen image formats, SEO optimization, interactive design to Kubernetes and Docker to create the most engaging experiences with the least running cost."
