@@ -5,12 +5,43 @@ import Languages from "~/components/Languages.vue";
 import Projects from "~/components/Projects.vue";
 import Contact from "~/components/Contact.vue";
 const pageNo = ref(0);
+const pressedNumber = ref(0);
 const pages = [Main, Languages, Projects, Contact];
+const noOfPages = pages.length;
 const loading = ref(true);
 const backOrForward = ref<"back" | "forward">("forward");
+const { left, right, space, Ctrl_P, Cmd_P, current } = useMagicKeys();
 
 watch(pageNo, (oldPageNo, newPageNo) => {
   backOrForward.value = oldPageNo < newPageNo ? "forward" : "back";
+});
+
+whenever(left, () => {
+  pageNo.value = pageNo.value > 0 ? pageNo.value - 1 : 0;
+});
+
+whenever(
+  () => right.value || space.value,
+  () => {
+    pageNo.value = pageNo.value < noOfPages ? pageNo.value + 1 : pageNo.value;
+  }
+);
+whenever(
+  () => Ctrl_P.value || Cmd_P.value,
+  () => {}
+);
+watch(current, () => {
+  Array.from(Array(noOfPages).keys()).some((val) =>
+    Array.from(current.values()).find((currentPress) => {
+      if (currentPress == `Digit${val + 1}`) {
+        pressedNumber.value = val;
+      }
+    })
+  );
+});
+
+watch(pressedNumber, () => {
+  pageNo.value = pressedNumber.value;
 });
 
 tryOnMounted(() => {
@@ -66,7 +97,7 @@ tryOnMounted(() => {
       </div>
 
       <div v-else>
-        <Navigator v-model:page-no="pageNo" :no-of-pages="pages.length" />
+        <Navigator v-model:page-no="pageNo" :no-of-pages="noOfPages" />
         <transition
           :name="`slide-${backOrForward}`"
           mode="out-in"
