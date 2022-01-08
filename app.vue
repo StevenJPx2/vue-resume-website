@@ -119,7 +119,7 @@ tryOnMounted(() => {
         </div>
       </div>
 
-      <div v-else class="absolute clip inset-0">
+      <div v-else class="grid absolute inset-0 place-items-center clip">
         <Navigator v-model:page-no="pageNo" :no-of-pages="noOfPages" />
         <transition
           :name="`slide-${backOrForward}`"
