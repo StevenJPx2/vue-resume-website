@@ -42,7 +42,8 @@ whenever(left, () => {
 whenever(
   () => right.value || space.value,
   () => {
-    pageNo.value = pageNo.value < noOfPages - 1 ? pageNo.value + 1 : pageNo.value;
+    pageNo.value =
+      pageNo.value < noOfPages - 1 ? pageNo.value + 1 : pageNo.value;
   }
 );
 whenever(
@@ -98,6 +99,7 @@ tryOnMounted(() => {
       <Meta property="og:type" content="website" />
     </Head>
   </Html>
+
   <div
     class="grid place-items-center w-screen h-screen bg-zinc-900 text-slate-50 clip touch-none"
     ref="currentPage"
@@ -181,6 +183,10 @@ tryOnMounted(() => {
     @screen md {
       @apply text-[1.3vw];
     }
+  }
+
+  img {
+    /*@apply pointer-events-none;*/
   }
 }
 @layer utilities {

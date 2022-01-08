@@ -22,7 +22,7 @@ const knowledge = [
 </script>
 
 <template>
-  <div class="wrapper isolate mt-[-50vw] sm:mt-0">
+  <div class="wrapper isolate absolute top-[5vw] left-0 sm:static">
     <div
       class="
         wrapper
@@ -131,6 +131,7 @@ const knowledge = [
         col-start-2 col-end-16
         sm:col-start-5 sm:col-end-13
         animate
+        self-end
         sm:mb-[2vw]
       "
     >

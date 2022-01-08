@@ -1,12 +1,11 @@
 <template>
-  <div class="mt-[-40vw] sm:mt-0 wrapper isolate">
+  <div class="absolute top-[5vw] left-0 sm:static wrapper isolate">
     <h2
       class="
         row-start-1
         col-start-2 col-end-16
         sm:col-span-full
         justify-self-center
-        mt-[10vw]
         sm:mt-[5vw] sm:mb-[2vw]
         animate
       "
@@ -18,7 +17,7 @@
       target="_blank"
       class="
         z-10
-        col-start-2 col-end-13
+        col-start-2 col-end-12
         row-start-2
         delay-75
         sm:col-start-12
@@ -27,6 +26,7 @@
         transition-transform
         ease-out-back
         hover:translate-y-[-1vw]
+        h-max
       "
     >
       <img src="~/assets/areopagus.webp" alt="Areopagus" loading="eager" />
@@ -37,15 +37,16 @@
       target="_blank"
       class="
         row-start-2
-        col-start-3 col-end-15
+        col-start-5 col-end-15
         sm:col-start-6 sm:col-end-13
-        mt-[40vw]
+        mt-[35vw]
         sm:mt-[3vw]
         animate
         delay-100
         transition-transform
         ease-out-back
         hover:translate-y-[-1vw]
+        h-max
       "
     >
       <img src="~/assets/onlineads.webp" alt="OnlineAds.ca" loading="eager" />
@@ -56,9 +57,9 @@
       target="_blank"
       class="
         row-start-2
-        col-start-2 col-end-14
+        col-start-3 col-end-12
         sm:col-start-9 sm:col-end-16
-        mt-[80vw]
+        mt-[65vw]
         sm:mt-[18.6vw]
         z-20
         animate
@@ -66,6 +67,7 @@
         transition-transform
         ease-out-back
         hover:translate-y-[-1vw]
+        h-max
       "
     >
       <img

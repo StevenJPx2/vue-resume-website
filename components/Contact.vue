@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper mt-[-35vw] sm:mt-[13vw]">
+  <div class="absolute top-[5vw] left-0 sm:static wrapper">
     <h2
-      class="col-start-2 sm:col-span-full sm:mx-auto sm:text-center col-end-16 animate"
+      class="col-start-2 self-end sm:col-span-full sm:mx-auto sm:text-center col-end-16 animate"
     >
       Contact me
     </h2>
@@ -14,12 +14,13 @@
     <div
       class="
         grid grid-cols-2 grid-rows-2
+        sm:grid-rows-1
         gap-[20vw]
         sm:grid-cols-4 sm:gap-x-[7vw]
-        col-start-3 col-end-14
+        col-start-4 col-end-13
         sm:col-start-7 sm:col-end-18
-        mt-[12vw]
-        sm:mt-[3vw] sm:flex-nowrap
+        mt-[3vw]
+        sm:flex-nowrap
       "
     >
       <a
