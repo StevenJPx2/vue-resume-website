@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-[5vw] left-0 sm:static wrapper">
+  <div class="absolute top-[5vw] left-0 sm:static wrapper overflow-hidden">
     <h2
       class="col-start-2 self-end sm:col-span-full sm:mx-auto sm:text-center col-end-16 animate"
     >

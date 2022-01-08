@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute top-[5vw] left-0 sm:static wrapper isolate">
+  <div class="absolute top-[5vw] left-0 sm:static wrapper isolate overflow-hidden">
     <h2
       class="
         row-start-1

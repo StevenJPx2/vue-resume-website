@@ -22,7 +22,7 @@ const knowledge = [
 </script>
 
 <template>
-  <div class="wrapper isolate absolute top-[5vw] left-0 sm:static">
+  <div class="wrapper isolate absolute top-[5vw] left-0 sm:static overflow-hidden">
     <div
       class="
         wrapper
