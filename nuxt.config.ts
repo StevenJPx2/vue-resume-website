@@ -1,13 +1,11 @@
-import { defineNuxtConfig } from "nuxt3";
-
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  buildModules: [
-    '@vueuse/nuxt'
+  modules: [
+    "@vueuse/nuxt",
+    "@nuxtjs/tailwindcss",
+    "nuxt-directus",
+    "nuxt-icon",
+    "@nuxt/image-edge",
   ],
-  build: {
-    postcss: {
-      postcssOptions: require("./postcss.config.js"),
-    },
-  },
+  directus: { url: "https://dgaj6fp4.directus.app" },
 });
