@@ -22,7 +22,12 @@ export default function(
   const animate = () => {
     const instanceVal = instance.value!;
     const length = instanceVal[select]!.length;
-    instanceVal.words?.forEach((el) => (el.style.display = "flex"));
+
+    if (
+      (["chars", "words"] as TypesValue[]).every((sp) => splitBy.includes(sp))
+    )
+      instanceVal.words?.forEach((el) => (el.style.display = "inline-flex"));
+
     instanceVal[select]?.forEach((childEl, index) => {
       if (wrapping) {
         const { wrapType, wrapClass } = wrapping;
@@ -32,6 +37,7 @@ export default function(
         childEl.parentNode?.appendChild(wrapEl);
         wrapEl.appendChild(childEl);
       }
+
       if (index === length - 1)
         elAnimation(childEl, index).eventCallback("onComplete", () => {
           onComplete(instanceVal);
@@ -47,6 +53,7 @@ export default function(
     animate();
 
     const { width } = useWindowSize();
+
     watch(width, () => {
       instance.value?.split({});
       animate();

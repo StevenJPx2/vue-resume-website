@@ -4,6 +4,11 @@ export default <Config>{
   content: [],
   theme: {
     extend: {
+      colors: {
+        base: { DEFAULT: "var(--color-base)" },
+        primary: { DEFAULT: "var(--color-primary)" },
+        accent: { DEFAULT: "var(--color-accent)" },
+      },
       transitionTimingFunction: {
         css: "ease",
         "css-in": "ease-in",

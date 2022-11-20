@@ -18,18 +18,27 @@ tryOnMounted(() => {
 @tailwind utilities;
 @import url("https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css");
 
+:root {
+  --color-base: #0e0e0e;
+  --color-primary: #ffe871;
+  --color-accent: #fff;
+}
+
 @layer base {
   html {
-    @apply font-['Hack','monospace'];
+    font-family: "Neue Montreal";
+    @apply bg-base;
+    @apply text-accent;
   }
 
   h1,
   .h1 {
-    @apply font-bold;
-    @apply text-[12vw];
+    font-family: "Highrise Condensed";
+    @apply text-primary;
+    @apply text-[22vw];
 
     @screen md {
-      @apply text-[5vw];
+      @apply text-[12vw];
     }
   }
 

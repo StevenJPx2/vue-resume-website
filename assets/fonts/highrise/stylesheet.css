@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Highrise Condensed';
+    src: url('HighriseCondensed.woff2') format('woff2'),
+        url('HighriseCondensed.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise Condensed';
+    src: url('HighriseCondensed.woff2') format('woff2'),
+        url('HighriseCondensed.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseBold.woff2') format('woff2'),
+        url('HighriseBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise Condensed';
+    src: url('HighriseCondensed.woff2') format('woff2'),
+        url('HighriseCondensed.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseBold.woff2') format('woff2'),
+        url('HighriseBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseBold.woff2') format('woff2'),
+        url('HighriseBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseRegular.woff2') format('woff2'),
+        url('HighriseRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseRegular.woff2') format('woff2'),
+        url('HighriseRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Highrise';
+    src: url('HighriseRegular.woff2') format('woff2'),
+        url('HighriseRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,8 +1,8 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const directive = nuxtApp.vueApp.directive;
   directive("slide-in", {
-    mounted(el, { value }) {
-      useWordSlideInAnimation(el, value);
+    mounted(el, { value, modifiers }) {
+      useWordSlideInAnimation(el, { ...value, ...modifiers });
     },
   });
 
