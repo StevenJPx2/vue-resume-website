@@ -31,14 +31,18 @@ tryOnMounted(() => {
     @apply text-accent;
   }
 
+  body {
+    @apply overflow-x-hidden;
+  }
+
   h1,
   .h1 {
     font-family: "Highrise Condensed";
     @apply text-primary;
-    @apply text-[22vw];
+    @apply text-[42vw];
 
     @screen md {
-      @apply text-[12vw];
+      @apply text-[22vmax];
     }
   }
 

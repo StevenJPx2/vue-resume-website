@@ -1,14 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { HomeSingleton } from "~/utils/types";
+
+const { getSingletonItem } = useDirectusItems();
+const { data: homeData } = useAsyncData(
+  async () => await getSingletonItem<HomeSingleton>({ collection: "home" })
+);
+</script>
 
 <template>
   <div class="w-full h-screen">
-    <h1
-      v-slide-in.zoom="{ select: 'chars' }"
-      v-parallax
-      class="place-self-center"
-    >
-      Steven John
-    </h1>
+    <home-header
+      :img="getDirectusImage(homeData!.header_image, {format: 'webp', width: 1080})"
+      :tagline="homeData?.tagline"
+      class="md:mb-[20vw] mb-[33vw]"
+    />
     <infinite-marquee text="Who I am" direction="left" :target="105.5" />
   </div>
 </template>

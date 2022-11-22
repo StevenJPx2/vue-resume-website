@@ -7,3 +7,8 @@ export type Store = {
   currentPage: Pages;
   loading: boolean;
 };
+export interface HomeSingleton {
+  header_image: string;
+  tagline: string;
+  about_me: string;
+}
