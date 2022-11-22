@@ -48,7 +48,7 @@ tryOnMounted(() => {
 
   h2,
   .h2 {
-    @apply font-bold;
+    font-family: "Highrise Condensed";
     @apply text-[10vw];
 
     @screen md {
@@ -58,11 +58,11 @@ tryOnMounted(() => {
 
   h3,
   .h3 {
-    @apply font-bold;
+    font-family: "Highrise Condensed";
     @apply text-[7vw];
 
     @screen md {
-      @apply text-[2.8vw];
+      @apply text-[5.6vw];
     }
   }
 
@@ -71,7 +71,7 @@ tryOnMounted(() => {
     @apply text-[5vw];
 
     @screen md {
-      @apply text-[1.3vw];
+      @apply text-[1.6vw];
     }
   }
 

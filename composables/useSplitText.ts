@@ -2,22 +2,38 @@ import { Ref } from "vue";
 import SplitType, { TypesValue } from "split-type";
 import { SplittingTypes } from "~/utils/types";
 
+type Options = {
+  splitBy: SplittingTypes;
+  wrapping?: { wrapType: keyof HTMLElementTagNameMap; wrapClass: string };
+  onComplete?: (instanceVal: SplitType) => void;
+  shouldBeMounted: boolean;
+};
+
+const defaultOptions: Options = {
+  splitBy: "lines, words",
+  onComplete() { },
+  shouldBeMounted: true,
+};
+
 export default function(
   target:
     | Ref<HTMLElement>
     | Ref<HTMLElement | undefined>
     | Ref<HTMLElement | null>
     | HTMLElement,
+
   elAnimation: (
     childEl: HTMLElement,
     index: number
   ) => gsap.core.Timeline | gsap.core.Tween,
-  splitBy: SplittingTypes = "lines, words",
   select: TypesValue,
-  wrapping?: { wrapType: keyof HTMLElementTagNameMap; wrapClass: string },
-  onComplete: (instanceVal: SplitType) => void = () => { }
+  options = defaultOptions
 ) {
   const instance = ref<SplitType>();
+  const { splitBy, wrapping, onComplete, shouldBeMounted } = {
+    ...defaultOptions,
+    ...options,
+  };
 
   const animate = () => {
     const instanceVal = instance.value!;
@@ -40,23 +56,25 @@ export default function(
 
       if (index === length - 1)
         elAnimation(childEl, index).eventCallback("onComplete", () => {
-          onComplete(instanceVal);
+          onComplete!(instanceVal);
         });
       else elAnimation(childEl, index);
     });
   };
 
-  tryOnMounted(() => {
+  const fn = () => {
     const unRefedTarget = unrefElement(target)!;
-
     instance.value = new SplitType(unRefedTarget, { types: splitBy });
     animate();
+  };
 
-    const { width } = useWindowSize();
+  if (shouldBeMounted) tryOnMounted(fn);
+  else fn();
 
-    watch(width, () => {
-      instance.value?.split({});
-      animate();
-    });
+  const { width } = useWindowSize();
+
+  watch(width, () => {
+    instance.value?.split({});
+    animate();
   });
 }

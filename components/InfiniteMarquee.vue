@@ -62,9 +62,9 @@ watch(isTargetVisible, (val) => {
             '-left-full': i == 2 && props.direction === 'right',
           }"
         >
-          <p class="text-[5vw]" v-for="_ in 5">
+          <h2 class="font-neue md:text-[3.1vw]" v-for="_ in 10">
             {{ text.toUpperCase() }}
-          </p>
+          </h2>
         </div>
       </div>
     </div>

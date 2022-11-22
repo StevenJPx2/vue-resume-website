@@ -1,9 +1,13 @@
 import type { Config } from "tailwindcss";
 
 export default <Config>{
-  content: [],
+  content: ["utils/*.ts"],
   theme: {
     extend: {
+      fontFamily: {
+        neue: ["Neue Montreal", "Neue Montreal override"],
+        "high-con": ["Highrise Condensed", "Highrise Condensed override"],
+      },
       colors: {
         base: { DEFAULT: "var(--color-base)" },
         primary: { DEFAULT: "var(--color-primary)" },

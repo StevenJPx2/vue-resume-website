@@ -1,37 +1,33 @@
-import { Ref } from "vue";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { breakpointsTailwind } from "@vueuse/core";
+import { breakpointsTailwind, MaybeRef } from "@vueuse/core";
+import { AnimationOptions } from "./useAnimation";
 
 type Options = {
   scrollSpeed: number;
   scrollSpeedMobile?: number;
   scrollStart: string;
+} & AnimationOptions;
+
+const defaultOptions: Options = {
+  scrollSpeed: 1,
+  scrollStart: "top 50%",
+  ...defaultAnimationOptions,
+  hasScroll: true,
 };
 
-const defaultOptions: Options = { scrollSpeed: 1, scrollStart: "top 50%" };
-
-export default function(
-  el: Ref<HTMLElement> | HTMLElement | null = null,
-  options: Options = defaultOptions
-) {
+export default function (el: MaybeRef<HTMLElement>, options = defaultOptions) {
   const isMobile = useBreakpoints(breakpointsTailwind).smaller("md");
-  const scrollEl = unref(el);
-  const { scrollSpeed, scrollSpeedMobile, scrollStart } = Object.assign(
-    defaultOptions,
-    options
-  );
+  const scrollEl = unrefElement(el)!;
 
-  tryOnMounted(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const speed =
-      isMobile.value && scrollSpeedMobile !== null
-        ? scrollSpeedMobile!
-        : scrollSpeed;
-    const rate = 100;
+  const { scrollSpeed, scrollSpeedMobile, scrollStart, ...animationOptions } =
+    Object.assign(defaultOptions, options);
+  const speed =
+    isMobile.value && scrollSpeedMobile !== null
+      ? scrollSpeedMobile!
+      : scrollSpeed;
+  const rate = 100;
 
-    gsap.set(scrollEl, { y: 0 });
-    gsap.to(scrollEl, {
+  useAnimation((tl) => {
+    tl.set(scrollEl, { y: 0 }).to(scrollEl, {
       y: rate * speed,
       scrollTrigger: {
         start: scrollStart,
@@ -40,5 +36,5 @@ export default function(
       },
       ease: "none",
     });
-  });
+  }, animationOptions);
 }

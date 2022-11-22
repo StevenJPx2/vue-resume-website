@@ -7,3 +7,5 @@ export const getTailwindClasses = (args: {
 }) => {
   args;
 };
+
+export const commonPadding = "md:px-[14vw]";
