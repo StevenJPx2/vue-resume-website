@@ -3,5 +3,7 @@ const store = useMainStore();
 </script>
 
 <template>
-  <div><loading :loading="store.loading" /><slot /></div>
+  <div class="overflow-x-hidden">
+    <loading :loading="store.loading" /><slot />
+  </div>
 </template>
