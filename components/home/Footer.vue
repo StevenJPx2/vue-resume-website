@@ -9,18 +9,18 @@ const props = defineProps({
 </script>
 <template>
   <div class="h-screen relative">
-    <nuxt-picture
-      src="/yellow-ellipse.png"
+    <directus-img
+      id="yellowEllipse"
       :img-attrs="{
         class:
-          'pointer-events-none yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]',
+          'pointer-events-none yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%] z-[-1]',
       }"
     />
-    <nuxt-picture
-      src="/yellow-ellipse.png"
+    <directus-img
+      id="yellowEllipse"
       :img-attrs="{
         class:
-          'pointer-events-none yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]',
+          'pointer-events-none yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%] z-[-1]',
       }"
     />
     <div
@@ -39,7 +39,7 @@ const props = defineProps({
           v-for="{ icon, id, link } in props.links"
           :key="id"
           :to="link"
-          class="text-[9vw] md:text-[4vw]"
+          class="opacity-90 hover:opacity-100 text-[9vw] md:text-[4vw] transition-transform duration-300 ease-out-quart hover:scale-125"
         >
           <icon :name="icon" />
         </nuxt-link>

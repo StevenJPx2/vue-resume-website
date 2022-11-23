@@ -4,7 +4,6 @@ import SPS from "~/assets/seven-prong-star.svg";
 import SmallCircle from "~/assets/small-circle.svg";
 
 const name = ref<HTMLElement>();
-const headerImage = ref<HTMLElement>();
 const props = defineProps({
   img: { type: String, required: true },
   tagline: { type: String },
@@ -13,10 +12,12 @@ const props = defineProps({
 const commonClasses = "row-start-1 w-full stroke-1";
 
 useGsap((tl) => {
-  tl.set(".pop-in", { scale: 0 }).set(headerImage.value!, {
-    autoAlpha: 0,
-    y: "-10%",
-  });
+  tl.set(".pop-in", { scale: 0 })
+    .set("#header-image", {
+      autoAlpha: 0,
+      y: "-10%",
+    })
+    .set(".yellow-blob", { autoAlpha: 0 });
 });
 tryOnMounted(() => {
   useWordSlideInAnimation(name, {
@@ -27,18 +28,23 @@ tryOnMounted(() => {
     onComplete() {
       useGsap(
         (tl) => {
-          tl.to(headerImage.value!, {
+          tl.to("#header-image", {
             duration: 1,
-            ease: "power4.out",
+            ease: "expo.out",
             autoAlpha: 1,
             y: 0,
-          }).to(".pop-in", {
-            duration: 0.5,
-            scale: 1,
-
-            ease: "elastic",
-            stagger: 0.1,
-          });
+          })
+            .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
+            .to(
+              ".pop-in",
+              {
+                duration: 0.8,
+                scale: 1,
+                ease: "elastic",
+                stagger: 0.1,
+              },
+              1
+            );
         },
         { shouldBeMounted: false }
       );
@@ -53,15 +59,15 @@ tryOnMounted(() => {
 
 <template>
   <div class="h-screen w-full relative">
-    <nuxt-picture
-      src="/yellow-ellipse.png"
+    <directus-img
+      id="yellowEllipse"
       :img-attrs="{
         class:
           'yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]',
       }"
     />
-    <nuxt-picture
-      src="/yellow-ellipse.png"
+    <directus-img
+      id="yellowEllipse"
       :img-attrs="{
         class:
           'yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]',
@@ -82,7 +88,7 @@ tryOnMounted(() => {
           'md:col-start-9 md:col-span-7 md:mt-[15vw]',
         ]"
       >
-        <img ref="headerImage" :src="props.img" />
+        <directus-img :id="props.img" :img-attrs="{ id: 'header-image' }" />
       </div>
       <s-p-s
         :class="[

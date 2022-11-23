@@ -1,7 +1,7 @@
 import { SplittingTypes } from "~/utils/types";
 import { TypesValue } from "split-type";
 import { AnimationOptions } from "./useAnimation";
-import { MaybeElementRef, MaybeRef } from "@vueuse/core";
+import { MaybeRef } from "@vueuse/core";
 
 type Options = {
   splitBy?: SplittingTypes;

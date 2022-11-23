@@ -34,7 +34,7 @@ const { data: linksData } = useAsyncData(
 <template>
   <div>
     <home-header
-      :img="getDirectusImage(homeData!.header_image, {format: 'webp', width: 1080})"
+      :img="homeData!.header_image"
       :tagline="homeData?.tagline"
       class="md:mb-[20vw] mb-[23vw]"
     />
