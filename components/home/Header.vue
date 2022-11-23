@@ -10,51 +10,61 @@ const props = defineProps({
 });
 
 const commonClasses = "row-start-1 w-full stroke-1";
+const store = useMainStore();
 
 useGsap((tl) => {
-  tl.set(".pop-in", { scale: 0 })
+  tl.set(name.value!, { autoAlpha: 0 })
+    .set(".pop-in", { scale: 0 })
     .set("#header-image", {
       autoAlpha: 0,
       y: "-10%",
     })
     .set(".yellow-blob", { autoAlpha: 0 });
 });
-tryOnMounted(() => {
-  useWordSlideInAnimation(name, {
-    activation: "immediate",
-    splitBy: "words, chars",
-    select: "chars",
-    runOnCompleteAtIndex: 9,
-    onComplete() {
-      useGsap(
-        (tl) => {
-          tl.to("#header-image", {
-            duration: 1,
-            ease: "expo.out",
-            autoAlpha: 1,
-            y: 0,
-          })
-            .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
-            .to(
-              ".pop-in",
-              {
-                duration: 0.8,
-                scale: 1,
-                ease: "elastic",
-                stagger: 0.1,
-              },
-              1
-            );
+watch(
+  store,
+  (val) => {
+    if (val.hasInitialAnimationLoaded)
+      useWordSlideInAnimation(name, {
+        activation: "immediate",
+        splitBy: "words, chars",
+        select: "chars",
+        runOnCompleteAtIndex: 9,
+        onStart() {
+          useGsap((tl) => tl.set(name.value!, { autoAlpha: 1 }));
         },
-        { shouldBeMounted: false }
-      );
+        onComplete() {
+          useGsap(
+            (tl) => {
+              tl.to("#header-image", {
+                duration: 1,
+                ease: "expo.out",
+                autoAlpha: 1,
+                y: 0,
+              })
+                .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
+                .to(
+                  ".pop-in",
+                  {
+                    duration: 0.8,
+                    scale: 1,
+                    ease: "elastic",
+                    stagger: 0.1,
+                  },
+                  1
+                );
+            },
+            { shouldBeMounted: false }
+          );
 
-      console.log("hello");
-    },
-    zoom: true,
-    shouldBeMounted: false,
-  });
-});
+          console.log("hello");
+        },
+        zoom: true,
+        shouldBeMounted: false,
+      });
+  },
+  { deep: true }
+);
 </script>
 
 <template>
