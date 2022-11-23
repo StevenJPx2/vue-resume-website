@@ -31,10 +31,6 @@ tryOnMounted(() => {
     @apply text-accent;
   }
 
-  body {
-    @apply overflow-x-hidden;
-  }
-
   h1,
   .h1 {
     font-family: "Highrise Condensed";
