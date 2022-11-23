@@ -7,6 +7,7 @@ export default <Config>{
       fontFamily: {
         neue: ["Neue Montreal", "Neue Montreal override"],
         "high-con": ["Highrise Condensed", "Highrise Condensed override"],
+        hack: ["Hack", "monospace"],
       },
       colors: {
         base: { DEFAULT: "var(--color-base)" },

@@ -48,10 +48,11 @@ tryOnMounted(() => {
 
   h2,
   .h2 {
-    font-family: "Highrise Condensed";
+    font-family: "Neue Montreal";
     @apply text-[10vw];
 
     @screen md {
+      @apply leading-none;
       @apply text-[4.5vw];
     }
   }
@@ -59,10 +60,22 @@ tryOnMounted(() => {
   h3,
   .h3 {
     font-family: "Highrise Condensed";
-    @apply text-[7vw];
+    @apply text-[15vw];
+    @apply leading-none;
 
     @screen md {
       @apply text-[5.6vw];
+    }
+  }
+
+  h4,
+  .h4 {
+    font-family: "Highrise Condensed";
+    @apply text-[11vw];
+    @apply leading-tight;
+
+    @screen md {
+      @apply text-[4.1vw];
     }
   }
 

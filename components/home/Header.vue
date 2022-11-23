@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ScrollTrigger from "gsap/ScrollTrigger";
 import FPS from "~/assets/four-prong-star.svg";
 import SPS from "~/assets/seven-prong-star.svg";
 import SmallCircle from "~/assets/small-circle.svg";

@@ -50,7 +50,10 @@ watch(isTargetVisible, (val) => {
 </script>
 
 <template>
-  <div ref="loopContainer" class="border-t border-b border-accent py-[1vw]">
+  <div
+    ref="loopContainer"
+    class="border-t border-b border-accent py-[1vw] mb-[21vw] md:mb-[15vw]"
+  >
     <div :style="{ transform: `translateX(${x}%)` }">
       <div class="relative inline-flex whitespace-nowrap gap-x-[12vw]">
         <div
@@ -62,7 +65,7 @@ watch(isTargetVisible, (val) => {
             '-left-full': i == 2 && props.direction === 'right',
           }"
         >
-          <h2 class="font-neue md:text-[3.1vw]" v-for="_ in 10">
+          <h2 class="md:text-[3.1vw]" v-for="_ in 10">
             {{ text.toUpperCase() }}
           </h2>
         </div>

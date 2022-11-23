@@ -8,4 +8,4 @@ export const getTailwindClasses = (args: {
   args;
 };
 
-export const commonPadding = "md:px-[14vw]";
+export const commonPadding = "px-[4vw] md:px-[14vw]";

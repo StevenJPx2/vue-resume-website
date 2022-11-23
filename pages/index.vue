@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HomeSingleton, KnownStuff, Philosophy } from "~/utils/types";
+import { HomeSingleton, KnownStuff, Links, Philosophy } from "~/utils/types";
 
 const { getSingletonItem } = useDirectusItems();
 const { data: homeData } = useAsyncData(
@@ -25,10 +25,14 @@ const { data: knownStuffData } = useAsyncData(
 const { data: philosophyData } = useAsyncData(
   async () => await getSingletonItem<Philosophy[]>({ collection: "philosophy" })
 );
+
+const { data: linksData } = useAsyncData(
+  async () => await getSingletonItem<Links[]>({ collection: "links" })
+);
 </script>
 
 <template>
-  <div class="w-full h-screen">
+  <div>
     <home-header
       :img="getDirectusImage(homeData!.header_image, {format: 'webp', width: 1080})"
       :tagline="homeData?.tagline"
@@ -41,13 +45,13 @@ const { data: philosophyData } = useAsyncData(
       class="-rotate-3"
     />
     <div
-      class="grid md:grid-cols-2 md:gap-x-[5vw] md:my-[12vw] items-center grid-rows-[max-content]"
+      class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] md:my-[12vw] items-center grid-rows-[max-content]"
       :class="[commonPadding]"
     >
       <p class="whitespace-pre-wrap">
         {{ homeData?.about_me }}
       </p>
-      <home-known-stuff :data="knownStuffData!" />
+      <home-known-stuff :data="knownStuffData!" class="mb-[15vw] md:mb-0" />
     </div>
     <infinite-marquee
       text="My Philosophy"
@@ -55,16 +59,21 @@ const { data: philosophyData } = useAsyncData(
       :target="105.5"
       class="rotate-3"
     />
-    <div class="columns-2 gap-[5vw] my-[15vw]" :class="[commonPadding]">
+    <div class="md:columns-2 gap-[5vw]" :class="[commonPadding]">
       <div
         v-if="philosophyData"
         v-for="{ title, body } in philosophyData"
         :key="title"
-        class="break-inside-avoid mb-[5vw]"
+        class="break-inside-avoid mb-[15vw] md:mb-[5vw]"
       >
-        <h3 class="md:text-[11vw] leading-[0.8] md:mb-[2vw]">{{ title }}</h3>
+        <h3
+          class="text-[28vw] md:text-[11vw] leading-[0.8] mb-[3vw] md:mb-[2vw]"
+        >
+          {{ title }}
+        </h3>
         <p>{{ body }}</p>
       </div>
     </div>
+    <home-footer :tagline="homeData!.footer_tagline" :links="linksData!" />
   </div>
 </template>

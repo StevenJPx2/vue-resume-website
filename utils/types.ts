@@ -9,10 +9,19 @@ export type Store = {
   currentPage: Pages;
   loading: boolean;
 };
+
+export interface Links {
+  id: string;
+  name: string;
+  icon: string;
+  link: string;
+}
+
 export interface HomeSingleton {
   header_image: string;
   tagline: string;
   about_me: string;
+  footer_tagline: string;
 }
 export interface KnownStuff {
   category: string;
