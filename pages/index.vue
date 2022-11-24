@@ -38,7 +38,7 @@ useHead({
   meta: seoGenerator({
     title,
     description,
-    image: "~/assets/meta.jpg",
+    image: "/meta.jpg",
   }),
 });
 </script>

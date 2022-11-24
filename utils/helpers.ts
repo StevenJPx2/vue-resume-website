@@ -23,8 +23,8 @@ export const seoGenerator = (content: {
   description: string;
   image: string;
 }) => [
-    ...seoGeneratorHelper(["title"], content.title),
-    ...seoGeneratorHelper(["description"], content.description),
+    ...seoGeneratorHelper(["title"], content.title, "name"),
+    ...seoGeneratorHelper(["description"], content.description, "name"),
     ...seoGeneratorHelper(["og:title", "twitter:title"], content.title),
     ...seoGeneratorHelper(
       ["og:description", "twitter:description"],
