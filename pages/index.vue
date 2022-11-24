@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { HomeSingleton, KnownStuff, Links, Philosophy } from "~/utils/types";
-
 const { getSingletonItem } = useDirectusItems();
 const { data: homeData } = useAsyncData(
   async () => await getSingletonItem<HomeSingleton>({ collection: "home" })
@@ -29,6 +28,19 @@ const { data: philosophyData } = useAsyncData(
 const { data: linksData } = useAsyncData(
   async () => await getSingletonItem<Links[]>({ collection: "links" })
 );
+
+const title = "Steven John | Full Stack Developer, App Developer";
+const description =
+  "A multi-stack developer with the penchant for developing the best, curated experiences with the least running cost.";
+
+useHead({
+  title,
+  meta: seoGenerator({
+    title,
+    description,
+    image: "~/assets/meta.jpg",
+  }),
+});
 </script>
 
 <template>
@@ -71,7 +83,7 @@ const { data: linksData } = useAsyncData(
         >
           {{ title }}
         </h3>
-        <p>{{ body }}</p>
+        <p class="whitespace-pre-wrap">{{ body }}</p>
       </div>
     </div>
     <home-footer :tagline="homeData!.footer_tagline" :links="linksData!" />

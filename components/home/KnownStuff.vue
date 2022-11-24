@@ -34,11 +34,14 @@ const flipPage = (i: number) => {
           'md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw]': true,
           'hover:bg-opacity-95': !!tech.link,
         }"
+        target="_blank"
         :key="tech.id"
         :to="tech.link ? `https://${tech.link}` : undefined"
       >
         <icon v-if="tech.icon_name" :name="tech.icon_name" />
-        {{ tech.name }}
+        <small class="w-max">
+          {{ tech.name }}
+        </small>
       </nuxt-link>
     </div>
     <div class="flex gap-2 mt-[1.4vw] justify-evenly h-full">
