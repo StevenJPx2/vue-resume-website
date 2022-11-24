@@ -38,7 +38,7 @@ useHead({
   meta: seoGenerator({
     title,
     description,
-    image: "/meta.jpg",
+    image: "https://stevenjohn.co/meta.jpg",
   }),
 });
 </script>
