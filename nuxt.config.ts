@@ -1,5 +1,6 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  routeRules: { "/": { swr: true } },
   app: {
     head: {
       title: "Steven John",
@@ -42,7 +43,6 @@ export default defineNuxtConfig({
     "@nuxtjs/fontaine",
     "nuxt-directus",
     "nuxt-icon",
-    "@nuxt/image-edge",
     "nuxt-svgo",
   ],
   css: [
@@ -50,5 +50,4 @@ export default defineNuxtConfig({
     "@/assets/fonts/neue-montreal/stylesheet.css",
   ],
   directus: { url: "https://dgaj6fp4.directus.app/" },
-  image: { dir: "assets" },
 });
