@@ -71,6 +71,7 @@ watch(
   <div class="h-screen w-full relative">
     <directus-img
       id="yellowEllipse"
+      :sizes="[1536]"
       :img-attrs="{
         class:
           'yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]',
@@ -78,6 +79,7 @@ watch(
     />
     <directus-img
       id="yellowEllipse"
+      :sizes="[1536]"
       :img-attrs="{
         class:
           'yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]',
@@ -93,12 +95,15 @@ watch(
       <div
         v-parallax="{ scrollSpeed: -1 }"
         :class="[
-          'grayscale mx-auto row-start-1',
+          'grayscale row-start-1',
           'col-start-3 col-end-14 mt-[25vw]',
           'md:col-start-9 md:col-span-7 md:mt-[15vw]',
         ]"
       >
-        <directus-img :id="props.img" :img-attrs="{ id: 'header-image' }" />
+        <directus-img
+          :id="props.img"
+          :img-attrs="{ id: 'header-image', class: 'w-full' }"
+        />
       </div>
       <s-p-s
         :class="[

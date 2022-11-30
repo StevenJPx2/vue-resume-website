@@ -36,7 +36,7 @@ export default defineComponent({
 
     const formattedSizes = (format: Formats) =>
       urls[format]
-        .map(({ width }) => `(max-width: ${width}px) ${width}px`)
+        .map(({ width }) => `(min-width: ${width}px) ${width}px`)
         .join(", ");
 
     const formattedSrcset = (format: Formats) =>
