@@ -34,9 +34,9 @@ const flipPage = (i: number) => {
           'md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw]': true,
           'hover:bg-opacity-95': !!tech.link,
         }"
-        target="_blank"
+        :target="!!tech.link ? '_blank' : '_self'"
         :key="tech.id"
-        :to="tech.link ? `https://${tech.link}` : undefined"
+        :to="!!tech.link ? `https://${tech.link}` : '#'"
       >
         <icon v-if="tech.icon_name" :name="tech.icon_name" />
         <small class="w-max">

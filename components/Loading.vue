@@ -45,7 +45,21 @@ tryOnMounted(() => {
           shouldBeMounted: false,
         }
       );
-      if (!props.loading && loadingAnimationComplete.value) tl.pause();
+
+      watch(loadingAnimationComplete, (val) => {
+        if (val && !props.loading) {
+          tl.seek(0);
+          gsap.to("#loading-container", {
+            y: "-100%",
+            transformOrigin: "top left",
+            duration: 1.2,
+            ease: "expo.inOut",
+            onComplete() {
+              store.value.hasInitialAnimationLoaded = true;
+            },
+          });
+        }
+      });
     },
     { repeat: -1, shouldBeMounted: false }
   );
@@ -53,7 +67,7 @@ tryOnMounted(() => {
   watch(loadingAnimationComplete, (val) => {
     if (val && !props.loading) {
       gsap.to("#loading-container", {
-        scaleY: 0,
+        y: "-100%",
         transformOrigin: "top left",
         duration: 1.2,
         ease: "expo.inOut",
