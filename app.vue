@@ -9,7 +9,9 @@ tryOnMounted(() => {
 </script>
 
 <template>
-  <nuxt-layout><nuxt-page /></nuxt-layout>
+  <nuxt-layout>
+    <nuxt-page />
+  </nuxt-layout>
 </template>
 
 <style lang="scss">
@@ -29,6 +31,7 @@ tryOnMounted(() => {
     font-family: "Neue Montreal";
     @apply bg-base;
     @apply text-accent;
+    @apply scroll-smooth;
   }
 
   h1,
@@ -38,7 +41,7 @@ tryOnMounted(() => {
     @apply text-[42vw];
 
     @screen md {
-      @apply text-[22vmax];
+      @apply text-[22vw];
     }
   }
 
@@ -87,7 +90,31 @@ tryOnMounted(() => {
   img {
     /*@apply pointer-events-none;*/
   }
+
+  .prose {
+    p {
+      @apply font-normal;
+    }
+
+    ul {
+      @apply list-disc;
+      @apply list-inside;
+    }
+
+    li {
+      @apply text-[5vw];
+
+      @screen md {
+        @apply text-[1.6vw];
+      }
+    }
+
+    strong {
+      @apply font-medium;
+    }
+  }
 }
+
 @layer utilities {
   .clip {
     @apply overflow-hidden;
@@ -106,6 +133,7 @@ tryOnMounted(() => {
     @apply grid-rows-[auto];
     @apply gap-y-[3.9vw];
     @apply grid-cols-16;
+
     @screen md {
       @apply gap-y-0;
       @apply grid-cols-24;

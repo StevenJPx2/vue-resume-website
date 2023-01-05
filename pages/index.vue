@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import { HomeSingleton, KnownStuff, Links, Philosophy } from "~/utils/types";
+import {
+  Experience,
+  HomeSingleton,
+  KnownStuff,
+  Links,
+  Philosophy,
+} from "~/utils/types";
+
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/vue-splide";
+import "@splidejs/vue-splide/css";
+
+import { breakpointsTailwind } from "@vueuse/core";
+
 const { getSingletonItem } = useDirectusItems();
+const isMobile = useBreakpoints(breakpointsTailwind).smallerOrEqual("md");
+
 const { data: homeData } = useAsyncData(
   async () => await getSingletonItem<HomeSingleton>({ collection: "home" })
 );
+
 const { data: knownStuffData } = useAsyncData(
   async () =>
     await getSingletonItem<KnownStuff[]>({
@@ -27,6 +42,25 @@ const { data: philosophyData } = useAsyncData(
 
 const { data: linksData } = useAsyncData(
   async () => await getSingletonItem<Links[]>({ collection: "links" })
+);
+
+const { data: experienceData } = useAsyncData(
+  async () =>
+    await getSingletonItem<Experience[]>({
+      collection: "experience",
+      params: {
+        fields: [
+          "id",
+          "sort",
+          "workplace_name",
+          "workplace_title",
+          "from",
+          "to",
+          "description.*",
+        ],
+        sort: "-sort",
+      },
+    })
 );
 
 const title = "Steven John | Full Stack Developer, App Developer";
@@ -56,7 +90,7 @@ useHead({
       :target="105.5"
       class="-rotate-3"
     />
-    <div
+    <section
       class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] md:my-[12vw] items-center grid-rows-[max-content]"
       :class="[commonPadding]"
     >
@@ -64,14 +98,15 @@ useHead({
         {{ homeData?.about_me }}
       </p>
       <home-known-stuff :data="knownStuffData!" class="mb-[15vw] md:mb-0" />
-    </div>
+    </section>
+
     <infinite-marquee
       text="My Philosophy"
       direction="right"
       :target="105.5"
       class="rotate-3"
     />
-    <div class="md:columns-2 gap-[5vw]" :class="[commonPadding]">
+    <section class="md:columns-2 gap-[5vw] mb-[3vw]" :class="[commonPadding]">
       <div
         v-if="philosophyData"
         v-for="{ title, body } in philosophyData"
@@ -85,7 +120,81 @@ useHead({
         </h3>
         <p class="whitespace-pre-wrap">{{ body }}</p>
       </div>
-    </div>
+    </section>
+
+    <infinite-marquee
+      text="Experience"
+      direction="left"
+      :target="105.5"
+      class="-rotate-3"
+    />
+    <splide
+      :options="{
+        height: '80vh',
+        perPage: isMobile ? 1 : 2,
+        padding: isMobile ? '4vw' : '14vw',
+        gap: isMobile ? '8vw' : '2vw',
+        wheel: true,
+        releaseWheel: true,
+        waitForTransition: true,
+      }"
+      :has-track="false"
+      class="relative"
+    >
+      <splide-track>
+        <splide-slide v-for="data in experienceData" :key="data.id">
+          <home-experience-card :data="data" />
+        </splide-slide>
+      </splide-track>
+
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+          <icon name="heroicons:chevron-right" />
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+          <icon name="heroicons:chevron-right" />
+        </button>
+      </div>
+    </splide>
+
     <home-footer :tagline="homeData!.footer_tagline" :links="linksData!" />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.splide {
+  &__arrows {
+    @apply absolute;
+    @apply inset-0;
+    @apply pointer-events-none;
+  }
+
+  &__arrow {
+    @apply pointer-events-auto;
+    @apply rounded-none;
+    @apply bg-transparent;
+    @apply h-full;
+    @apply w-[10vw];
+
+    svg {
+      height: 24vw !important;
+      width: 24vw !important;
+
+      :deep(path) {
+        stroke-width: 0.7 !important;
+        stroke-linecap: square !important;
+        stroke-linejoin: square !important;
+      }
+
+      @screen md {
+        height: 6vw !important;
+        width: 6vw !important;
+      }
+    }
+
+    @screen md {
+      @apply w-[3vw];
+    }
+  }
+}
+</style>

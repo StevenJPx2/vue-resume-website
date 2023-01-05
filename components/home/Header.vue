@@ -85,7 +85,7 @@ watch(
           'yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]',
       }"
     />
-    <div class="wrapper h-screen">
+    <div class="wrapper h-screen place-content-center">
       <div
         class="justify-self-center col-span-full row-start-1"
         v-parallax="{ scrollSpeed: 1 }"

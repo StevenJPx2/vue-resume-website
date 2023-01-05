@@ -9,6 +9,7 @@ export const getTailwindClasses = (args: {
 };
 
 export const commonPadding = "px-[4vw] md:px-[14vw]";
+export const commonMargin = "mx-[4vw] md:mx-[14vw]";
 export const seoGeneratorHelper = (
   names: string[],
   content?: string,
@@ -23,13 +24,13 @@ export const seoGenerator = (content: {
   description: string;
   image: string;
 }) => [
-    ...seoGeneratorHelper(["title"], content.title, "name"),
-    ...seoGeneratorHelper(["description"], content.description, "name"),
-    ...seoGeneratorHelper(["og:title", "twitter:title"], content.title),
-    ...seoGeneratorHelper(
-      ["og:description", "twitter:description"],
-      content.description
-    ),
-    ...seoGeneratorHelper(["og:image", "twitter:image"], content.image),
-    { property: "twitter:card", content: "summary_large_image" },
-  ];
+  ...seoGeneratorHelper(["title"], content.title, "name"),
+  ...seoGeneratorHelper(["description"], content.description, "name"),
+  ...seoGeneratorHelper(["og:title", "twitter:title"], content.title),
+  ...seoGeneratorHelper(
+    ["og:description", "twitter:description"],
+    content.description
+  ),
+  ...seoGeneratorHelper(["og:image", "twitter:image"], content.image),
+  { property: "twitter:card", content: "summary_large_image" },
+];
