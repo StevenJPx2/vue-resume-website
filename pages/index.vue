@@ -112,9 +112,6 @@ useHead({
         perPage: isMobile ? 1 : 2,
         padding: isMobile ? '4vw' : '14vw',
         gap: isMobile ? '8vw' : '2vw',
-        wheel: true,
-        releaseWheel: true,
-        waitForTransition: true,
       }"
       :has-track="false"
       class="mb-[20vw] md:my-[12vw]"

@@ -27,7 +27,7 @@ const props = defineProps({
     </p>
 
     <article
-      class="overflow-y-scroll overflow-x-hidden prose"
+      class="overflow-y-scroll overflow-x-hidden prose pb-9"
       v-html="props.data.description.body"
     />
   </div>
