@@ -91,14 +91,49 @@ useHead({
       class="-rotate-3"
     />
     <section
-      class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] md:my-[12vw] items-center grid-rows-[max-content]"
+      class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] mb-[20vw] md:my-[12vw] items-center grid-rows-[max-content]"
       :class="[commonPadding]"
     >
       <p class="whitespace-pre-wrap">
         {{ homeData?.about_me }}
       </p>
-      <home-known-stuff :data="knownStuffData!" class="mb-[15vw] md:mb-0" />
+      <home-known-stuff :data="knownStuffData!" />
     </section>
+
+    <infinite-marquee
+      text="Experience"
+      direction="left"
+      :target="105.5"
+      class="-rotate-3"
+    />
+    <splide
+      :options="{
+        height: '80vh',
+        perPage: isMobile ? 1 : 2,
+        padding: isMobile ? '4vw' : '14vw',
+        gap: isMobile ? '8vw' : '2vw',
+        wheel: true,
+        releaseWheel: true,
+        waitForTransition: true,
+      }"
+      :has-track="false"
+      class="mb-[20vw] md:my-[12vw]"
+    >
+      <splide-track>
+        <splide-slide v-for="data in experienceData" :key="data.id">
+          <home-experience-card :data="data" />
+        </splide-slide>
+      </splide-track>
+
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+          <icon name="heroicons:chevron-right" />
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+          <icon name="heroicons:chevron-right" />
+        </button>
+      </div>
+    </splide>
 
     <infinite-marquee
       text="My Philosophy"
@@ -121,41 +156,6 @@ useHead({
         <p class="whitespace-pre-wrap">{{ body }}</p>
       </div>
     </section>
-
-    <infinite-marquee
-      text="Experience"
-      direction="left"
-      :target="105.5"
-      class="-rotate-3"
-    />
-    <splide
-      :options="{
-        height: '80vh',
-        perPage: isMobile ? 1 : 2,
-        padding: isMobile ? '4vw' : '14vw',
-        gap: isMobile ? '8vw' : '2vw',
-        wheel: true,
-        releaseWheel: true,
-        waitForTransition: true,
-      }"
-      :has-track="false"
-      class="relative"
-    >
-      <splide-track>
-        <splide-slide v-for="data in experienceData" :key="data.id">
-          <home-experience-card :data="data" />
-        </splide-slide>
-      </splide-track>
-
-      <div class="splide__arrows">
-        <button class="splide__arrow splide__arrow--prev">
-          <icon name="heroicons:chevron-right" />
-        </button>
-        <button class="splide__arrow splide__arrow--next">
-          <icon name="heroicons:chevron-right" />
-        </button>
-      </div>
-    </splide>
 
     <home-footer :tagline="homeData!.footer_tagline" :links="linksData!" />
   </div>
