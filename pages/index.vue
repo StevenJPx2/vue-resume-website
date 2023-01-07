@@ -84,6 +84,7 @@ useHead({
       :tagline="homeData?.tagline"
       class="md:mb-[20vw] mb-[23vw]"
     />
+
     <infinite-marquee
       text="Who I am"
       direction="left"

@@ -5,6 +5,11 @@ import { Experience } from "~/utils/types";
 const props = defineProps({
   data: { type: Object as PropType<Experience>, required: true },
 });
+
+const overflowLimit = 550;
+const slicedBody = props.data.description.body.slice(0, overflowLimit);
+const isBodyOverflow = props.data.description.body != slicedBody;
+const isReadMoreModalRevealed = ref(false);
 </script>
 
 <template>
@@ -27,9 +32,27 @@ const props = defineProps({
     </p>
 
     <article
-      class="overflow-y-scroll overflow-x-hidden prose pb-9"
-      v-html="props.data.description.body"
+      class="overflow-y-scroll overflow-x-hidden prose p-3 pb-9"
+      :class="{ isBodyOverflow: 'hover:bg-accent' }"
+      v-html="slicedBody.concat(isBodyOverflow ? '...' : '')"
     />
+
+    <button
+      class="rounded-full w-fit px-[4vw] py-[1vw] md:px-[2vw] md:py-[0.4vw] border border-accent bg-accent/30 hover:bg-accent hover:text-[var(--color-base)] text-[2.5vw] md:text-[1.3vw] mx-auto my-[5vw] md:my-[1.3vw] font-medium uppercase transition-colors"
+      v-if="isBodyOverflow"
+      @click="isReadMoreModalRevealed = true"
+    >
+      Read more
+    </button>
+
+    <modal
+      :is-revealed="isReadMoreModalRevealed"
+      :on-click-outside="() => (isReadMoreModalRevealed = false)"
+    >
+      <article>
+        <div v-html="props.data.description.body" />
+      </article>
+    </modal>
   </div>
 </template>
 

@@ -20,13 +20,13 @@ const flipPage = (i: number) => {
 
 <template>
   <div
-    class="rounded-[2vw] border-white border bg-primary text-base py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto]"
+    class="rounded-[2vw] border-accent border bg-primary text-base py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto]"
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ props.data[index].category }}
     </h3>
     <div class="flex flex-wrap gap-3 md:gap-2 px-[3vw] md:px-[1vw]">
-      <nuxt-link
+      <button
         v-for="tech in props.data[index].technologies"
         :class="{
           'gap-2 font-hack bg-base items-center text-accent rounded-full': true,
@@ -42,7 +42,7 @@ const flipPage = (i: number) => {
         <small class="w-max">
           {{ tech.name }}
         </small>
-      </nuxt-link>
+      </button>
     </div>
     <div class="flex gap-2 mt-[1.4vw] justify-evenly h-full">
       <button
@@ -55,8 +55,8 @@ const flipPage = (i: number) => {
           {{ props.data[setIndex(index)].category }}
         </h4>
         <div
-          class="w-full h-full origin-bottom scale-y-0 rounded group-hover:scale-y-100 transition-transform duration-300 ease-in-out-expo bg-base z-[-1] absolute top-0 left-0"
-        ></div>
+          class="w-full h-full origin-bottom scale-y-[2%] rounded group-hover:scale-y-100 transition-transform duration-300 ease-in-out-expo bg-base z-[-1] absolute top-0 left-0"
+        />
       </button>
     </div>
   </div>

@@ -6,6 +6,8 @@ tryOnMounted(() => {
     mainStore.value.loading = false;
   });
 });
+
+// include .splide__pagination
 </script>
 
 <template>
@@ -168,12 +170,8 @@ tryOnMounted(() => {
   }
 }
 
-.splide--pagination {
-  @apply mb-[12vw];
-
-  @screen md {
-    @apply mb-[5vw];
-  }
+.splide__pagination {
+  top: 105% !important;
 }
 
 .slide {
@@ -254,29 +252,37 @@ tryOnMounted(() => {
   &-fade {
     &-enter {
       &-active {
-        @apply transition;
-        @apply ease-out-sine;
-        @apply duration-500;
-        @apply pointer-events-none;
+        .animate {
+          @apply transition;
+          @apply ease-out-sine;
+          @apply duration-300;
+          @apply pointer-events-none;
+        }
       }
 
       &-from {
-        @apply translate-y-[5vw];
-        @apply opacity-0;
+        .animate {
+          @apply translate-y-[5vw];
+          @apply opacity-0;
+        }
       }
     }
 
     &-leave {
       &-active {
-        @apply transition;
-        @apply ease-in-out-sine;
-        @apply duration-300;
-        @apply pointer-events-none;
+        .animate {
+          @apply transition;
+          @apply ease-in-out-sine;
+          @apply duration-200;
+          @apply pointer-events-none;
+        }
       }
 
       &-to {
-        @apply translate-y-[-5vw];
-        @apply opacity-0;
+        .animate {
+          @apply translate-y-[-5vw];
+          @apply opacity-0;
+        }
       }
     }
   }

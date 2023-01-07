@@ -37,14 +37,14 @@ const props = defineProps({
       <div
         class="flex flex-wrap justify-self-center gap-[7vw] md:gap-[4vw] px-[12vw] md:px-0"
       >
-        <nuxt-link
+        <button
           v-for="{ icon, id, link } in props.links"
           :key="id"
           :to="link"
           class="opacity-90 hover:opacity-100 text-[9vw] md:text-[4vw] transition-transform duration-300 ease-out-quart hover:scale-125"
         >
           <icon :name="icon" />
-        </nuxt-link>
+        </button>
       </div>
     </div>
   </div>

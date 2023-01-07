@@ -6,6 +6,14 @@ import { PropType } from "vue";
 
 const loopContainer = ref<HTMLElement | null>(null);
 
+const slugifyText = (text: string) =>
+  text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const props = defineProps({
   text: { type: String, required: true },
   speed: { type: Number, default: 0.2 },
@@ -65,7 +73,7 @@ watch(isTargetVisible, (val) => {
             '-left-full': i == 2 && props.direction === 'right',
           }"
         >
-          <h2 class="md:text-[3.1vw]" v-for="_ in 10">
+          <h2 :id="slugifyText(text)" class="md:text-[3.1vw]" v-for="_ in 10">
             {{ text.toUpperCase() }}
           </h2>
         </div>
