@@ -11,4 +11,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       useParallaxScroll(el, value);
     },
   });
+
+  directive("line-clamp", {
+    mounted(el) {
+      useLineClamp(el);
+    }
+  })
 });
