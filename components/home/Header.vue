@@ -94,11 +94,13 @@ watch(
       </div>
       <div
         v-parallax="{ scrollSpeed: -1 }"
-        :class="[
-          'grayscale row-start-1',
-          'col-start-3 col-end-14 mt-[25vw]',
-          'md:col-start-9 md:col-span-7 md:mt-[15vw]',
-        ]"
+        class="
+          grayscale
+          row-start-1
+          col-start-3 col-end-14
+          mt-[25vw]
+          md:col-start-9 md:col-span-7 md:mt-[15vw]
+        "
       >
         <directus-img
           :id="props.img"
@@ -106,36 +108,63 @@ watch(
         />
       </div>
       <s-p-s
-        :class="[
-          commonClasses,
-          'pop-in col-start-3 col-span-3 mt-[55vw]',
-          'md:col-start-7 md:col-span-2 md:mt-[34vw]',
-        ]"
+        :class="[commonClasses]"
+        class="
+          pop-in
+          col-start-3 col-span-3
+          mt-[55vw]
+          md:col-start-7 md:col-span-2 md:mt-[34vw]
+        "
       />
 
       <f-p-s
-        :class="[
-          commonClasses,
-          'pop-in col-start-13 col-span-2 mt-[105vw]',
-          'md:col-start-17 md:w-[5vw] md:mt-[48vw]',
-        ]"
+        :class="[commonClasses]"
+        class="
+          pop-in
+          col-start-13 col-span-2
+          mt-[105vw]
+          md:col-start-17 md:w-[5vw] md:mt-[48vw]
+        "
       />
 
       <small-circle
-        :class="[
-          commonClasses,
-          'pop-in col-start-2 col-span-1 w-[5vw] mt-[125vw]',
-          'md:col-start-8 md:w-[2vw] md:justify-self-end md:mt-[57vw]',
-        ]"
+        :class="[commonClasses]"
+        class="
+          pop-in
+          col-start-2 col-span-1
+          w-[5vw]
+          mt-[125vw]
+          md:col-start-8 md:w-[2vw] md:justify-self-end md:mt-[57vw]
+        "
       />
       <p
         id="tagline"
         v-if="props.tagline"
-        :class="[
-          'pop-in rounded-full bg-white/[0.01] uppercase backdrop-blur-sm row-start-1 w-fit h-fit -rotate-6 border text-center justify-self-center',
-          'col-start-1 col-span-full text-[4vw] mt-[130vw] py-[2vw] px-[8vw]',
-          'md:col-start-10 md:col-span-7 md:py-[0.6vw] md:px-[2.2vw] md:text-[1.2vw] md:mt-[54vw]',
-        ]"
+        class="
+          pop-in
+          rounded-full
+          bg-white/[0.01]
+          uppercase
+          backdrop-blur-sm
+          row-start-1
+          w-fit
+          h-fit
+          -rotate-6
+          border
+          text-center
+          justify-self-center
+          col-start-1 col-span-full
+          text-[4vw]
+          mt-[130vw]
+          py-[2vw]
+          px-[8vw]
+          md:col-start-10
+          md:col-span-7
+          md:py-[0.6vw]
+          md:px-[2.2vw]
+          md:text-[1.2vw]
+          md:mt-[54vw]
+        "
       >
         {{ tagline }}
       </p>

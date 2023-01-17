@@ -16,9 +16,8 @@ tryOnMounted(() => {
 
   watchOnce(hasOverflow, (val) => {
     hasInitialOverflow.value = val;
-  })
-
-})
+  });
+});
 </script>
 
 <template>
@@ -35,22 +34,58 @@ tryOnMounted(() => {
             : useDateFormat(props.data.to, "MMM, YYYY").value
         }}
       </p>
-      <p class="uppercase text-[4vw] md:text-[1vw] tracking-widest mb-[5vw] md:mb-[2vw]">
+      <p
+        class="
+          uppercase
+          text-[4vw]
+          md:text-[1vw]
+          tracking-widest
+          mb-[5vw]
+          md:mb-[2vw]
+        "
+      >
         {{ props.data.workplace_title }}
       </p>
     </div>
 
-    <article class="overflow-hidden prose p-3 pb-9" :class="{ 'hover:bg-accent/10': hasInitialOverflow }">
+    <article
+      class="overflow-hidden prose p-3 pb-9"
+      :class="{ 'hover:bg-accent/10': hasInitialOverflow }"
+    >
       <div ref="body" v-html="props.data.description.body" />
     </article>
 
     <button
-      class="rounded-full w-fit px-[6vw] py-[1vw] md:px-[2vw] md:py-[0.4vw] border border-accent bg-accent/30 hover:bg-accent hover:text-[var(--color-base)] text-[3.5vw] md:text-[1.3vw] mx-auto my-[5vw] md:my-[1.3vw] font-medium uppercase transition-colors max-h-[120%] md:max-h-[3.5vw]"
-      v-if="hasInitialOverflow" @click="isReadMoreModalRevealed = true">
+      class="
+        rounded-full
+        w-fit
+        px-[6vw]
+        py-[1vw]
+        md:px-[2vw] md:py-[0.4vw]
+        border border-accent
+        bg-accent/30
+        hover:bg-accent hover:text-[var(--color-base)]
+        text-[3.5vw]
+        md:text-[1.3vw]
+        mx-auto
+        my-[5vw]
+        md:my-[1.3vw]
+        font-medium
+        uppercase
+        transition-colors
+        max-h-[120%]
+        md:max-h-[3.5vw]
+      "
+      v-if="hasInitialOverflow"
+      @click="isReadMoreModalRevealed = true"
+    >
       Read more
     </button>
 
-    <modal :is-revealed="isReadMoreModalRevealed" :on-click-outside="() => (isReadMoreModalRevealed = false)">
+    <modal
+      :is-revealed="isReadMoreModalRevealed"
+      :on-click-outside="() => (isReadMoreModalRevealed = false)"
+    >
       <article>
         <div v-html="props.data.description.body" />
       </article>
@@ -66,10 +101,12 @@ $color-base: #0e0e0e;
   @apply relative;
   @apply grid;
 
-  background: linear-gradient(180deg,
-      var(--color-base) 0%,
-      color.scale($color-base, $lightness: 5%) 50%,
-      var(--color-base) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-base) 0%,
+    color.scale($color-base, $lightness: 5%) 50%,
+    var(--color-base) 100%
+  );
   @apply h-full;
   $border: 1px;
   @apply bg-clip-padding;
@@ -89,10 +126,12 @@ $color-base: #0e0e0e;
     z-index: -1;
     margin: -$border;
     border-radius: inherit;
-    background: linear-gradient(180deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(255, 255, 255, 0.2) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
   }
 
   @screen md {

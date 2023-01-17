@@ -83,7 +83,16 @@ tryOnMounted(() => {
 <template>
   <div
     id="loading-container"
-    class="w-full h-screen bg-base absolute top-0 z-50 grid place-content-center"
+    class="
+      w-full
+      h-screen
+      bg-base
+      absolute
+      top-0
+      z-50
+      grid
+      place-content-center
+    "
   >
     <h1 id="loading">Loading</h1>
   </div>

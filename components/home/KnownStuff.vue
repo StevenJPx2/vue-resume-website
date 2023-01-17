@@ -20,7 +20,16 @@ const flipPage = (i: number) => {
 
 <template>
   <div
-    class="rounded-[2vw] border-accent border bg-primary text-base py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto]"
+    class="
+      rounded-[2vw]
+      border-accent border
+      bg-primary
+      text-base
+      py-[3vw]
+      px-[2vw]
+      shadow-primary shadow-2xl
+      grid grid-rows-[auto,max-content,auto]
+    "
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ props.data[index].category }}
@@ -29,11 +38,26 @@ const flipPage = (i: number) => {
       <button
         v-for="tech in props.data[index].technologies"
         :class="{
-          'gap-2 font-hack bg-base items-center text-accent rounded-full': true,
-          'flex flex-1 justify-center h-[7vw] px-[4vw] text-[4vw]': true,
-          'md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw]': true,
           'hover:bg-opacity-95': !!tech.link,
         }"
+        class="
+          gap-2
+          font-hack
+          bg-base
+          items-center
+          text-accent
+          rounded-full
+          flex flex-1
+          justify-center
+          h-[7vw]
+          px-[4vw]
+          text-[4vw]
+          md:flex-initial
+          md:justify-start
+          md:h-[2vw]
+          md:px-[1vw]
+          md:text-[1.1vw]
+        "
         :target="!!tech.link ? '_blank' : '_self'"
         :key="tech.id"
         :to="!!tech.link ? `https://${tech.link}` : '#'"
@@ -55,7 +79,22 @@ const flipPage = (i: number) => {
           {{ props.data[setIndex(index)].category }}
         </h4>
         <div
-          class="w-full h-full origin-bottom scale-y-[2%] rounded group-hover:scale-y-100 transition-transform duration-300 ease-in-out-expo bg-base z-[-1] absolute top-0 left-0"
+          class="
+            w-full
+            h-full
+            origin-bottom
+            scale-y-[2%]
+            rounded
+            group-hover:scale-y-100
+            transition-transform
+            duration-300
+            ease-in-out-expo
+            bg-base
+            z-[-1]
+            absolute
+            top-0
+            left-0
+          "
         />
       </button>
     </div>
