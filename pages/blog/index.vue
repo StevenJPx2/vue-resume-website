@@ -1,5 +1,9 @@
-<template>
-  <div>
+<script setup lang="ts">
 
-  </div>
+</script>
+
+<template>
+  <section>
+
+  </section>
 </template>
