@@ -10,24 +10,25 @@ const props = defineProps({
 
 <template>
   <teleport to="body">
-    <div
-      class="
-        bg-black
-        fixed
-        inset-0
-        grid
-        place-content-center
-        z-[999]
-        transition
-        bg-opacity-0
-        pointer-events-none
-        isolate
-      "
-      :class="{ 'bg-opacity-40 pointer-events-auto': props.isRevealed }"
-    >
-      <transition name="slide-fade" mode="out-in">
+    <transition name="slide-fade" mode="out-in">
+      <div
+        v-if="props.isRevealed"
+        class="
+          fixed
+          inset-0
+          grid
+          place-content-center
+          z-[999]
+          isolate
+          transition
+          duration-300
+        "
+      >
         <div
-          v-if="props.isRevealed"
+          id="modal-bg"
+          class="bg-black/40 absolute inset-0 z-0 transition duration-200 fade"
+        />
+        <div
           v-on-click-outside="onClickOutside"
           class="
             rounded-2xl
@@ -48,7 +49,7 @@ const props = defineProps({
         >
           <slot />
         </div>
-      </transition>
-    </div>
+      </div>
+    </transition>
   </teleport>
 </template>

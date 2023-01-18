@@ -1,6 +1,6 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  routeRules: { "/": { swr: true } },
+  routeRules: { "/**": { swr: true } },
   app: {
     head: {
       title: "Steven John",

@@ -69,5 +69,5 @@ export interface Experience {
   workplace_title: string;
   from: string;
   to?: string;
-  description: BlogPost;
+  description: Pick<BlogPost, "body">;
 }

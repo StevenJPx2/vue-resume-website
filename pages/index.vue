@@ -47,7 +47,7 @@ const experienceData = await getSingletonItem<Experience[]>({
       "workplace_title",
       "from",
       "to",
-      "description.*",
+      "description.body",
     ],
     sort: "-sort",
   },

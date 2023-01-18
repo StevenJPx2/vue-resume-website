@@ -82,14 +82,14 @@ tryOnMounted(() => {
       Read more
     </button>
 
-    <modal
+    <lazy-modal
       :is-revealed="isReadMoreModalRevealed"
       :on-click-outside="() => (isReadMoreModalRevealed = false)"
     >
       <article>
         <div v-html="props.data.description.body" />
       </article>
-    </modal>
+    </lazy-modal>
   </div>
 </template>
 
