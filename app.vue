@@ -17,10 +17,14 @@ tryOnMounted(() => {
 </template>
 
 <style lang="scss">
+@use "sass:color";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @import url("https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css");
+
+$color-base: #0e0e0e;
 
 :root {
   --color-base: #0e0e0e;
@@ -122,6 +126,11 @@ tryOnMounted(() => {
   }
 
   .prose {
+    p,
+    li {
+      @apply mb-[1vw];
+    }
+
     p {
       @apply font-normal;
     }
@@ -173,6 +182,51 @@ tryOnMounted(() => {
 
 .splide__pagination {
   top: 105% !important;
+}
+
+.btn {
+}
+
+.card {
+  @apply relative;
+  @apply grid;
+
+  background: linear-gradient(
+    180deg,
+    var(--color-base) 0%,
+    color.scale($color-base, $lightness: 5%) 50%,
+    var(--color-base) 100%
+  );
+  @apply h-full;
+  $border: 1px;
+  @apply bg-clip-padding;
+  border: solid $border transparent;
+  @apply rounded-2xl;
+  @apply pt-[20%];
+  @apply px-[8vw];
+  grid-template-rows: 2fr 4fr 1fr;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+
+  @screen md {
+    @apply px-[2vw];
+  }
 }
 
 .slide {

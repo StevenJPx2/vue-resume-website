@@ -26,7 +26,16 @@ const props = defineProps({
       >
         <div
           id="modal-bg"
-          class="bg-black/40 absolute inset-0 z-0 transition duration-200 fade"
+          class="
+            bg-black/40
+            absolute
+            inset-0
+            z-0
+            transition
+            duration-200
+            backdrop-blur-xl
+            fade
+          "
         />
         <div
           v-on-click-outside="onClickOutside"

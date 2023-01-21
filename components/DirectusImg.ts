@@ -36,7 +36,7 @@ export default defineComponent({
 
     const formattedSizes = (format: Formats) =>
       urls[format]
-        .map(({ width }) => `(min-width: ${width}px) ${width}px`)
+        .map(({ width }) => `(max-width: ${width}px) ${width}px`)
         .join(", ");
 
     const formattedSrcset = (format: Formats) =>
@@ -51,7 +51,7 @@ export default defineComponent({
         }),
         h("img", {
           ...props.imgAttrs,
-          src: urls.png.find(({ width }) => width === maxSize),
+          src: urls.png.find(({ width }) => width === maxSize)?.link,
           sizes: formattedSizes("png"),
           srcset: formattedSrcset("png"),
         }),

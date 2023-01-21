@@ -62,6 +62,11 @@ export interface BlogPost {
   body: string;
 }
 
+export type BlogPostPreview = Pick<
+  BlogPost,
+  "user_created" | "date_created" | "title" | "slug" | "header" | "header_type"
+>;
+
 export interface Experience {
   id: string;
   sort: number;
