@@ -3,7 +3,6 @@ import {
   Experience,
   HomeSingleton,
   KnownStuff,
-  Links,
   Philosophy,
 } from "~/utils/types";
 
@@ -14,7 +13,7 @@ import { breakpointsTailwind } from "@vueuse/core";
 
 const store = useMainStore();
 
-store.value.footer.showLinks = false;
+store.value.footer = { showBackground: false, showLinks: false };
 
 const { getSingletonItem } = useDirectusItems();
 const isMobile = useBreakpoints(breakpointsTailwind).smallerOrEqual("md");

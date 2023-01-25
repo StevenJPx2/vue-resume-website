@@ -5,7 +5,7 @@ const store = useMainStore();
 
 const { getSingletonItem } = useDirectusItems();
 store.value.links = await getSingletonItem<Links[]>({ collection: "links" });
-store.value.footer.showLinks = true;
+store.value.footer = { showBackground: true, showLinks: true };
 
 tryOnMounted(() => {
   const lock = useScrollLock(document.querySelector("html"), true);

@@ -8,7 +8,7 @@ export type Store = {
   currentPage: Pages;
   loadingStates: { initialAnimationLoaded: boolean; isLoading: boolean };
   navbar: {};
-  footer: { showLinks: boolean };
+  footer: { showLinks: boolean; showBackground: boolean };
   links: Links[];
 };
 

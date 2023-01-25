@@ -2,14 +2,19 @@
 import { commonPadding } from "~/utils/helpers";
 
 const store = useMainStore();
+const footer = store.value.footer;
 </script>
 
 <template>
   <footer
-    class="mt-[10vw] md:mt-[5vw] bg-primary grid place-items-center py-[5vw]"
-    :class="[commonPadding]"
+    class="mt-[10vw] md:mt-[5vw] grid place-items-center py-[10vw] md:py-[5vw]"
+    :class="{
+      [commonPadding]: true,
+      'bg-primary text-base-color': footer.showBackground,
+      'border-t border-white text-white': !footer.showBackground,
+    }"
   >
-    <div class="flex items-center gap-[1.1vw] text-base-color">
+    <div class="flex items-center gap-[1.1vw]">
       <p>made with</p>
       <icon name="heroicons-solid:heart" />
       <p>using</p>
@@ -30,7 +35,7 @@ const store = useMainStore();
       "
     >
       <nuxt-link
-        v-if="store.footer.showLinks"
+        v-if="footer.showLinks"
         v-for="{ icon, id, link } in store.links"
         :key="id"
         :to="link"
