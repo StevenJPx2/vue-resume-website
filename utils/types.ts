@@ -5,9 +5,11 @@ export type SplittingTypes = TypesValue[] | TypesListString;
 export type Pages = "home" | "blog" | "project";
 export type MaybeRefHTMLElement = MaybeRef<HTMLElement | null | undefined>;
 export type Store = {
-  hasInitialAnimationLoaded: boolean;
   currentPage: Pages;
-  loading: boolean;
+  loadingStates: { initialAnimationLoaded: boolean; isLoading: boolean };
+  navbar: {};
+  footer: { showLinks: boolean };
+  links: Links[];
 };
 
 export interface PublicUser {

@@ -55,7 +55,7 @@ tryOnMounted(() => {
             duration: 1.2,
             ease: "expo.inOut",
             onComplete() {
-              store.value.hasInitialAnimationLoaded = true;
+              store.value.loadingStates.initialAnimationLoaded = true;
             },
           });
         }
@@ -72,7 +72,7 @@ tryOnMounted(() => {
         duration: 1.2,
         ease: "expo.inOut",
         onComplete() {
-          store.value.hasInitialAnimationLoaded = true;
+          store.value.loadingStates.initialAnimationLoaded = true;
         },
       });
     }
@@ -86,7 +86,7 @@ tryOnMounted(() => {
     class="
       w-full
       h-screen
-      bg-base
+      bg-base-color
       absolute
       top-0
       z-50

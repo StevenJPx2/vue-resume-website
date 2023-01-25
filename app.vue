@@ -3,7 +3,7 @@ import imagesLoaded from "imagesloaded";
 const mainStore = useMainStore();
 tryOnMounted(() => {
   imagesLoaded(document.querySelectorAll("img"), { background: true }, () => {
-    mainStore.value.loading = false;
+    mainStore.value.loadingStates.isLoading = false;
   });
 });
 
@@ -35,7 +35,7 @@ $color-base: #0e0e0e;
 @layer base {
   html {
     font-family: "Neue Montreal";
-    @apply bg-base;
+    @apply bg-base-color;
     @apply text-accent;
     @apply scroll-smooth;
   }

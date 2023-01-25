@@ -24,7 +24,7 @@ useGsap((tl) => {
 watch(
   store,
   (val) => {
-    if (val.hasInitialAnimationLoaded)
+    if (val.loadingStates.initialAnimationLoaded)
       useWordSlideInAnimation(name, {
         activation: "immediate",
         splitBy: "words, chars",
@@ -92,6 +92,7 @@ watch(
       >
         <h1 ref="name">Steven John</h1>
       </div>
+
       <div
         v-parallax="{ scrollSpeed: -1 }"
         class="

@@ -12,6 +12,10 @@ import "@splidejs/vue-splide/css";
 
 import { breakpointsTailwind } from "@vueuse/core";
 
+const store = useMainStore();
+
+store.value.footer.showLinks = false;
+
 const { getSingletonItem } = useDirectusItems();
 const isMobile = useBreakpoints(breakpointsTailwind).smallerOrEqual("md");
 
@@ -34,8 +38,6 @@ const knownStuffData = await getSingletonItem<KnownStuff[]>({
 const philosophyData = await getSingletonItem<Philosophy[]>({
   collection: "philosophy",
 });
-
-const linksData = await getSingletonItem<Links[]>({ collection: "links" });
 
 const experienceData = await getSingletonItem<Experience[]>({
   collection: "experience",
@@ -154,7 +156,7 @@ useHead({
       </div>
     </section>
 
-    <home-footer :tagline="homeData!.footer_tagline" :links="linksData!" />
+    <home-footer :tagline="homeData!.footer_tagline" />
   </div>
 </template>
 

@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { PropType } from "vue";
-import { Links } from "~/utils/types";
-
 const props = defineProps({
   tagline: { type: String, required: true },
-  links: { type: Array as PropType<Links[]>, required: true },
 });
+const store = useMainStore();
 </script>
 <template>
-  <div class="h-screen relative">
+  <section class="h-screen relative">
     <directus-img
       id="yellowEllipse"
       :sizes="[1536]"
@@ -59,7 +56,7 @@ const props = defineProps({
         "
       >
         <nuxt-link
-          v-for="{ icon, id, link } in props.links"
+          v-for="{ icon, id, link } in store.links"
           :key="id"
           :to="link"
           class="
@@ -77,5 +74,5 @@ const props = defineProps({
         </nuxt-link>
       </div>
     </div>
-  </div>
+  </section>
 </template>

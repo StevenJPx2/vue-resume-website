@@ -11,9 +11,7 @@ const props = defineProps({
 <template>
   <teleport to="body">
     <transition name="slide-fade" mode="out-in">
-      <div
-        v-if="props.isRevealed"
-        class="
+      <div v-if="props.isRevealed" class="
           fixed
           inset-0
           grid
@@ -22,11 +20,8 @@ const props = defineProps({
           isolate
           transition
           duration-300
-        "
-      >
-        <div
-          id="modal-bg"
-          class="
+        ">
+        <div id="modal-bg" class="
             bg-black/40
             absolute
             inset-0
@@ -35,14 +30,11 @@ const props = defineProps({
             duration-200
             backdrop-blur-xl
             fade
-          "
-        />
-        <div
-          v-on-click-outside="onClickOutside"
-          class="
+          " />
+        <div v-on-click-outside="onClickOutside" class="
             rounded-2xl
             border-opacity-25 border-accent border
-            bg-base
+            bg-base-color
             prose
             max-w-screen-xl
             px-[8vw]
@@ -53,9 +45,7 @@ const props = defineProps({
             overscroll-contain
             animate
             z-10
-          "
-          :class="[commonMargin]"
-        >
+          " :class="[commonMargin]">
           <slot />
         </div>
       </div>

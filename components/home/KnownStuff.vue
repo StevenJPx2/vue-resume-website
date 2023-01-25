@@ -24,7 +24,7 @@ const flipPage = (i: number) => {
       rounded-[2vw]
       border-accent border
       bg-primary
-      text-base
+      text-base text-base-color
       py-[3vw]
       px-[2vw]
       shadow-primary shadow-2xl
@@ -35,15 +35,15 @@ const flipPage = (i: number) => {
       {{ props.data[index].category }}
     </h3>
     <div class="flex flex-wrap gap-3 md:gap-2 px-[3vw] md:px-[1vw]">
-      <button
+      <nuxt-link
         v-for="tech in props.data[index].technologies"
         :class="{
-          'hover:bg-opacity-95': !!tech.link,
+          'hover:bg-opacity-95 hover:scale-95': !!tech.link,
         }"
         class="
           gap-2
           font-hack
-          bg-base
+          bg-base-color
           items-center
           text-accent
           rounded-full
@@ -57,17 +57,31 @@ const flipPage = (i: number) => {
           md:h-[2vw]
           md:px-[1vw]
           md:text-[1.1vw]
+          transition-transform
+          ease-out-quad
         "
         :target="!!tech.link ? '_blank' : '_self'"
+        :to="
+          !!tech.link
+            ? tech.link.startsWith('https://')
+              ? tech.link
+              : 'https://' + tech.link
+            : '#'
+        "
         :key="tech.id"
-        :to="!!tech.link ? `https://${tech.link}` : '#'"
+        :external="true"
       >
-        <icon v-if="tech.icon_name" :name="tech.icon_name" />
+        <icon
+          v-if="tech.icon_name"
+          :name="tech.icon_name"
+          class="[&>path]:fill-current"
+        />
         <small class="w-max">
           {{ tech.name }}
         </small>
-      </button>
+      </nuxt-link>
     </div>
+
     <div class="flex gap-2 mt-[1.4vw] justify-evenly h-full">
       <button
         v-for="index in [-1, 1]"
@@ -89,7 +103,7 @@ const flipPage = (i: number) => {
             transition-transform
             duration-300
             ease-in-out-expo
-            bg-base
+            bg-base-color
             z-[-1]
             absolute
             top-0

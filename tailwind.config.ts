@@ -10,7 +10,7 @@ export default <Config>{
         hack: ["Hack", "monospace"],
       },
       colors: {
-        base: { DEFAULT: "var(--color-base)" },
+        "base-color": { DEFAULT: "var(--color-base)" },
         primary: { DEFAULT: "var(--color-primary)" },
         accent: { DEFAULT: "var(--color-accent)" },
       },
