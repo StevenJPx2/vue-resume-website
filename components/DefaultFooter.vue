@@ -14,7 +14,17 @@ const footer = store.value.footer;
       'border-t border-white text-white': !footer.showBackground,
     }"
   >
-    <div class="flex items-center gap-[1.1vw]">
+    <div
+      class="
+        flex
+        items-center
+        gap-[1.1vw]
+        text-[5vw]
+        md:text-[1.6vw]
+        mb-[5vw]
+        md:mb-[2vw]
+      "
+    >
       <p>made with</p>
       <icon name="heroicons-solid:heart" />
       <p>using</p>
@@ -24,11 +34,12 @@ const footer = store.value.footer;
       <p>and</p>
       <icon name="simple-icons:directus" />
     </div>
+
     <div
       class="
         flex flex-wrap
         justify-self-center
-        gap-[2.1vw]
+        gap-[9vw]
         md:gap-[1.6vw]
         px-[12vw]
         md:px-0
@@ -44,7 +55,7 @@ const footer = store.value.footer;
           opacity-90
           hover:opacity-100
           text-[9vw] text-base-color
-          md:text-[4vw]
+          md:text-[1.6vw]
           transition-transform
           duration-300
           ease-out-quart
@@ -56,15 +67,3 @@ const footer = store.value.footer;
     </div>
   </footer>
 </template>
-
-<style scoped lang="scss">
-svg {
-  @apply w-[5vw];
-  @apply h-[5vw];
-
-  @screen md {
-    @apply w-[1.6vw];
-    @apply h-[1.6vw];
-  }
-}
-</style>
