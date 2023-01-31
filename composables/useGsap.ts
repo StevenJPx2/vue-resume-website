@@ -4,14 +4,14 @@ export type GSAPOptions = gsap.TimelineVars & {
   shouldBeMounted?: boolean;
 };
 
+const defaultOptions: GSAPOptions = { shouldBeMounted: true };
+
 export default function(
   gsapFn: (tl: GSAPTimeline) => void,
-  options: GSAPOptions = {
-    shouldBeMounted: true,
-  },
+  options: GSAPOptions = defaultOptions,
   plugins?: object[]
 ) {
-  const { shouldBeMounted, ...gsapOptions } = options;
+  const { shouldBeMounted, ...gsapOptions } = { ...defaultOptions, ...options };
   const fn = () => {
     if (plugins !== undefined && plugins.length > 0)
       gsap.registerPlugin(...plugins);

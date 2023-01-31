@@ -56,26 +56,7 @@ tryOnMounted(() => {
     </article>
 
     <button
-      class="
-        rounded-full
-        w-fit
-        px-[6vw]
-        py-[1vw]
-        md:px-[2vw] md:py-[0.4vw]
-        border border-accent
-        bg-accent/30
-        hover:bg-accent hover:text-[var(--color-base)]
-        text-[3.5vw]
-        md:text-[1.3vw]
-        mx-auto
-        my-[5vw]
-        md:my-[1.3vw]
-        font-medium
-        uppercase
-        transition-colors
-        max-h-[120%]
-        md:max-h-[3.5vw]
-      "
+      class="btn btn-hoverable justify-self-center"
       v-if="hasInitialOverflow"
       @click="isReadMoreModalRevealed = true"
     >

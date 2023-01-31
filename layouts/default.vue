@@ -5,7 +5,6 @@ const store = useMainStore();
 
 const { getSingletonItem } = useDirectusItems();
 store.value.links = await getSingletonItem<Links[]>({ collection: "links" });
-store.value.footer = { showBackground: true, showLinks: true };
 
 tryOnMounted(() => {
   const lock = useScrollLock(document.querySelector("html"), true);
@@ -17,13 +16,30 @@ tryOnMounted(() => {
     { deep: true }
   );
 });
+
+function leaveFunction() {
+  console.log("leave");
+  store.value.loadingStates = {
+    isLoading: true,
+    initialAnimationLoaded: false,
+  };
+}
+
+function enterFunction() {
+  console.log("enter");
+  store.value.loadingStates.isLoading = false;
+}
 </script>
 
 <template>
   <div class="overflow-hidden" ref="body">
     <navbar />
-    <loading :loading="store.loadingStates.isLoading" />
-    <slot />
-    <default-footer />
+    <loading />
+    <router-view v-slot="{ Component, route }">
+      <transition mode="out-in" @enter="enterFunction" @before-leave="leaveFunction">
+        <component :is="Component" :key="route.fullPath" />
+      </transition>
+    </router-view>
+    <Footer />
   </div>
 </template>

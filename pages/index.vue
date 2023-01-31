@@ -58,9 +58,9 @@ const title = "Steven John | Full Stack Developer, App Developer";
 const description =
   "A multi-stack developer with the penchant for developing the best, curated experiences with the least running cost.";
 
-useHead({
+useServerSeoMeta({
   title,
-  meta: seoGenerator({
+  ...seoGenerator({
     title,
     description,
     image: "https://stevenjohn.co/meta.jpg",
@@ -175,6 +175,7 @@ useHead({
     @apply w-[10vw];
 
     svg {
+      font-size: 24vw;
       height: 24vw !important;
       width: 24vw !important;
 

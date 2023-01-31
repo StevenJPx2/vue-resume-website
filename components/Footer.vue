@@ -2,29 +2,28 @@
 import { commonPadding } from "~/utils/helpers";
 
 const store = useMainStore();
-const footer = store.value.footer;
+const footer = computed(() => store.value.footer);
 </script>
 
 <template>
   <footer
-    class="mt-[10vw] md:mt-[5vw] grid place-items-center py-[10vw] md:py-[5vw]"
+    class="
+      mt-[10vw]
+      md:mt-[5vw]
+      grid
+      place-items-center
+      py-[10vw]
+      md:py-[5vw]
+      gap-[5vw]
+      md:gap-[1.6vw]
+    "
     :class="{
       [commonPadding]: true,
       'bg-primary text-base-color': footer.showBackground,
       'border-t border-white text-white': !footer.showBackground,
     }"
   >
-    <div
-      class="
-        flex
-        items-center
-        gap-[1.1vw]
-        text-[5vw]
-        md:text-[1.6vw]
-        mb-[5vw]
-        md:mb-[2vw]
-      "
-    >
+    <div class="flex items-center gap-[1.1vw] text-[5vw] md:text-[1.6vw]">
       <p>made with</p>
       <icon name="heroicons-solid:heart" />
       <p>using</p>

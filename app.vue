@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import imagesLoaded from "imagesloaded";
-const mainStore = useMainStore();
+
+const store = useMainStore();
+
+const isLoading = $isLoading(store);
+
 tryOnMounted(() => {
   imagesLoaded(document.querySelectorAll("img"), { background: true }, () => {
-    mainStore.value.loadingStates.isLoading = false;
+    isLoading.value = false;
   });
 });
 
@@ -121,11 +125,30 @@ $color-base: #0e0e0e;
     }
   }
 
+  .btn {
+    @apply rounded-full bg-white/[0.01] uppercase backdrop-blur-sm w-fit h-fit border border-accent text-center justify-center flex text-[4vw] py-[2vw] px-[8vw];
+
+    @screen md {
+      @apply py-[0.6vw] px-[2.2vw] text-[1.2vw];
+    }
+
+    &-hoverable {
+      @apply cursor-pointer;
+      @apply transition-colors;
+
+      &:hover {
+        @apply bg-accent;
+        @apply text-base-color;
+      }
+    }
+  }
+
   img {
     /*@apply pointer-events-none;*/
   }
 
   .prose {
+
     p,
     li {
       @apply mb-[1vw];
@@ -184,19 +207,16 @@ $color-base: #0e0e0e;
   top: 105% !important;
 }
 
-.btn {
-}
+.btn {}
 
 .card {
   @apply relative;
   @apply grid;
 
-  background: linear-gradient(
-    180deg,
-    var(--color-base) 0%,
-    color.scale($color-base, $lightness: 5%) 50%,
-    var(--color-base) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--color-base) 0%,
+      color.scale($color-base, $lightness: 5%) 50%,
+      var(--color-base) 100%);
   @apply h-full;
   $border: 1px;
   @apply bg-clip-padding;
@@ -216,12 +236,10 @@ $color-base: #0e0e0e;
     z-index: -1;
     margin: -$border;
     border-radius: inherit;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.2) 0%,
-      rgba(255, 255, 255, 0.8) 50%,
-      rgba(255, 255, 255, 0.2) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.2) 100%);
   }
 
   @screen md {
@@ -230,6 +248,7 @@ $color-base: #0e0e0e;
 }
 
 .slide {
+
   &-back,
   &-forward,
   &-bottom,
@@ -285,9 +304,11 @@ $color-base: #0e0e0e;
   }
 
   &-fade {
+
     &-enter,
     &-leave {
       &-active {
+
         .animate,
         .fade {
           @apply transition;

@@ -19,18 +19,19 @@ export const seoGeneratorHelper = (
     [keyName]: name,
     content,
   }));
+
 export const seoGenerator = (content: {
   title: string;
   description: string;
   image: string;
 }) => [
-  ...seoGeneratorHelper(["title"], content.title, "name"),
-  ...seoGeneratorHelper(["description"], content.description, "name"),
-  ...seoGeneratorHelper(["og:title", "twitter:title"], content.title),
-  ...seoGeneratorHelper(
-    ["og:description", "twitter:description"],
-    content.description
-  ),
-  ...seoGeneratorHelper(["og:image", "twitter:image"], content.image),
-  { property: "twitter:card", content: "summary_large_image" },
-];
+    ...seoGeneratorHelper(["title"], content.title, "name"),
+    ...seoGeneratorHelper(["description"], content.description, "name"),
+    ...seoGeneratorHelper(["og:title", "twitter:title"], content.title),
+    ...seoGeneratorHelper(
+      ["og:description", "twitter:description"],
+      content.description
+    ),
+    ...seoGeneratorHelper(["og:image", "twitter:image"], content.image),
+    { property: "twitter:card", content: "summary_large_image" },
+  ];

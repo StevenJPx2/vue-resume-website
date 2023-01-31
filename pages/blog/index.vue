@@ -1,7 +1,18 @@
 <script setup lang="ts">
-import { BlogPostPreview } from "~/utils/types";
+import { BlogPost, BlogPostPreview } from "~/utils/types";
 
-const { getSingletonItem } = useDirectusItems();
+const { getSingletonItem, getItems } = useDirectusItems();
+
+const latestPost = (
+  await getItems<BlogPost[]>({
+    collection: "posts",
+    params: {
+      fields: ["*", "user_created.*"],
+      sort: "-date_created",
+      limit: 1,
+    },
+  })
+)[0];
 
 const blogPosts = await getSingletonItem<BlogPostPreview[]>({
   collection: "posts",
@@ -35,48 +46,52 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
       "
     >
       <directus-img
-        v-if="!!blogPosts[0].header && blogPosts[0].header_type === 'image'"
-        :id="blogPosts[0].header"
+        v-if="!!latestPost.header && latestPost.header_type === 'image'"
+        :id="latestPost.header"
         :img-attrs="{
           class:
-            'md:col-start-1 object-fill border-white border-b md:border-r w-full',
-          alt: blogPosts[0].slug,
+            'md:col-start-1 object-fill border-white border-b md:border-b-0 md:border-r w-full',
+          alt: latestPost.slug,
         }"
       />
       <article
-        class="max-w-prose py-[5vw] px-[7vw]"
+        class="py-[5vw] px-[7vw] grid pr-[4vw] md:pr-[14vw]"
         :class="{
           'md:col-start-2 md:row-start-1 row-start-2 md:p-0':
-            !!blogPosts[0].header,
-          'col-start-1 col-end-3 justify-start self-center':
-            !blogPosts[0].header,
+            !!latestPost.header,
+          'col-start-1 col-end-3 justify-start self-center': !latestPost.header,
         }"
       >
         <p class="font-hack mb-[2.1vw] md:mb-[0.8vw]">Latest post</p>
-        <h2
-          class="
-            leading-none
-            mb-[2.8vw]
-            md:mb-[1.1vw]
-            max-w-full
-            md:max-w-[42vw]
-          "
-        >
-          {{ blogPosts[0].title }}
+        <h2 class="leading-none mb-[2.8vw] md:mb-[1.1vw]">
+          {{ latestPost.title }}
         </h2>
-        <small class="text-[3.1vw] md:text-[1.1vw]">
+        <small class="text-[3.1vw] md:text-[1.1vw] mb-[2.8vw] md:mb-[1.1vw]">
           <span>
-            {{ useDateFormat(blogPosts[0].date_created, "DD MMM, YYYY").value }}
+            {{ useDateFormat(latestPost.date_created, "DD MMM, YYYY").value }}
           </span>
           <span> • </span>
           <span>
             {{
-              blogPosts[0].user_created.first_name +
+              latestPost.user_created.first_name +
               " " +
-              blogPosts[0].user_created.last_name
+              latestPost.user_created.last_name
             }}
           </span>
         </small>
+        <div class="prose line-clamp-3" v-html="latestPost.body" />
+        <nuxt-link
+          class="
+            w-full
+            md:w-fit md:justify-self-end
+            btn btn-hoverable
+            items-center
+            gap-2
+          "
+          :to="`blog/${latestPost.slug}`"
+          >read more
+          <icon name="heroicons:arrow-up-right-solid" />
+        </nuxt-link>
       </article>
     </header>
 

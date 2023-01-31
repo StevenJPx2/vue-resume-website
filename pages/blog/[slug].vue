@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { BlogPost } from "~/utils/types";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
-const router = useRouter();
 const { getItems } = useDirectusItems();
+
+console.log(route.params.slug, route);
 
 const post = (
   await getItems<BlogPost[]>({
@@ -11,6 +13,7 @@ const post = (
     params: {
       fields: ["*", "user_created.*"],
       filter: { slug: route.params.slug },
+      limit: 1,
     },
   })
 )[0];
