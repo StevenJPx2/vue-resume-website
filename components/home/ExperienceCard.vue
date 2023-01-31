@@ -8,7 +8,6 @@ const props = defineProps({
 
 const body = ref<HTMLElement>();
 const hasInitialOverflow = ref(true);
-const isReadMoreModalRevealed = ref(false);
 tryOnMounted(() => {
   const { hasOverflow } = useLineClamp(body);
 
@@ -34,42 +33,25 @@ tryOnMounted(() => {
             : useDateFormat(props.data.to, "MMM, YYYY").value
         }}
       </p>
-      <p
-        class="
+      <p class="
           uppercase
           text-[4vw]
           md:text-[1vw]
           tracking-widest
           mb-[5vw]
           md:mb-[2vw]
-        "
-      >
+        ">
         {{ props.data.workplace_title }}
       </p>
     </div>
 
-    <article
-      class="overflow-hidden prose p-3 pb-9"
-      :class="{ 'hover:bg-accent/10': hasInitialOverflow }"
-    >
+    <article class="overflow-hidden prose p-3 pb-9" :class="{ 'hover:bg-accent/10': hasInitialOverflow }">
       <div ref="body" v-html="props.data.description.body" />
     </article>
 
-    <button
-      class="btn btn-hoverable justify-self-center"
-      v-if="hasInitialOverflow"
-      @click="isReadMoreModalRevealed = true"
-    >
+    <nuxt-link :to="`/blog/${props.data.description.slug}`" class="btn btn-hoverable justify-self-center"
+      v-if="hasInitialOverflow">
       Read more
-    </button>
-
-    <lazy-modal
-      :is-revealed="isReadMoreModalRevealed"
-      :on-click-outside="() => (isReadMoreModalRevealed = false)"
-    >
-      <article>
-        <div v-html="props.data.description.body" />
-      </article>
-    </lazy-modal>
+    </nuxt-link>
   </div>
 </template>

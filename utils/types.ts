@@ -75,5 +75,5 @@ export interface Experience {
   workplace_title: string;
   from: string;
   to?: string;
-  description: Pick<BlogPost, "body">;
+  description: Pick<BlogPost, "body" | "slug">;
 }

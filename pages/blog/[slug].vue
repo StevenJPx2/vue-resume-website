@@ -5,8 +5,6 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const { getItems } = useDirectusItems();
 
-console.log(route.params.slug, route);
-
 const post = (
   await getItems<BlogPost[]>({
     collection: "posts",
@@ -17,6 +15,12 @@ const post = (
     },
   })
 )[0];
+
+useSeoHead({
+  title: `${post.title} | Blog`,
+  description: post.body.slice(0, 100) + "...",
+  image: "https://stevenjohn.co/meta.jpg",
+});
 </script>
 
 <template>

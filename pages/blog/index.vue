@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { BlogPost, BlogPostPreview } from "~/utils/types";
 
+useSeoHead({
+  title: "Steven John | Blog",
+  description:
+    "Get ready for a tech-tastic journey as I share my thoughts and musings on the industry. My blog is your backstage pass to the mind of a full-stack developer and the quirky world of technology.",
+  image: "https://stevenjohn.co/meta.jpg",
+});
+
 const { getSingletonItem, getItems } = useDirectusItems();
 
 const latestPost = (

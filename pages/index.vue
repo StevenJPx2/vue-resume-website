@@ -48,6 +48,7 @@ const experienceData = await getSingletonItem<Experience[]>({
       "workplace_title",
       "from",
       "to",
+      "description.slug",
       "description.body",
     ],
     sort: "-sort",
@@ -58,32 +59,19 @@ const title = "Steven John | Full Stack Developer, App Developer";
 const description =
   "A multi-stack developer with the penchant for developing the best, curated experiences with the least running cost.";
 
-useServerSeoMeta({
+useSeoHead({
   title,
-  ...seoGenerator({
-    title,
-    description,
-    image: "https://stevenjohn.co/meta.jpg",
-  }),
+  description,
+  image: "https://stevenjohn.co/meta.jpg",
 });
 </script>
 
 <template>
   <div>
-    <home-header
-      :img="homeData!.header_image"
-      :tagline="homeData?.tagline"
-      class="md:mb-[20vw] mb-[23vw]"
-    />
+    <home-header :img="homeData!.header_image" :tagline="homeData?.tagline" class="md:mb-[20vw] mb-[23vw]" />
 
-    <infinite-marquee
-      text="Who I am"
-      direction="left"
-      :target="105.5"
-      class="-rotate-3"
-    />
-    <section
-      class="
+    <infinite-marquee text="Who I am" direction="left" :target="105.5" class="-rotate-3" />
+    <section class="
         grid
         md:grid-cols-2
         gap-[15vw]
@@ -92,31 +80,20 @@ useServerSeoMeta({
         md:my-[12vw]
         items-center
         grid-rows-[max-content]
-      "
-      :class="[commonPadding]"
-    >
+      " :class="[commonPadding]">
       <p class="whitespace-pre-wrap">
         {{ homeData?.about_me }}
       </p>
       <home-known-stuff :data="knownStuffData!" />
     </section>
 
-    <infinite-marquee
-      text="Experience"
-      direction="left"
-      :target="105.5"
-      class="-rotate-3"
-    />
-    <splide
-      :options="{
-        height: '80vh',
-        perPage: isMobile ? 1 : 2,
-        padding: isMobile ? '4vw' : '14vw',
-        gap: isMobile ? '8vw' : '2vw',
-      }"
-      :has-track="false"
-      class="mb-[20vw] md:my-[12vw]"
-    >
+    <infinite-marquee text="Experience" direction="left" :target="105.5" class="-rotate-3" />
+    <splide :options="{
+      height: '80vh',
+      perPage: isMobile ? 1 : 2,
+      padding: isMobile ? '4vw' : '14vw',
+      gap: isMobile ? '8vw' : '2vw',
+    }" :has-track="false" class="mb-[20vw] md:my-[12vw]">
       <splide-track>
         <splide-slide v-for="data in experienceData" :key="data.id">
           <home-experience-card :data="data" />
@@ -133,22 +110,11 @@ useServerSeoMeta({
       </div>
     </splide>
 
-    <infinite-marquee
-      text="My Philosophy"
-      direction="right"
-      :target="105.5"
-      class="rotate-3"
-    />
+    <infinite-marquee text="My Philosophy" direction="right" :target="105.5" class="rotate-3" />
     <section class="md:columns-2 gap-[5vw] mb-[3vw]" :class="[commonPadding]">
-      <div
-        v-if="philosophyData"
-        v-for="{ title, body } in philosophyData"
-        :key="title"
-        class="break-inside-avoid mb-[15vw] md:mb-[5vw]"
-      >
-        <h3
-          class="text-[28vw] md:text-[11vw] leading-[0.8] mb-[3vw] md:mb-[2vw]"
-        >
+      <div v-if="philosophyData" v-for="{ title, body } in philosophyData" :key="title"
+        class="break-inside-avoid mb-[15vw] md:mb-[5vw]">
+        <h3 class="text-[28vw] md:text-[11vw] leading-[0.8] mb-[3vw] md:mb-[2vw]">
           {{ title }}
         </h3>
         <p class="whitespace-pre-wrap">{{ body }}</p>
