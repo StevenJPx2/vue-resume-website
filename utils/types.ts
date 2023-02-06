@@ -60,6 +60,7 @@ export interface BlogPost {
   slug?: string;
   header?: string;
   header_type?: "video" | "image";
+  excerpt?: string;
   body: string;
 }
 

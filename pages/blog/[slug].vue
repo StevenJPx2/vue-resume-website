@@ -16,15 +16,18 @@ const post = (
   })
 )[0];
 
+console.log(post);
+
 useSeoHead({
   title: `${post.title} | Blog`,
-  description: post.body.slice(0, 100) + "...",
-  image: "https://stevenjohn.co/meta.jpg",
+  description: post.excerpt,
+  image: post.header ?? "https://stevenjohn.co/meta.jpg",
 });
 </script>
 
 <template>
   <main>
+    <og-image-screenshot />
     <header
       class="w-full relative"
       :class="{ 'h-screen': !!post.header, 'h-[45vh]': !post.header }"

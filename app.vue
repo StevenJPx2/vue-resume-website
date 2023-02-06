@@ -16,6 +16,7 @@ tryOnMounted(() => {
 
 <template>
   <nuxt-layout>
+    <seo-kit />
     <nuxt-page />
   </nuxt-layout>
 </template>

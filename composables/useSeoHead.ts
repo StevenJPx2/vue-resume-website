@@ -1,10 +1,10 @@
-export default function(content: {
+export default function (content: {
   title: string;
-  description: string;
-  image: string;
+  description?: string;
+  image?: string;
 }) {
   useHead({ title: content.title });
-  useServerSeoMeta({
+  useSeoMeta({
     title: content.title,
     ogTitle: content.title,
     description: content.description,

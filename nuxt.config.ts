@@ -1,6 +1,16 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  extends: ["nuxt-seo-kit"],
   routeRules: { "/**": { swr: true } },
+  runtimeConfig: {
+    public: {
+      siteUrl: "https://stevenjohn.co",
+      siteName: "Steven John",
+      siteDescription: "",
+      language: "en-IN",
+      titleSeparator: "|",
+    },
+  },
   app: {
     head: {
       title: "Steven John",

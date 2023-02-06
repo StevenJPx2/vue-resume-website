@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BlogPost, BlogPostPreview } from "~/utils/types";
 
-useSeoHead({
+definePageMeta({
   title: "Steven John | Blog",
   description:
     "Get ready for a tech-tastic journey as I share my thoughts and musings on the industry. My blog is your backstage pass to the mind of a full-stack developer and the quirky world of technology.",
@@ -40,8 +40,7 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
 <template>
   <main class="mt-[12vw]">
     <h1 id="blog-heading">Blog</h1>
-    <header
-      class="
+    <header class="
         border-y border-white
         grid
         md:grid-cols-2
@@ -50,25 +49,17 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
         backdrop-blur-2xl
         mb-[5vw]
         gap-[5vw]
-      "
-    >
-      <directus-img
-        v-if="!!latestPost.header && latestPost.header_type === 'image'"
-        :id="latestPost.header"
-        :img-attrs="{
-          class:
-            'md:col-start-1 object-fill border-white border-b md:border-b-0 md:border-r w-full',
-          alt: latestPost.slug,
-        }"
-      />
-      <article
-        class="py-[5vw] px-[7vw] grid pr-[4vw] md:pr-[14vw]"
-        :class="{
-          'md:col-start-2 md:row-start-1 row-start-2 md:p-0':
-            !!latestPost.header,
-          'col-start-1 col-end-3 justify-start self-center': !latestPost.header,
-        }"
-      >
+      ">
+      <directus-img v-if="!!latestPost.header && latestPost.header_type === 'image'" :id="latestPost.header" :img-attrs="{
+        class:
+          'md:col-start-1 object-fill border-white border-b md:border-b-0 md:border-r w-full',
+        alt: latestPost.slug,
+      }" />
+      <article class="py-[5vw] px-[7vw] grid pr-[4vw] md:pr-[14vw]" :class="{
+        'md:col-start-2 md:row-start-1 row-start-2 md:p-0':
+          !!latestPost.header,
+        'col-start-1 col-end-3 justify-start self-center': !latestPost.header,
+      }">
         <p class="font-hack mb-[2.1vw] md:mb-[0.8vw]">Latest post</p>
         <h2 class="leading-none mb-[2.8vw] md:mb-[1.1vw]">
           {{ latestPost.title }}
@@ -81,22 +72,19 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
           <span>
             {{
               latestPost.user_created.first_name +
-              " " +
-              latestPost.user_created.last_name
+                " " +
+                latestPost.user_created.last_name
             }}
           </span>
         </small>
-        <div class="prose line-clamp-3" v-html="latestPost.body" />
-        <nuxt-link
-          class="
+        <div class="prose line-clamp-3" v-html="latestPost.excerpt ?? latestPost.body" />
+        <nuxt-link class="
             w-full
             md:w-fit md:justify-self-end
             btn btn-hoverable
             items-center
             gap-2
-          "
-          :to="`blog/${latestPost.slug}`"
-          >read more
+          " :to="`blog/${latestPost.slug}`">read more
           <icon name="heroicons:arrow-up-right-solid" />
         </nuxt-link>
       </article>
@@ -104,32 +92,17 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
 
     <infinite-marquee text="posts" direction="left" :target="105.5" />
 
-    <section
-      class="flex flex-wrap gap-[10vw] md:gap-[4vw]"
-      :class="[commonPadding]"
-    >
-      <nuxt-link
-        class="blog-post-card"
-        v-for="post in blogPosts"
-        :to="`blog/${post.slug}`"
-        :key="post.slug"
-      >
-        <directus-img
-          v-if="!!post.header && post.header_type === 'image'"
-          :id="post.header"
-          :img-attrs="{
-            class: 'row-start-1 blog-post-card--img',
-            alt: post.slug,
-          }"
-        />
-        <div
-          class="blog-post-card--desc"
-          :class="{
-            'row-start-2': !!post.header,
-            'row-start-1 row-end-3 self-center py-[15vw] md:py-[10vw]':
-              !post.header,
-          }"
-        >
+    <section class="flex flex-wrap gap-[10vw] md:gap-[4vw]" :class="[commonPadding]">
+      <nuxt-link class="blog-post-card" v-for="post in blogPosts" :to="`blog/${post.slug}`" :key="post.slug">
+        <directus-img v-if="!!post.header && post.header_type === 'image'" :id="post.header" :img-attrs="{
+          class: 'row-start-1 blog-post-card--img',
+          alt: post.slug,
+        }" />
+        <div class="blog-post-card--desc" :class="{
+          'row-start-2': !!post.header,
+          'row-start-1 row-end-3 self-center py-[15vw] md:py-[10vw]':
+            !post.header,
+        }">
           <h2>{{ post.title }}</h2>
           <small>
             <span>
@@ -138,7 +111,7 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
             <span> • </span>
             <span>
               {{
-                post.user_created.first_name + " " + post.user_created.last_name
+  post.user_created.first_name + " " + post.user_created.last_name
               }}
             </span>
           </small>
@@ -158,11 +131,9 @@ small {
 #blog-heading {
   @apply text-center;
   @apply text-[70vw];
-  background: linear-gradient(
-    179.96deg,
-    #ffe871 0.04%,
-    rgba(255, 232, 113, 0) 60.15%
-  );
+  background: linear-gradient(179.96deg,
+      #ffe871 0.04%,
+      rgba(255, 232, 113, 0) 60.15%);
   @apply bg-clip-text;
   @apply text-transparent;
   @apply leading-none;
@@ -184,12 +155,10 @@ small {
   @apply rounded-2xl;
   @apply border-white;
 
-  background: linear-gradient(
-    180deg,
-    rgba(255, 232, 113, 0.04) 0%,
-    rgba(255, 232, 113, 0.13) 48.95%,
-    rgba(255, 232, 113, 0.04) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(255, 232, 113, 0.04) 0%,
+      rgba(255, 232, 113, 0.13) 48.95%,
+      rgba(255, 232, 113, 0.04) 100%);
 
   :deep(.blog-post-card--img) {
     @apply rounded-t-2xl;

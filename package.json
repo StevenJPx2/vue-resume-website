@@ -29,6 +29,7 @@
     "imagesloaded": "^5.0.0",
     "nuxt-directus": "^3.2.2",
     "pinia": "^2.0.29",
-    "split-type": "^0.3.3"
+    "split-type": "^0.3.3",
+    "ultrahtml": "^1.2.0"
   }
 }

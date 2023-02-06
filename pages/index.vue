@@ -64,6 +64,12 @@ useSeoHead({
   description,
   image: "https://stevenjohn.co/meta.jpg",
 });
+
+/* useSeoHead({
+  title,
+  description,
+  image: "https://stevenjohn.co/meta.jpg",
+}); */
 </script>
 
 <template>

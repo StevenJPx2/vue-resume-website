@@ -54,7 +54,7 @@ const runAnimation = (tl: gsap.core.Timeline) => {
   );
 };
 
-if (isLoading.value) useGsap(runAnimation, { repeat: -1 });
+useGsap(runAnimation, { repeat: -1 });
 
 watch(
   [isLoading],
@@ -78,7 +78,9 @@ watch(
 </script>
 
 <template>
-  <div id="loading-container" class="
+  <div
+    id="loading-container"
+    class="
       w-full
       h-screen
       bg-base-color
@@ -87,7 +89,8 @@ watch(
       z-50
       grid
       place-content-center
-    ">
+    "
+  >
     <h1 id="loading">Loading</h1>
   </div>
 </template>
