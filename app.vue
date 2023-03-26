@@ -11,7 +11,7 @@ tryOnMounted(() => {
   });
 });
 
-// include .splide__pagination
+//* include .splide__pagination
 </script>
 
 <template>
@@ -42,7 +42,6 @@ $color-base: #0e0e0e;
     font-family: "Neue Montreal";
     @apply bg-base-color;
     @apply text-accent;
-    @apply scroll-smooth;
   }
 
   h1,

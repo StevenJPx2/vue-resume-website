@@ -1,6 +1,5 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  extends: ["nuxt-seo-kit"],
   routeRules: { "/**": { swr: true } },
   runtimeConfig: {
     public: {

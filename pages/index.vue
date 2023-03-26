@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import {
   Experience,
   HomeSingleton,
@@ -10,6 +12,25 @@ import { Splide, SplideSlide, SplideTrack } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css";
 
 import { breakpointsTailwind } from "@vueuse/core";
+
+import Lenis from "@studio-freight/lenis";
+
+tryOnMounted(() => {
+  const lenis = new Lenis();
+
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  lenis.on("scroll", ScrollTrigger.update);
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
+  requestAnimationFrame(raf);
+});
 
 const store = useMainStore();
 
@@ -64,12 +85,6 @@ useSeoHead({
   description,
   image: "https://stevenjohn.co/meta.jpg",
 });
-
-/* useSeoHead({
-  title,
-  description,
-  image: "https://stevenjohn.co/meta.jpg",
-}); */
 </script>
 
 <template>
@@ -78,15 +93,15 @@ useSeoHead({
 
     <infinite-marquee text="Who I am" direction="left" :target="105.5" class="-rotate-3" />
     <section class="
-        grid
-        md:grid-cols-2
-        gap-[15vw]
-        md:gap-[5vw]
-        mb-[20vw]
-        md:my-[12vw]
-        items-center
-        grid-rows-[max-content]
-      " :class="[commonPadding]">
+          grid
+          md:grid-cols-2
+          gap-[15vw]
+          md:gap-[5vw]
+          mb-[20vw]
+          md:my-[12vw]
+          items-center
+          grid-rows-[max-content]
+        " :class="[commonPadding]">
       <p class="whitespace-pre-wrap">
         {{ homeData?.about_me }}
       </p>

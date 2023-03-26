@@ -18,12 +18,15 @@ const links: { label: string; link: string }[] = [
     "
     :class="[commonPadding]"
   >
-    <small class="text-primary font-high-con text-[10vw] md:text-[5vw]">
+    <nuxt-link
+      to="/"
+      class="text-primary font-high-con text-[10vw] md:text-[5vw]"
+    >
       steven john
-    </small>
+    </nuxt-link>
     <div class="flex gap-[5vw] md:gap-[3vw]">
       <nuxt-link
-        class="p"
+        class="p nav"
         active-class="link"
         v-for="{ label, link } in links"
         :key="link"
@@ -36,7 +39,7 @@ const links: { label: string; link: string }[] = [
 </template>
 
 <style scoped lang="scss">
-a:not(.link) {
+a.nav:not(.link) {
   @apply relative;
 
   &::before {
