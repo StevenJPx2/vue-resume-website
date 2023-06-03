@@ -1,6 +1,7 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  routeRules: { "/**": { swr: true } },
+  // extends: ["nuxt-seo-kit"],
+  routeRules: { "/": { static: true } },
   runtimeConfig: {
     public: {
       siteUrl: "https://stevenjohn.co",
@@ -50,7 +51,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/fontaine",
-    "nuxt-directus",
     "nuxt-icon",
     "nuxt-svgo",
   ],
@@ -58,5 +58,4 @@ export default defineNuxtConfig({
     "@/assets/fonts/highrise/stylesheet.css",
     "@/assets/fonts/neue-montreal/stylesheet.css",
   ],
-  directus: { url: "https://dgaj6fp4.directus.app/" },
 });

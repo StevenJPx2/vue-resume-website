@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import { Links } from "~/utils/types";
-
 const store = useMainStore();
-
-const { getSingletonItem } = useDirectusItems();
-store.value.links = await getSingletonItem<Links[]>({ collection: "links" });
 
 tryOnMounted(() => {
   const lock = useScrollLock(document.querySelector("html"), true);

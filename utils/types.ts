@@ -33,9 +33,9 @@ export interface HomeSingleton {
 }
 export interface KnownStuff {
   category: string;
-  technologies: Technologies[];
+  technologies: Technology[];
 }
-export interface Technologies {
+export interface Technology {
   id: string;
   name: string;
   icon_name?: string;

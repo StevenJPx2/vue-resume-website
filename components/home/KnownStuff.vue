@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import { PropType } from "vue";
-import { KnownStuff } from "~/utils/types";
-
-const props = defineProps({
-  data: { type: Array as PropType<KnownStuff[]>, required: true },
-});
+import { knownStuff } from "~~/repos";
 
 const index = ref(0);
 const setIndex = (n = 0) => {
   const offset = index.value + n;
-  const length = props.data.length;
+  const length = knownStuff.length;
   const val = ((offset % length) + length) % length;
   return val;
 };
@@ -32,14 +27,15 @@ const flipPage = (i: number) => {
     "
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
-      {{ props.data[index].category }}
+      {{ knownStuff[index].category }}
     </h3>
     <div class="flex flex-wrap gap-3 md:gap-2 px-[3vw] md:px-[1vw]">
       <nuxt-link
-        v-for="tech in props.data[index].technologies"
+        v-for="tech in knownStuff[index].technologies"
         :class="{
           'hover:bg-opacity-95 hover:scale-95': !!tech.link,
         }"
+        :style="{ backgroundColor: tech.color }"
         class="
           gap-2
           font-hack
@@ -90,7 +86,7 @@ const flipPage = (i: number) => {
         @click="flipPage(index)"
       >
         <h4 class="mix-blend-exclusion text-primary">
-          {{ props.data[setIndex(index)].category }}
+          {{ knownStuff[setIndex(index)].category }}
         </h4>
         <div
           class="

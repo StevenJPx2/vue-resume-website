@@ -1,5 +1,6 @@
 import { Ref } from "vue";
 import { Store } from "~/utils/types";
+import { links } from "~~/repos";
 
 export const useMainStore = () =>
   useState<Store>(
@@ -8,7 +9,7 @@ export const useMainStore = () =>
       loadingStates: { initialAnimationLoaded: false, isLoading: true },
       navbar: {},
       footer: { showLinks: true, showBackground: true },
-      links: [],
+      links,
     })
   );
 
