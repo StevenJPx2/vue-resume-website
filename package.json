@@ -29,7 +29,6 @@
     "gsap": "^3.11.3",
     "imagesloaded": "^5.0.0",
     "pinia": "^2.0.29",
-    "split-type": "^0.3.3",
-    "ultrahtml": "^1.2.0"
+    "split-type": "^0.3.3"
   }
 }
