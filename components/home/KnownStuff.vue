@@ -1,5 +1,29 @@
 <script setup lang="ts">
+import { promiseTimeout } from "@vueuse/shared";
 import { knownStuff } from "~~/repos";
+
+const pageTransition = ref<
+  "before-leave" | "after-leave" | "before-enter" | "after-enter"
+>("before-leave");
+type Origin = "left" | "right";
+const origin = ref<Origin>("left");
+
+const pageTransitionProperties: {
+  [P in "leave" | "enter"]: {
+    duration: number;
+    origin: { [P in Origin]: Origin };
+  };
+} = {
+  leave: { duration: 800, origin: { left: "left", right: "right" } },
+  enter: { duration: 400, origin: { left: "right", right: "left" } },
+};
+
+const currentPageState = computed(
+  () =>
+    pageTransitionProperties[
+      pageTransition.value.match(/\w+-(\w+)/)![1] as "leave" | "enter"
+    ]
+);
 
 const index = ref(0);
 const setIndex = (n = 0) => {
@@ -8,8 +32,17 @@ const setIndex = (n = 0) => {
   const val = ((offset % length) + length) % length;
   return val;
 };
-const flipPage = (i: number) => {
+const flipPage = async (i: number) => {
+  if (pageTransition.value != "before-leave") return;
+  origin.value = i > 0 ? "right" : "left";
+  pageTransition.value = "after-leave";
+  await promiseTimeout(pageTransitionProperties.leave.duration);
+  pageTransition.value = "before-enter";
   index.value = setIndex(i);
+  await promiseTimeout(pageTransitionProperties.enter.duration);
+  pageTransition.value = "after-enter";
+  await promiseTimeout(pageTransitionProperties.enter.duration);
+  pageTransition.value = "before-leave";
 };
 </script>
 
@@ -24,6 +57,9 @@ const flipPage = (i: number) => {
       px-[2vw]
       shadow-primary shadow-2xl
       grid grid-rows-[auto,max-content,auto]
+      relative
+      overflow-hidden
+      transform
     "
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
@@ -108,5 +144,33 @@ const flipPage = (i: number) => {
         />
       </button>
     </div>
+    <div
+      class="absolute z-5 inset-0 bg-primary delay-75 ease-in-out-expo"
+      :class="{
+        'scale-x-0': ['before-leave', 'after-enter'].includes(pageTransition),
+        'scale-x-100': ['after-leave', 'before-enter'].includes(pageTransition),
+      }"
+      :style="{
+        transitionDuration: `${currentPageState.duration}ms`,
+        transformOrigin: currentPageState.origin[origin],
+      }"
+    />
+    <div
+      class="absolute z-5 inset-0 bg-black ease-in-out-expo"
+      :class="{
+        'scale-x-0': ['before-leave', 'after-enter'].includes(pageTransition),
+        'scale-x-100': ['after-leave', 'before-enter'].includes(pageTransition),
+      }"
+      :style="{
+        transitionDuration: `${currentPageState.duration}ms`,
+        transformOrigin: currentPageState.origin[origin],
+      }"
+    />
+    <dev-only>
+      <code class="text-white z-50">
+        {{ pageTransition }}
+        {{ currentPageState.origin[origin] }}
+      </code>
+    </dev-only>
   </div>
 </template>
