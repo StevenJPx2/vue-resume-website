@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { homeData, philosophies, experience } from "~/repos";
+import { homeData, philosophies, experience } from "@/repos";
 
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css";
@@ -59,16 +59,7 @@ useSeoHead({
       class="-rotate-3"
     />
     <section
-      class="
-        grid
-        md:grid-cols-2
-        gap-[15vw]
-        md:gap-[5vw]
-        mb-[20vw]
-        md:my-[12vw]
-        items-center
-        grid-rows-[max-content]
-      "
+      class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] mb-[20vw] md:my-[12vw] items-center grid-rows-[max-content]"
       :class="[commonPadding]"
     >
       <p class="whitespace-pre-wrap">
@@ -126,13 +117,7 @@ useSeoHead({
           class="break-inside-avoid mb-[15vw] md:mb-[5vw]"
         >
           <h3
-            class="
-              text-[28vw]
-              md:text-[11vw]
-              leading-[0.8]
-              mb-[3vw]
-              md:mb-[2vw]
-            "
+            class="text-[28vw] md:text-[11vw] leading-[0.8] mb-[3vw] md:mb-[2vw]"
           >
             {{ title }}
           </h3>

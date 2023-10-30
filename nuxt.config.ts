@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     "@nuxtjs/fontaine",
     "nuxt-icon",
     "nuxt-svgo",
+    "@nuxt/content",
   ],
   css: [
     "@/assets/fonts/highrise/stylesheet.css",

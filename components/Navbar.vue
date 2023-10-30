@@ -7,15 +7,7 @@ const links: { label: string; link: string }[] = [
 
 <template>
   <nav
-    class="
-      z-[99]
-      fixed
-      flex
-      items-center
-      justify-between
-      w-full
-      mix-blend-exclusion
-    "
+    class="z-[99] fixed flex items-center justify-between w-full mix-blend-exclusion"
     :class="[commonPadding]"
   >
     <nuxt-link

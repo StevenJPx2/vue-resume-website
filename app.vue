@@ -148,7 +148,6 @@ $color-base: #0e0e0e;
   }
 
   .prose {
-
     p,
     li {
       @apply mb-[1vw];
@@ -168,6 +167,16 @@ $color-base: #0e0e0e;
 
       @screen md {
         @apply text-[1.6vw];
+      }
+
+      &::marker {
+        @apply text-accent;
+      }
+
+      ul,
+      ol {
+        @apply mt-[1vw];
+        @apply ml-[1vw];
       }
     }
 
@@ -207,16 +216,19 @@ $color-base: #0e0e0e;
   top: 105% !important;
 }
 
-.btn {}
+.btn {
+}
 
 .card {
   @apply relative;
   @apply grid;
 
-  background: linear-gradient(180deg,
-      var(--color-base) 0%,
-      color.scale($color-base, $lightness: 5%) 50%,
-      var(--color-base) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-base) 0%,
+    color.scale($color-base, $lightness: 5%) 50%,
+    var(--color-base) 100%
+  );
   @apply h-full;
   $border: 1px;
   @apply bg-clip-padding;
@@ -236,10 +248,12 @@ $color-base: #0e0e0e;
     z-index: -1;
     margin: -$border;
     border-radius: inherit;
-    background: linear-gradient(180deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(255, 255, 255, 0.2) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
   }
 
   @screen md {
@@ -248,7 +262,6 @@ $color-base: #0e0e0e;
 }
 
 .slide {
-
   &-back,
   &-forward,
   &-bottom,
@@ -304,11 +317,9 @@ $color-base: #0e0e0e;
   }
 
   &-fade {
-
     &-enter,
     &-leave {
       &-active {
-
         .animate,
         .fade {
           @apply transition;

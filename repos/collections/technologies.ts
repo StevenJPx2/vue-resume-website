@@ -1,13 +1,12 @@
 import { Technology } from "~/utils/types";
 import { generateName } from "../helpers";
 
-type BrandedTechnology<T extends Technology["id"]> =
-  | Omit<Technology, "id"> & {
-    id: T;
-  };
+type BrandedTechnology<T extends Technology["id"]> = Omit<Technology, "id"> & {
+  id: T;
+};
 
 const defineTechnologies = <T extends Technology["id"]>(
-  techs: (Omit<BrandedTechnology<T>, "name"> & { name?: string })[]
+  techs: (Omit<BrandedTechnology<T>, "name"> & { name?: string })[],
 ) =>
   Object.fromEntries(
     techs.map((tech) => [
@@ -26,7 +25,7 @@ const defineTechnologies = <T extends Technology["id"]>(
             : `simple-icons:${tech.icon_name}`
           : undefined,
       },
-    ])
+    ]),
   ) as {
     [P in T]: BrandedTechnology<T>;
   };
@@ -95,7 +94,7 @@ const technologies = defineTechnologies([
   },
   {
     id: "java",
-    icon_name: "java",
+    icon_name: "cib:java",
   },
 
   // Frameworks

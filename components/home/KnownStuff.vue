@@ -22,7 +22,7 @@ const currentPageState = computed(
   () =>
     pageTransitionProperties[
       pageTransition.value.match(/\w+-(\w+)/)![1] as "leave" | "enter"
-    ]
+    ],
 );
 
 const index = ref(0);
@@ -48,50 +48,19 @@ const flipPage = async (i: number) => {
 
 <template>
   <div
-    class="
-      rounded-[2vw]
-      border-accent border
-      bg-primary
-      text-base text-base-color
-      py-[3vw]
-      px-[2vw]
-      shadow-primary shadow-2xl
-      grid grid-rows-[auto,max-content,auto]
-      relative
-      overflow-hidden
-      transform
-    "
+    class="rounded-[2vw] border-accent border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform"
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ knownStuff[index].category }}
     </h3>
     <div class="flex flex-wrap gap-3 md:gap-2 px-[3vw] md:px-[1vw]">
-      <nuxt-link
+      <button
         v-for="tech in knownStuff[index].technologies"
         :class="{
           'hover:bg-opacity-95 hover:scale-95': !!tech.link,
         }"
         :style="{ backgroundColor: tech.color }"
-        class="
-          gap-2
-          font-hack
-          bg-base-color
-          items-center
-          text-accent
-          rounded-full
-          flex flex-1
-          justify-center
-          h-[7vw]
-          px-[4vw]
-          text-[4vw]
-          md:flex-initial
-          md:justify-start
-          md:h-[2vw]
-          md:px-[1vw]
-          md:text-[1.1vw]
-          transition-transform
-          ease-out-quad
-        "
+        class="gap-2 font-hack bg-base-color items-center text-accent rounded-full flex flex-1 justify-center h-[7vw] px-[4vw] text-[4vw] md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw] transition-transform ease-out-quad"
         :target="!!tech.link ? '_blank' : '_self'"
         :to="
           !!tech.link
@@ -111,7 +80,7 @@ const flipPage = async (i: number) => {
         <small class="w-max">
           {{ tech.name }}
         </small>
-      </nuxt-link>
+      </button>
     </div>
 
     <div class="flex gap-2 mt-[1.4vw] justify-evenly h-full">
@@ -125,22 +94,7 @@ const flipPage = async (i: number) => {
           {{ knownStuff[setIndex(index)].category }}
         </h4>
         <div
-          class="
-            w-full
-            h-full
-            origin-bottom
-            scale-y-[2%]
-            rounded
-            group-hover:scale-y-100
-            transition-transform
-            duration-300
-            ease-in-out-expo
-            bg-base-color
-            z-[-1]
-            absolute
-            top-0
-            left-0
-          "
+          class="w-full h-full origin-bottom scale-y-[2%] rounded group-hover:scale-y-100 transition-transform duration-300 ease-in-out-expo bg-base-color z-[-1] absolute top-0 left-0"
         />
       </button>
     </div>

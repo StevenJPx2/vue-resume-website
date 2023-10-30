@@ -14,9 +14,9 @@ type Options = {
   runOnCompleteAtIndex?: number;
 } & AnimationOptions;
 
-const defaultOptions: Options = {
-  splitBy: "chars, words, lines",
-  select: "words",
+const defaultOptions = {
+  splitBy: "chars, words, lines" as SplittingTypes,
+  select: "words" as TypesValue,
   stagger: 0.1,
   duration: 1.2,
   ease: "expo.out",
@@ -25,9 +25,9 @@ const defaultOptions: Options = {
   ...defaultAnimationOptions,
 };
 
-export default function(
+export default function (
   el: MaybeRef<HTMLElement | null | undefined>,
-  options = defaultOptions
+  options: Options = defaultOptions,
 ) {
   const unRefedElement = unrefElement(el);
 
@@ -43,12 +43,12 @@ export default function(
     runOnCompleteAtIndex,
     ...animationOptions
   } = Object.assign(
+    defaultOptions,
     {
-      ...defaultOptions,
       activation: "scroll",
       scrollTrigger: { trigger: unRefedElement, start: "center bottom" },
     },
-    options
+    options,
   );
 
   useAnimation((tl) => {
@@ -76,7 +76,7 @@ export default function(
             }
           },
         },
-        stagger! * index
+        stagger * index,
       );
 
       if (zoom) {
@@ -86,20 +86,20 @@ export default function(
             scale: 1,
             ease: "circ.out",
           },
-          "+=0.4"
+          "+=0.4",
         );
       }
 
       return tl;
     };
 
-    useSplitText(unRefedElement!, selectAnimation, select!, {
-      splitBy: splitBy!,
+    useSplitText(unRefedElement!, selectAnimation, select, {
+      splitBy: splitBy,
       wrapping: {
         wrapType: "span",
         wrapClass: "overflow-hidden inline-block",
       },
-      shouldBeMounted: shouldBeMounted!,
+      shouldBeMounted,
       onComplete,
     });
   }, animationOptions);
