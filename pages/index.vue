@@ -1,31 +1,10 @@
 <script setup lang="ts">
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { homeData, philosophies, experience } from "@/repos";
 
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css";
 
 import { breakpointsTailwind } from "@vueuse/core";
-
-import Lenis from "@studio-freight/lenis";
-
-tryOnMounted(() => {
-  const lenis = new Lenis();
-
-  function raf(time: number) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-
-  lenis.on("scroll", ScrollTrigger.update);
-
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-
-  requestAnimationFrame(raf);
-});
 
 const store = useMainStore();
 

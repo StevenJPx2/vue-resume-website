@@ -66,9 +66,7 @@ tryOnMounted(() => {
       :is-revealed="isReadMoreModalRevealed"
       :on-click-outside="() => (isReadMoreModalRevealed = false)"
     >
-      <article class="prose">
-        <div v-html="bodyContent" />
-      </article>
+      <div v-html="bodyContent" />
     </modal>
   </div>
 </template>
