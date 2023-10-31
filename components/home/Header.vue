@@ -10,8 +10,7 @@ const props = defineProps({
   tagline: { type: String },
 });
 
-const commonClasses =
-  "row-start-1 w-full stroke-1 [&>*]:!fill-none !w-auto !h-auto";
+const commonClasses = "row-start-1 !w-full stroke-1 [&>*]:!fill-none !h-auto";
 const store = useMainStore();
 
 const runAnimation = (val: Store) => {
@@ -101,12 +100,12 @@ watch(() => store.value, runAnimation, { deep: true });
 
       <f-p-s
         :class="[commonClasses]"
-        class="pop-in col-start-13 col-span-2 mt-[105vw] md:col-start-17 md:w-[5vw] md:mt-[48vw]"
+        class="pop-in col-start-13 col-span-2 mt-[105vw] md:col-start-17 md:!w-[5vw] md:mt-[48vw]"
       />
 
       <small-circle
         :class="[commonClasses]"
-        class="pop-in col-start-2 col-span-1 w-[5vw] mt-[125vw] md:col-start-8 md:w-[2vw] md:justify-self-end md:mt-[57vw]"
+        class="pop-in col-start-2 col-span-1 !w-[5vw] mt-[125vw] md:col-start-8 md:!w-[2vw] md:justify-self-end md:mt-[57vw]"
       />
       <p
         id="tagline"
