@@ -24,6 +24,13 @@ tryOnMounted(() => {
     },
   );
 });
+
+const { from, to } = {
+  from: useDateFormat(props.data.from, "MMM, YYYY").value,
+  to: !props.data.to
+    ? "Present"
+    : useDateFormat(props.data.to, "MMM, YYYY").value,
+};
 </script>
 
 <template>
@@ -33,12 +40,8 @@ tryOnMounted(() => {
         {{ props.data.workplace_name }}
       </h3>
       <p class="uppercase text-[4vw] md:text-[1vw] tracking-widest">
-        {{ useDateFormat(props.data.from, "MMM, YYYY").value }} -
-        {{
-          props.data.to === null
-            ? "Present"
-            : useDateFormat(props.data.to, "MMM, YYYY").value
-        }}
+        {{ from }} -
+        {{ to }}
       </p>
       <p
         class="uppercase text-[4vw] md:text-[1vw] tracking-widest mb-[5vw] md:mb-[2vw]"

@@ -8,7 +8,7 @@ const defineExperience = (
 export default defineExperience([
   {
     id: "hexo",
-    from: "Mar, 2022",
+    from: "2023-03-01",
     description: {
       body: `- Worked on **Hexo Studio**, a platform for generating **images** from **text templates** for **social media** and **marketing** purposes using generative AI.
 - It was built using:
@@ -33,8 +33,8 @@ export default defineExperience([
   },
   {
     id: "anduin",
-    from: "Dec, 2022",
-    to: "Jan, 2023",
+    from: "2022-12-01",
+    to: "2023-01-01",
     description: {
       body: `- Worked on a **Python** based **ETL** pipeline with **multi-processing** and **multi-threading** to **ingest** and **transform** **100GB+** of text files to a **data lake**.`,
     },
@@ -43,8 +43,8 @@ export default defineExperience([
   },
   {
     id: "hyphen",
-    from: "Mar, 2022",
-    to: "Dec, 2022",
+    from: "2022-03-01",
+    to: "2022-12-01",
     description: {
       body: `- Built the **entire technical infrastructure** from the **ground up**, including a **ticketing system**, **accounts consolidation system**, **internal dashboard** and an **app** in **4** months.
 - The entire system had an **atomic**, **zero-trust** philosophy, using **database triggers** and **webhooks** to consolidate data on a DB level, so even if items are created in the DB from multiple sources, auxiliary data is still populated.
@@ -58,8 +58,8 @@ export default defineExperience([
   },
   {
     id: "tcs",
-    from: "Aug, 2020",
-    to: "Apr, 2022",
+    from: "2020-08-01",
+    to: "2022-04-01",
     description: {
       body: `- Worked with **MYER**, an Australian clothing company with online and brick-and-mortar stores.
 - Handled the **data-flow** of legacy **Oracle CIW** databases from different sources using Control-M, and also aided in the transition for **10000+ lines of code** from this legacy system to **GCP.**`,
