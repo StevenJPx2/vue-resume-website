@@ -110,6 +110,14 @@ const technologies = defineTechnologies([
     icon_name: "nextdotjs",
     link: "nextjs.org",
   },
+  { id: "svelte", icon_name: "svelte", link: "svelte.dev", color: "#FF3E00" },
+  {
+    id: "sveltekit",
+    icon_name: "svelte",
+    link: "kit.svelte.dev",
+    color: "#FF3E00",
+  },
+  { id: "astro", icon_name: "astro", link: "astro.build", color: "#BC52EE" },
   {
     id: "vue",
     icon_name: "vuedotjs",

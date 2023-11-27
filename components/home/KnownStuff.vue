@@ -57,10 +57,21 @@ const flipPage = async (i: number) => {
       <button
         v-for="tech in knownStuff[index].technologies"
         :class="{
-          'hover:bg-opacity-95 hover:scale-95': !!tech.link,
+          'hover:bg-opacity-95 hover:scale-105': !!tech.link,
         }"
-        :style="{ backgroundColor: tech.color }"
-        class="gap-2 font-hack bg-base-color items-center text-accent rounded-full flex flex-1 justify-center h-[7vw] px-[4vw] text-[4vw] md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw] transition-transform ease-out-quad"
+        @mouseover="
+          (e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+              tech.color || 'var(--color-base)';
+          }
+        "
+        @mouseleave="
+          (e) => {
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor =
+              'var(--color-base)';
+          }
+        "
+        class="gap-2 font-hack bg-base-color items-center text-accent rounded-full flex flex-1 justify-center h-[7vw] px-[4vw] text-[4vw] md:flex-initial md:justify-start md:h-[2vw] md:px-[1vw] md:text-[1.1vw] transition ease-out-quad"
         :target="!!tech.link ? '_blank' : '_self'"
         :to="
           !!tech.link

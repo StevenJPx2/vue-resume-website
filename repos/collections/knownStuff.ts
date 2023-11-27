@@ -9,7 +9,7 @@ const defineKnownStuff = (arr: BrandedKnownStuff[]): KnownStuff[] =>
   arr.map((obj) => ({
     ...obj,
     technologies: Array.from(new Set(obj.technologies)).map(
-      (techName) => technologies[techName]
+      (techName) => technologies[techName],
     ),
   }));
 
@@ -31,10 +31,13 @@ export default defineKnownStuff([
   {
     category: "Frameworks",
     technologies: [
-      "nuxt",
-      "next",
       "vue",
+      "nuxt",
       "react",
+      "next",
+      "svelte",
+      "sveltekit",
+      "astro",
       "flutter",
       "react-native",
       "fastapi",
