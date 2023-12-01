@@ -16,17 +16,19 @@ const { tl } = timeline({
 
 watch(chars, (val) => {
   if (!val) return;
-  tl.fromTo(
-    val,
-    { y: "150%" },
-    { y: 0, stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
-  ).to(val, {
-    y: "-150%",
-    stagger: 0.05,
-    duration: 0.8,
-    ease: "expo.inOut",
-    delay: 0.3,
-  });
+  tl.value
+    .fromTo(
+      val,
+      { y: "150%" },
+      { y: 0, stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
+    )
+    .to(val, {
+      y: "-150%",
+      stagger: 0.05,
+      duration: 0.8,
+      ease: "expo.inOut",
+      delay: 0.3,
+    });
 });
 
 watch([isLoading], ([val]) => {

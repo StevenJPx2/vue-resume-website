@@ -8,7 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@fdcn/nugget": "^0.1.4",
+    "@fdcn/nugget": "^0.1.6",
     "@nuxtjs/fontaine": "^0.4.1",
     "@nuxtjs/tailwindcss": "^6.8.1",
     "@types/imagesloaded": "^4.1.4",

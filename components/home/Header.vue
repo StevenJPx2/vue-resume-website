@@ -7,11 +7,12 @@ import { Store } from "~~/utils/types";
 const name = ref<HTMLElement>();
 const props = defineProps<{ img: string; tagline?: string }>();
 
-const { timeline, set } = useGsap();
+const { timeline } = useGsap();
 
-tryOnMounted(() => {
-  const { tl } = timeline();
-  tl.set(name.value!, { autoAlpha: 0 })
+const { tl } = timeline();
+watch(tl, (t) => {
+  if (!t) return;
+  t.set(name.value!, { autoAlpha: 0 })
     .set(".pop-in", { scale: 0 })
     .set("#header-image", {
       autoAlpha: 0,
@@ -31,24 +32,26 @@ const runAnimation = (val: Store) => {
       select: "chars",
       runOnCompleteAtIndex: 9,
       onComplete() {
-        const { tl } = timeline();
-        tl.to("#header-image", {
-          duration: 1,
-          ease: "expo.out",
-          autoAlpha: 1,
-          y: 0,
-        })
-          .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
-          .to(
-            ".pop-in",
-            {
-              duration: 0.8,
-              scale: 1,
-              ease: "elastic",
-              stagger: 0.1,
-            },
-            1,
-          );
+        const { tlFn } = timeline();
+        tlFn((tl) => {
+          tl.to("#header-image", {
+            duration: 1,
+            ease: "expo.out",
+            autoAlpha: 1,
+            y: 0,
+          })
+            .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
+            .to(
+              ".pop-in",
+              {
+                duration: 0.8,
+                scale: 1,
+                ease: "elastic",
+                stagger: 0.1,
+              },
+              1,
+            );
+        });
         console.log("hello");
       },
       zoom: true,
