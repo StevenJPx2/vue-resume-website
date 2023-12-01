@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const links: { label: string; link: string }[] = [
   { label: "Home", link: "/" },
-  // { label: "Blog", link: "/blog" },
+  { label: "Blog", link: "/blog" },
 ];
 </script>
 

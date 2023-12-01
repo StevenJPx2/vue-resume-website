@@ -1,6 +1,7 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   // extends: ["nuxt-seo-kit"],
+  devtools: { enabled: true },
   routeRules: { "/": { static: true } },
   runtimeConfig: {
     public: {
@@ -54,6 +55,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-svgo",
     "@nuxt/content",
+    "@fdcn/nugget",
   ],
   css: [
     "@/assets/fonts/highrise/stylesheet.css",

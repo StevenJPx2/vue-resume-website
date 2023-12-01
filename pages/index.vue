@@ -31,7 +31,7 @@ useSeoHead({
       class="md:mb-[20vw] mb-[23vw]"
     />
 
-    <infinite-marquee
+    <app-infinite-marquee
       text="Who I am"
       direction="left"
       :target="105.5"
@@ -48,7 +48,7 @@ useSeoHead({
     </section>
 
     <template v-if="experience.length > 0">
-      <infinite-marquee
+      <app-infinite-marquee
         text=" Experience"
         direction="left"
         :target="105.5"
@@ -82,7 +82,7 @@ useSeoHead({
     </template>
 
     <template v-if="philosophies.length > 0">
-      <infinite-marquee
+      <app-infinite-marquee
         text="My Philosophy"
         direction="right"
         :target="105.5"

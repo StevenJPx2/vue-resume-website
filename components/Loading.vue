@@ -1,13 +1,43 @@
 <script setup lang="ts">
-import gsap from "gsap";
 const store = useMainStore();
 
 const isLoading = $isLoading(store);
 const initialAnimationLoaded = $loadingAnimationFinished(store);
 
-const foldLoadingScreen = () => {
-  tryOnMounted(() => {
-    gsap.to("#loading-container", {
+const loadingContainer = ref<HTMLElement | null>(null);
+const loadingText = ref<HTMLHeadingElement | null>(null);
+
+const { chars } = useSplitText(loadingText, { splitBy: "chars" });
+const { to, timeline } = useGsap();
+
+const { tl } = timeline({
+  repeat: -1,
+});
+
+watch(chars, (val) => {
+  if (!val) return;
+  tl.fromTo(
+    val,
+    { y: "150%" },
+    { y: 0, stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
+  ).to(val, {
+    y: "-150%",
+    stagger: 0.05,
+    duration: 0.8,
+    ease: "expo.inOut",
+    delay: 0.3,
+  });
+});
+
+watch([isLoading], ([val]) => {
+  if (val) {
+    to(loadingContainer, {
+      y: 0,
+      duration: 0.8,
+      ease: "expo.out",
+    });
+  } else {
+    to(loadingContainer, {
       y: "-100%",
       transformOrigin: "top left",
       duration: 1.2,
@@ -16,81 +46,15 @@ const foldLoadingScreen = () => {
         initialAnimationLoaded.value = true;
       },
     });
-  });
-};
-
-const runAnimation = (tl: gsap.core.Timeline) => {
-  console.log("ran loading animation");
-
-  useSplitText(
-    document.querySelector("#loading")! as HTMLElement,
-    (childEl, index) => {
-      return tl
-        .fromTo(
-          childEl,
-          { y: "150%" },
-          { transformOrigin: "top left", y: 0, ease: "expo.out" },
-          0.1 * index
-        )
-        .to(
-          childEl,
-          {
-            y: "-150%",
-            duration: 0.5,
-            ease: "expo.in",
-          },
-          1 + 0.1 * index
-        );
-    },
-    "chars",
-    {
-      splitBy: "chars, words",
-      wrapping: {
-        wrapType: "span",
-        wrapClass: "overflow-hidden inline-block",
-      },
-      shouldBeMounted: false,
-    }
-  );
-};
-
-useGsap(runAnimation, { repeat: -1 });
-
-watch(
-  [isLoading],
-  ([val]) => {
-    console.log(val);
-    if (val) {
-      useGsap((tl) => {
-        tl.to("#loading-container", {
-          y: 0,
-          duration: 0.8,
-          ease: "expo.out",
-        });
-      });
-      useGsap(runAnimation, { repeat: -1 });
-    } else {
-      foldLoadingScreen();
-    }
-  },
-  { deep: true }
-);
+  }
+});
 </script>
 
 <template>
   <div
-    id="loading-container"
-    class="
-      w-full
-      h-screen
-      bg-base-color
-      absolute
-      top-0
-      z-50
-      grid
-      place-content-center
-    "
+    ref="loadingContainer"
+    class="w-full h-screen bg-base-color absolute top-0 z-50 grid place-content-center"
   >
-    <h1 id="loading">Loading</h1>
+    <h1 class="overflow-hidden" ref="loadingText">Loading</h1>
   </div>
 </template>

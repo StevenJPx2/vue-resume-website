@@ -8,7 +8,9 @@ definePageMeta({
   image: "https://stevenjohn.co/meta.jpg",
 });
 
-const { getSingletonItem, getItems } = useDirectusItems();
+const { data: navigation } = await useAsyncData("navigation", () =>
+  fetchContentNavigation(),
+);
 
 const latestPost = (
   await getItems<BlogPost[]>({

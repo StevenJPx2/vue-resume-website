@@ -1,4 +1,3 @@
-import { GSAPOptions } from "./useGsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export type AnimationOptions = {
@@ -10,10 +9,10 @@ export type AnimationOptions = {
   shouldBeMounted?: boolean;
   hasScroll?: boolean;
 } & (
-    | { activation: "immediate" }
-    | { activation: "scroll"; scrollTrigger: gsap.DOMTarget | ScrollTrigger.Vars }
-    | { activation: "trigger"; paused: boolean }
-  );
+  | { activation: "immediate" }
+  | { activation: "scroll"; scrollTrigger: gsap.DOMTarget | ScrollTrigger.Vars }
+  | { activation: "trigger"; paused: boolean }
+);
 
 export const defaultAnimationOptions: AnimationOptions = {
   duration: 1,
@@ -22,9 +21,9 @@ export const defaultAnimationOptions: AnimationOptions = {
   hasScroll: false,
 };
 
-export default function(
+export default function (
   gsapFn: (tl: GSAPTimeline) => void,
-  options = defaultAnimationOptions
+  options = defaultAnimationOptions,
 ) {
   const {
     duration,
@@ -36,7 +35,7 @@ export default function(
     ...otherOptions
   } = Object.assign(defaultAnimationOptions, options);
 
-  const gsapOptions: GSAPOptions = {
+  const gsapOptions = {
     duration,
     delay,
     onStart,
@@ -56,5 +55,7 @@ export default function(
       break;
     }
   }
-  useGsap(gsapFn, gsapOptions, plugins);
+  const { timeline } = useGsap();
+  const { tlFn } = timeline(gsapOptions);
+  tlFn(gsapFn);
 }

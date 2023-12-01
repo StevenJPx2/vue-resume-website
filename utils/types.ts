@@ -1,7 +1,6 @@
-import { MaybeRef } from "@vueuse/core";
-import { TypesListString, TypesValue } from "split-type";
+import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
+import type { MaybeRef } from "@vueuse/core";
 
-export type SplittingTypes = TypesValue[] | TypesListString;
 export type Pages = "home" | "blog" | "project";
 export type MaybeRefHTMLElement = MaybeRef<HTMLElement | null | undefined>;
 export type Store = {
@@ -48,20 +47,13 @@ export interface Philosophy {
   body: string;
 }
 
-export interface BlogPost {
-  id: string;
+export interface BlogPost extends ParsedContent {
   status: "draft" | "published" | "archived";
-  sort: number;
-  user_created: PublicUser;
-  date_created: Date;
-  user_updated: PublicUser;
-  date_updated: Date;
+  author: PublicUser;
+  date_created: string;
   title: string;
-  slug?: string;
   header?: string;
   header_type?: "video" | "image";
-  excerpt?: string;
-  body: string;
 }
 
 export type BlogPostPreview = Pick<

@@ -5,56 +5,12 @@ import SmallCircle from "~/assets/small-circle.svg";
 import { Store } from "~~/utils/types";
 
 const name = ref<HTMLElement>();
-const props = defineProps({
-  img: { type: String, required: true },
-  tagline: { type: String },
-});
+const props = defineProps<{ img: string; tagline?: string }>();
 
-const commonClasses = "row-start-1 !w-full stroke-1 [&>*]:!fill-none !h-auto";
-const store = useMainStore();
+const { timeline, set } = useGsap();
 
-const runAnimation = (val: Store) => {
-  if (val.loadingStates.initialAnimationLoaded)
-    useWordSlideInAnimation(name, {
-      activation: "immediate",
-      splitBy: "words, chars",
-      select: "chars",
-      runOnCompleteAtIndex: 9,
-      onStart() {
-        useGsap((tl) => tl.set(name.value!, { autoAlpha: 1 }));
-      },
-      onComplete() {
-        useGsap(
-          (tl) => {
-            tl.to("#header-image", {
-              duration: 1,
-              ease: "expo.out",
-              autoAlpha: 1,
-              y: 0,
-            })
-              .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
-              .to(
-                ".pop-in",
-                {
-                  duration: 0.8,
-                  scale: 1,
-                  ease: "elastic",
-                  stagger: 0.1,
-                },
-                1,
-              );
-          },
-          { shouldBeMounted: false },
-        );
-
-        console.log("hello");
-      },
-      zoom: true,
-      shouldBeMounted: true,
-    });
-};
-
-useGsap((tl) => {
+tryOnMounted(() => {
+  const { tl } = timeline();
   tl.set(name.value!, { autoAlpha: 0 })
     .set(".pop-in", { scale: 0 })
     .set("#header-image", {
@@ -64,7 +20,40 @@ useGsap((tl) => {
     .set(".yellow-blob", { autoAlpha: 0 });
 });
 
-runAnimation(store.value);
+const commonClasses = "!w-full stroke-1 [&>*]:!fill-none !h-auto";
+const store = useMainStore();
+
+const runAnimation = (val: Store) => {
+  if (val.loadingStates.initialAnimationLoaded)
+    useWordSlideInAnimation(name, {
+      activation: "immediate",
+      splitBy: "words, chars",
+      select: "chars",
+      runOnCompleteAtIndex: 9,
+      onComplete() {
+        const { tl } = timeline();
+        tl.to("#header-image", {
+          duration: 1,
+          ease: "expo.out",
+          autoAlpha: 1,
+          y: 0,
+        })
+          .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
+          .to(
+            ".pop-in",
+            {
+              duration: 0.8,
+              scale: 1,
+              ease: "elastic",
+              stagger: 0.1,
+            },
+            1,
+          );
+        console.log("hello");
+      },
+      zoom: true,
+    });
+};
 
 watch(() => store.value, runAnimation, { deep: true });
 </script>
@@ -82,38 +71,54 @@ watch(() => store.value, runAnimation, { deep: true });
     <div class="wrapper h-screen place-content-center">
       <div
         class="justify-self-center col-span-full row-start-1"
-        v-parallax="{ scrollSpeed: 1 }"
+        data-scroll
+        data-scroll-speed="-0.1"
       >
         <h1 ref="name">Steven John</h1>
       </div>
 
       <div
-        v-parallax="{ scrollSpeed: -1 }"
+        data-scroll
+        data-scroll-speed="0.01"
         class="grayscale row-start-1 col-start-3 col-end-14 mt-[25vw] md:col-start-9 md:col-span-7 md:mt-[15vw]"
       >
         <img :src="props.img" id="header-image" class="w-full" />
       </div>
-      <s-p-s
-        :class="[commonClasses]"
-        class="pop-in col-start-3 col-span-3 mt-[55vw] md:col-start-7 md:col-span-2 md:mt-[34vw]"
-      />
-
-      <f-p-s
-        :class="[commonClasses]"
-        class="pop-in col-start-13 col-span-2 mt-[105vw] md:col-start-17 md:!w-[5vw] md:mt-[48vw]"
-      />
-
-      <small-circle
-        :class="[commonClasses]"
-        class="pop-in col-start-2 col-span-1 !w-[5vw] mt-[125vw] md:col-start-8 md:!w-[2vw] md:justify-self-end md:mt-[57vw]"
-      />
-      <p
-        id="tagline"
-        v-if="props.tagline"
-        class="pop-in btn justify-self-center -rotate-6 row-start-1 col-start-1 col-span-full md:col-start-10 md:col-span-7 mt-[130vw] md:mt-[54vw]"
+      <div
+        data-scroll
+        data-scroll-speed="0.05"
+        class="row-start-1 col-start-3 col-span-3 mt-[55vw] md:col-start-7 md:col-span-2 md:mt-[34vw]"
       >
-        {{ tagline }}
-      </p>
+        <s-p-s :class="[commonClasses]" class="pop-in" />
+      </div>
+
+      <div
+        data-scroll
+        data-scroll-speed="0.08"
+        class="row-start-1 col-start-13 col-span-2 mt-[105vw] md:col-start-17 md:mt-[48vw]"
+      >
+        <f-p-s :class="[commonClasses]" class="pop-in md:!w-[5vw]" />
+      </div>
+
+      <div
+        data-scroll
+        data-scroll-speed="0.1"
+        class="row-start-1 col-start-2 col-span-1 mt-[125vw] md:col-start-8 md:justify-self-end md:mt-[57vw]"
+      >
+        <small-circle
+          :class="[commonClasses]"
+          class="pop-in !w-[5vw] md:!w-[2vw]"
+        />
+      </div>
+      <div
+        data-scroll
+        data-scroll-speed="0.1"
+        class="justify-self-center row-start-1 col-start-1 col-span-full md:col-start-10 md:col-span-7 mt-[130vw] md:mt-[54vw]"
+      >
+        <p id="tagline" class="pop-in -rotate-6 btn" v-if="props.tagline">
+          {{ tagline }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

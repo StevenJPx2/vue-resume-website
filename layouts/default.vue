@@ -8,7 +8,7 @@ tryOnMounted(() => {
     (val) => {
       if (val.loadingStates.initialAnimationLoaded == true) lock.value = false;
     },
-    { deep: true }
+    { deep: true },
   );
 });
 
@@ -31,8 +31,14 @@ function enterFunction() {
     <navbar />
     <loading />
     <router-view v-slot="{ Component, route }">
-      <transition mode="out-in" @enter="enterFunction" @before-leave="leaveFunction">
-        <component :is="Component" :key="route.fullPath" />
+      <transition
+        mode="out-in"
+        @enter="enterFunction"
+        @before-leave="leaveFunction"
+      >
+        <smooth-scroll>
+          <component :is="Component" :key="route.fullPath" />
+        </smooth-scroll>
       </transition>
     </router-view>
     <Footer />

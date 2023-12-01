@@ -1,11 +1,11 @@
-import { SplittingTypes } from "~/utils/types";
-import { TypesValue } from "split-type";
 import { AnimationOptions } from "./useAnimation";
 import { MaybeRef } from "@vueuse/core";
 
+type UseSplitTextOptions = Parameters<typeof useSplitText>[1];
+
 type Options = {
-  splitBy?: SplittingTypes;
-  select?: TypesValue;
+  splitBy?: UseSplitTextOptions["splitBy"];
+  select?: "chars" | "words" | "lines";
   stagger?: number;
   duration?: number;
   ease?: string;
@@ -16,7 +16,7 @@ type Options = {
 
 const defaultOptions = {
   splitBy: "chars, words, lines" as SplittingTypes,
-  select: "words" as TypesValue,
+  select: "words" as "chars" | "words" | "lines",
   stagger: 0.1,
   duration: 1.2,
   ease: "expo.out",
@@ -41,6 +41,7 @@ export default function (
     zoom,
     shouldBeMounted,
     runOnCompleteAtIndex,
+    onComplete,
     ...animationOptions
   } = Object.assign(
     defaultOptions,
@@ -51,56 +52,38 @@ export default function (
     options,
   );
 
-  useAnimation((tl) => {
-    tl.set(unRefedElement!, { scale: zoom ? 1.2 : 1 }, 0);
+  const splText = useSplitText(el, {
+    splitBy,
+    wrapping: {
+      select,
+      wrapType: "span",
+      wrapClass: "overflow-hidden inline-block",
+    },
+  });
 
-    const onComplete = () => {
-      if (animationOptions.onComplete) animationOptions.onComplete();
-    };
+  const selectElArray = splText[select];
 
-    const selectAnimation = (childEl: HTMLElement, index: number) => {
-      tl.fromTo(
-        childEl,
-        { y: "150%", rotate: rotate ? 15 : 0 },
-        {
-          transformOrigin: "top left",
-          rotate: 0,
-          y: 0,
-          ease,
-          onComplete() {
-            if (
-              runOnCompleteAtIndex !== undefined &&
-              runOnCompleteAtIndex === index
-            ) {
-              onComplete();
-            }
-          },
-        },
-        stagger * index,
-      );
+  const { set, fromTo, to } = useGsap();
 
-      if (zoom) {
-        tl.to(
-          unRefedElement!,
-          {
-            scale: 1,
-            ease: "circ.out",
-          },
-          "+=0.4",
-        );
-      }
+  set(el, { scale: zoom ? 1.2 : 1, autoAlpha: 1 });
 
-      return tl;
-    };
-
-    useSplitText(unRefedElement!, selectAnimation, select, {
-      splitBy: splitBy,
-      wrapping: {
-        wrapType: "span",
-        wrapClass: "overflow-hidden inline-block",
-      },
-      shouldBeMounted,
+  fromTo(selectElArray, {
+    from: { y: "150%", rotate: rotate ? 15 : 0 },
+    to: {
+      transformOrigin: "top left",
+      rotate: 0,
+      y: 0,
+      stagger,
+      ease,
       onComplete,
+    },
+  });
+
+  if (zoom) {
+    to(el, {
+      scale: 1,
+      ease: "circ.out",
+      delay: 0.4,
     });
-  }, animationOptions);
+  }
 }

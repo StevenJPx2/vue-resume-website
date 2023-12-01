@@ -13,6 +13,7 @@ const props = defineProps({
     <transition name="slide-fade" mode="out-in">
       <div
         v-if="props.isRevealed"
+        data-lenis-prevent
         class="fixed inset-0 grid place-content-center z-[999] isolate transition duration-300"
       >
         <div
