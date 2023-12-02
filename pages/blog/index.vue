@@ -8,35 +8,7 @@ definePageMeta({
   image: "https://stevenjohn.co/meta.jpg",
 });
 
-const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation(),
-);
-
-const latestPost = (
-  await getItems<BlogPost[]>({
-    collection: "posts",
-    params: {
-      fields: ["*", "user_created.*"],
-      sort: "-date_created",
-      limit: 1,
-    },
-  })
-)[0];
-
-const blogPosts = await getSingletonItem<BlogPostPreview[]>({
-  collection: "posts",
-  params: {
-    fields: [
-      "user_created.*",
-      "date_created",
-      "title",
-      "slug",
-      "header",
-      "header_type",
-    ],
-    sort: "-date_created",
-  },
-});
+const [latestPost] = await queryContent("blog").find();
 </script>
 
 <template>
@@ -72,11 +44,7 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
           </span>
           <span> • </span>
           <span>
-            {{
-              latestPost.user_created.first_name +
-              " " +
-              latestPost.user_created.last_name
-            }}
+            {{ latestPost.user_created + " " + latestPost.user_created }}
           </span>
         </small>
         <div
@@ -85,55 +53,59 @@ const blogPosts = await getSingletonItem<BlogPostPreview[]>({
         />
         <nuxt-link
           class="w-full md:w-fit md:justify-self-end btn btn-hoverable items-center gap-2"
-          :to="`blog/${latestPost.slug}`"
+          :to="latestPost._path"
           >read more
           <icon name="heroicons:arrow-up-right-solid" />
         </nuxt-link>
       </article>
     </header>
 
-    <infinite-marquee text="posts" direction="left" :target="105.5" />
+    <app-infinite-marquee text="posts" direction="left" />
 
     <section
       class="flex flex-wrap gap-[10vw] md:gap-[4vw]"
       :class="[commonPadding]"
     >
-      <nuxt-link
-        class="blog-post-card"
-        v-for="post in blogPosts"
-        :to="`blog/${post.slug}`"
-        :key="post.slug"
-      >
-        <directus-img
-          v-if="!!post.header && post.header_type === 'image'"
-          :id="post.header"
-          :img-attrs="{
-            class: 'row-start-1 blog-post-card--img',
-            alt: post.slug,
-          }"
-        />
-        <div
-          class="blog-post-card--desc"
-          :class="{
-            'row-start-2': !!post.header,
-            'row-start-1 row-end-3 self-center py-[15vw] md:py-[10vw]':
-              !post.header,
-          }"
+      <content-list path="/blog" v-slot="{ list }">
+        <nuxt-link
+          class="blog-post-card"
+          v-for="post in list"
+          :to="post._path"
+          :key="post._path"
         >
-          <h2>{{ post.title }}</h2>
-          <small>
-            <span>
-              {{ useDateFormat(post.date_created, "DD MMM, YYYY").value }}
-            </span>
-            <span> • </span>
-            <span>
-              {{
-                post.user_created.first_name + " " + post.user_created.last_name
-              }}
-            </span>
-          </small>
-        </div>
-      </nuxt-link>
+          <directus-img
+            v-if="!!post.header && post.header_type === 'image'"
+            :id="post.header"
+            :img-attrs="{
+              class: 'row-start-1 blog-post-card--img',
+              alt: post.slug,
+            }"
+          />
+          <div
+            class="blog-post-card--desc"
+            :class="{
+              'row-start-2': !!post.header,
+              'row-start-1 row-end-3 self-center py-[15vw] md:py-[10vw]':
+                !post.header,
+            }"
+          >
+            <h2>{{ post.title }}</h2>
+            <small>
+              <span>
+                {{ useDateFormat(post.date_created, "DD MMM, YYYY").value }}
+              </span>
+              <span> • </span>
+              <span>
+                {{
+                  post.user_created?.first_name +
+                  " " +
+                  post.user_created?.last_name
+                }}
+              </span>
+            </small>
+          </div>
+        </nuxt-link>
+      </content-list>
     </section>
   </main>
 </template>
