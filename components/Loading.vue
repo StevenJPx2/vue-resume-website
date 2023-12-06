@@ -19,16 +19,20 @@ watch(chars, (val) => {
   tl.value
     .fromTo(
       val,
-      { y: "150%" },
-      { y: 0, stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
+      { y: 0 },
+      { y: "-150%", stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
     )
-    .to(val, {
-      y: "-150%",
-      stagger: 0.05,
-      duration: 0.8,
-      ease: "expo.inOut",
-      delay: 0.3,
-    });
+    .fromTo(
+      val,
+      { y: "150%" },
+      {
+        y: 0,
+        stagger: 0.05,
+        duration: 0.8,
+        ease: "expo.inOut",
+        delay: 0.3,
+      },
+    );
 });
 
 watch([isLoading], ([val]) => {
