@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const links: { label: string; link: string }[] = [
-  { label: "Home", link: "/" },
-  { label: "Blog", link: "/blog" },
+const links: { label: string; link: string; visible: boolean }[] = [
+  { label: "Home", link: "/", visible: true },
+  { label: "Blog", link: "/blog", visible: false },
+  { label: "Projects", link: "/projects", visible: false },
 ];
 </script>
 
@@ -17,15 +18,11 @@ const links: { label: string; link: string }[] = [
       steven john
     </nuxt-link>
     <div class="flex gap-[5vw] md:gap-[3vw]">
-      <nuxt-link
-        class="p nav"
-        active-class="link"
-        v-for="{ label, link } in links"
-        :key="link"
-        :to="link"
-      >
-        {{ label }}
-      </nuxt-link>
+      <template v-for="{ label, link, visible } in links" :key="link">
+        <nuxt-link v-if="visible" class="p nav" active-class="link" :to="link">
+          {{ label }}
+        </nuxt-link>
+      </template>
     </div>
   </nav>
 </template>
