@@ -583,10 +583,10 @@
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.0.tgz#0709e9f4cb252351c609c6e6d8d6779a8d25edff"
   integrity sha512-+KpH+QxZU7O4675t3mnkQKcZZg56u+K/Ct2K+N2AZYNVK8kyeo/bI18tI8aPm3tvNNRyTWfj6s5tnGNlcbQRsA==
 
-"@fdcn/nugget@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@fdcn/nugget/-/nugget-0.1.6.tgz#eb2adc2e9424c01e21feb7a8b109d8c47e5003d9"
-  integrity sha512-0POgznyUqrxGeYuHFIwRPvXORjYi+4d26s8U9dTPa2xoighJYGpk6JvJNDTNnK/pzVk84jwNCryhY2ghn5o5MQ==
+"@fdcn/nugget@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@fdcn/nugget/-/nugget-0.1.7.tgz#13ede98cdd1f38ba24c3d1390848f2265e06ea53"
+  integrity sha512-PeIh4sBcDjSv+50OTDMHyK7IbK2T02z8WqYRRQgzdoCENmLt9r+H3vGUu7gS0WWSuCBFzbKyuWa1rMAKE92N5Q==
   dependencies:
     "@nuxt/kit" "^3.7.2"
     defu "^6.1.2"

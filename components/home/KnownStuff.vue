@@ -2,28 +2,9 @@
 import { promiseTimeout } from "@vueuse/shared";
 import { knownStuff } from "~~/repos";
 
-const pageTransition = ref<
-  "before-leave" | "after-leave" | "before-enter" | "after-enter"
->("before-leave");
 type Origin = "left" | "right";
 const origin = ref<Origin>("left");
-
-const pageTransitionProperties: {
-  [P in "leave" | "enter"]: {
-    duration: number;
-    origin: { [P in Origin]: Origin };
-  };
-} = {
-  leave: { duration: 800, origin: { left: "left", right: "right" } },
-  enter: { duration: 400, origin: { left: "right", right: "left" } },
-};
-
-const currentPageState = computed(
-  () =>
-    pageTransitionProperties[
-      pageTransition.value.match(/\w+-(\w+)/)![1] as "leave" | "enter"
-    ],
-);
+const runTransition = ref(false);
 
 const index = ref(0);
 const setIndex = (n = 0) => {
@@ -32,23 +13,20 @@ const setIndex = (n = 0) => {
   const val = ((offset % length) + length) % length;
   return val;
 };
+
 const flipPage = async (i: number) => {
-  if (pageTransition.value != "before-leave") return;
-  origin.value = i > 0 ? "right" : "left";
-  pageTransition.value = "after-leave";
-  await promiseTimeout(pageTransitionProperties.leave.duration);
-  pageTransition.value = "before-enter";
+  origin.value = i === -1 ? "right" : "left";
+  runTransition.value = true;
+  await promiseTimeout(500);
   index.value = setIndex(i);
-  await promiseTimeout(pageTransitionProperties.enter.duration);
-  pageTransition.value = "after-enter";
-  await promiseTimeout(pageTransitionProperties.enter.duration);
-  pageTransition.value = "before-leave";
+  await promiseTimeout(500);
+  runTransition.value = true;
 };
 </script>
 
 <template>
   <div
-    class="rounded-[2vw] border-accent border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform"
+    class="rounded-[2vw] border-accent border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform isolate"
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ knownStuff[index].category }}
@@ -109,33 +87,14 @@ const flipPage = async (i: number) => {
         />
       </button>
     </div>
-    <div
-      class="absolute z-5 inset-0 bg-primary delay-75 ease-in-out-expo"
-      :class="{
-        'scale-x-0': ['before-leave', 'after-enter'].includes(pageTransition),
-        'scale-x-100': ['after-leave', 'before-enter'].includes(pageTransition),
-      }"
-      :style="{
-        transitionDuration: `${currentPageState.duration}ms`,
-        transformOrigin: currentPageState.origin[origin],
-      }"
+    <transition-offset
+      class="!absolute inset-0 pointer-events-none z-1"
+      :run="runTransition"
+      :direction="origin"
+      :main-container-attributes="{ class: 'bg-primary' }"
+      :offset-container-attributes="{ class: 'bg-black' }"
+      @after-enter="runTransition = false"
+      @after-leave="runTransition = false"
     />
-    <div
-      class="absolute z-5 inset-0 bg-black ease-in-out-expo"
-      :class="{
-        'scale-x-0': ['before-leave', 'after-enter'].includes(pageTransition),
-        'scale-x-100': ['after-leave', 'before-enter'].includes(pageTransition),
-      }"
-      :style="{
-        transitionDuration: `${currentPageState.duration}ms`,
-        transformOrigin: currentPageState.origin[origin],
-      }"
-    />
-    <dev-only>
-      <code class="text-white z-50">
-        {{ pageTransition }}
-        {{ currentPageState.origin[origin] }}
-      </code>
-    </dev-only>
   </div>
 </template>
