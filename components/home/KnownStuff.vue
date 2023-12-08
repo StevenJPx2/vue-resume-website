@@ -15,6 +15,7 @@ const setIndex = (n = 0) => {
 };
 
 const flipPage = async (i: number) => {
+  if (runTransition.value) return;
   origin.value = i === -1 ? "right" : "left";
   runTransition.value = true;
   await promiseTimeout(500);
@@ -88,7 +89,7 @@ const flipPage = async (i: number) => {
       </button>
     </div>
     <transition-offset
-      class="!absolute inset-0 pointer-events-none z-1"
+      class="!absolute inset-0 [&>*]:pointer-events-auto pointer-events-none z-1"
       :run="runTransition"
       :direction="origin"
       :main-container-attributes="{ class: 'bg-primary' }"
