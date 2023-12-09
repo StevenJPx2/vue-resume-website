@@ -16,7 +16,7 @@ const setIndex = (n = 0) => {
 
 const flipPage = async (i: number) => {
   if (runTransition.value) return;
-  origin.value = i === -1 ? "right" : "left";
+  origin.value = i === -1 ? "left" : "right";
   runTransition.value = true;
   await promiseTimeout(500);
   index.value = setIndex(i);
