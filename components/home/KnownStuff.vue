@@ -33,7 +33,7 @@ const flipPage = async (i: number) => {
       {{ knownStuff[index].category }}
     </h3>
     <div class="flex flex-wrap gap-3 md:gap-2 px-[3vw] md:px-[1vw]">
-      <button
+      <nuxt-link
         v-for="tech in knownStuff[index].technologies"
         :class="{
           'hover:bg-opacity-95 hover:scale-105': !!tech.link,
@@ -70,7 +70,7 @@ const flipPage = async (i: number) => {
         <small class="w-max">
           {{ tech.name }}
         </small>
-      </button>
+      </nuxt-link>
     </div>
 
     <div class="flex gap-2 mt-[1.4vw] justify-evenly h-full">
