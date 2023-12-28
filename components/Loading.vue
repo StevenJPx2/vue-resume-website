@@ -15,26 +15,24 @@ const { tl } = timeline({
 });
 
 watch(
-  chars,
-  (val) => {
-    if (!val) return;
-    tl.value
-      .fromTo(
-        val,
-        { y: 0 },
-        { y: "-150%", stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
-      )
-      .fromTo(
-        val,
-        { y: "150%" },
-        {
-          y: 0,
-          stagger: 0.05,
-          duration: 0.8,
-          ease: "expo.inOut",
-          delay: 0.3,
-        },
-      );
+  [chars, tl] as const,
+  ([val, tl]) => {
+    if (!val || !tl) return;
+    tl.fromTo(
+      val,
+      { y: 0 },
+      { y: "-150%", stagger: 0.05, duration: 0.8, ease: "expo.inOut" },
+    ).fromTo(
+      val,
+      { y: "150%" },
+      {
+        y: 0,
+        stagger: 0.05,
+        duration: 0.8,
+        ease: "expo.inOut",
+        delay: 0.3,
+      },
+    );
   },
   { immediate: true, flush: "post" },
 );

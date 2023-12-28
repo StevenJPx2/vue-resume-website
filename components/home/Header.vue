@@ -85,7 +85,15 @@ watch(() => store.value, runAnimation, { deep: true });
         data-scroll-speed="0.01"
         class="grayscale row-start-1 col-start-3 col-end-14 mt-[25vw] md:col-start-9 md:col-span-7 md:mt-[15vw]"
       >
-        <img :src="props.img" id="header-image" class="w-full" />
+        <nuxt-img
+          preload
+          placeholder
+          sizes="100vw md:50vw lg:33vw"
+          quality="85"
+          :src="props.img"
+          id="header-image"
+          class="w-full"
+        />
       </div>
       <div
         data-scroll

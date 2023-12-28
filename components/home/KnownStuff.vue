@@ -27,7 +27,7 @@ const flipPage = async (i: number) => {
 
 <template>
   <div
-    class="rounded-[2vw] border-accent border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform isolate"
+    class="rounded-[2vw] border-accent transition-all border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform isolate"
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ knownStuff[index].category }}

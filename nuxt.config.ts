@@ -1,8 +1,9 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  // extends: ["nuxt-seo-kit"],
+  extends: ["@fdcn/popcorn"],
   devtools: { enabled: true },
   routeRules: { "/": { static: true } },
+  image: { domains: ["i.imgur.com"] },
   runtimeConfig: {
     public: {
       siteUrl: "https://stevenjohn.co",
@@ -48,15 +49,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: [
-    "@vueuse/nuxt",
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/fontaine",
-    "nuxt-icon",
-    "nuxt-svgo",
-    "@nuxt/content",
-    "@fdcn/nugget",
-  ],
+  modules: ["nuxt-svgo", "@nuxt/content"],
   css: [
     "@/assets/fonts/highrise/stylesheet.css",
     "@/assets/fonts/neue-montreal/stylesheet.css",
