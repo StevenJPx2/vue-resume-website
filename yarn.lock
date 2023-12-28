@@ -1186,10 +1186,10 @@
     gsap "^3.12.2"
     nuxt-split-type "^0.1.6"
 
-"@fdcn/popcorn@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@fdcn/popcorn/-/popcorn-0.0.4.tgz#fcd04929a9660fc07b62d2ca5a008736ec0a8812"
-  integrity sha512-p5V+WCgAS/WiPcdmKmpfrxrPKzc07rKp1hA//Cljt0A/jrHQkhJwLXsO4/VQQiKNm3ir5hxe7aX3k/XEI5/vcg==
+"@fdcn/popcorn@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@fdcn/popcorn/-/popcorn-0.0.5.tgz#6e3b5138f939bb488093e21a98179a242ab2f4dd"
+  integrity sha512-6hoLySYuWwBZR4nVHwjIrcEHeWki/OgEyX9Z1p6vKKub/oy6bNCOSe4I6AQF0NCcrUK5ct1E/pLyLJ7Z2FxQPg==
   dependencies:
     "@fdcn/nugget" latest
     "@nuxt/image" latest
@@ -1201,6 +1201,7 @@
     "@vueuse/components" latest
     "@vueuse/core" latest
     "@vueuse/nuxt" latest
+    nuxt latest
     nuxt-delay-hydration latest
     nuxt-icon latest
     nuxt-purgecss latest
@@ -7169,7 +7170,7 @@ nuxt-unhead@^1.4.17:
     pathe "^1.1.0"
     unhead "^1.1.26"
 
-nuxt@^3.8.2, nuxt@^3.9.0:
+nuxt@^3.8.2, nuxt@^3.9.0, nuxt@latest:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.9.0.tgz#a63e9a0a8d70d2233edd0f8ad87d13ed16ad84b7"
   integrity sha512-PiUQwJRBlclRrotcQAK95ueeRSiFhZmwNBj9MtIdWF4XK97OjNszUmNjKphqB7BsVcm089l0jZm1N0sYr7tMOg==

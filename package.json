@@ -16,7 +16,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@fdcn/popcorn": "^0.0.4",
+    "@fdcn/popcorn": "^0.0.5",
     "@nuxt/content": "^2.9.0",
     "@pinia/nuxt": "^0.5.1",
     "@splidejs/vue-splide": "^0.6.12",
