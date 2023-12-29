@@ -2,6 +2,7 @@
 import FPS from "~/assets/four-prong-star.svg";
 import SPS from "~/assets/seven-prong-star.svg";
 import SmallCircle from "~/assets/small-circle.svg";
+import YellowBlob from "~/assets/yellow-ellipse.svg";
 import { Store } from "~~/utils/types";
 
 const name = ref<HTMLElement>();
@@ -21,7 +22,7 @@ watch(tl, (t) => {
     .set(".yellow-blob", { autoAlpha: 0 });
 });
 
-const commonClasses = "!w-full stroke-1 [&>*]:!fill-none !h-auto";
+const commonClasses = "stroke-1 svgo [&>*]:!fill-none";
 const store = useMainStore();
 
 const runAnimation = (val: Store) => {
@@ -63,13 +64,11 @@ watch(() => store.value, runAnimation, { deep: true });
 
 <template>
   <div class="h-screen w-full relative">
-    <img
-      src="~/assets/yellow-ellipse.png"
-      class="yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]"
+    <yellow-blob
+      class="yellow-blob svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]"
     />
-    <img
-      src="~/assets/yellow-ellipse.png"
-      class="yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]"
+    <yellow-blob
+      class="yellow-blob svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]"
     />
     <div class="wrapper h-screen place-content-center">
       <div

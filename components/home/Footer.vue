@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import YellowBlob from "~/assets/yellow-ellipse.svg";
+
 const props = defineProps({
   tagline: { type: String, required: true },
 });
@@ -6,13 +8,11 @@ const store = useMainStore();
 </script>
 <template>
   <section class="h-screen relative">
-    <img
-      src="~/assets/yellow-ellipse.png"
-      class="pointer-events-none yellow-blob absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%] z-[-1]"
+    <yellow-blob
+      class="pointer-events-none yellow-blob svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%] z-[-1]"
     />
-    <img
-      src="~/assets/yellow-ellipse.png"
-      class="pointer-events-none yellow-blob absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%] z-[-1]"
+    <yellow-blob
+      class="pointer-events-none yellow-blob svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%] z-[-1]"
     />
     <div
       class="mt-[15vw] h-full grid grid-rows-[max-content,max-content] place-content-center gap-y-[5vw] md:gap-y-[3vw]"

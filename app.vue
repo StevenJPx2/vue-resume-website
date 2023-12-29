@@ -26,7 +26,8 @@ tryOnMounted(() => {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("@/assets/fonts/highrise/stylesheet.css");
+@import url("@/assets/fonts/neue-montreal/stylesheet.css");
 @import url("https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css");
 
 $color-base: #0e0e0e;
@@ -217,6 +218,15 @@ $color-base: #0e0e0e;
 }
 
 .btn {
+}
+
+.svgo {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.yellow-blob * {
+  fill: var(--color-primary) !important;
 }
 
 .card {
