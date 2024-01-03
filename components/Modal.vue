@@ -26,7 +26,7 @@ const props = defineProps({
           :class="[commonMargin]"
         >
           <button class="absolute top-0 right-0 m-4" @click="onClickOutside()">
-            <icon name="heroicons:x-mark" class="w-[2vw] h-[2vw]" />
+            <icon name="heroicons:x-mark" class="size-7 md:size-[2vw]" />
           </button>
           <div
             class="overflow-x-hidden overflow-y-scroll overscroll-contain h-full pb-4"

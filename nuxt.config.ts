@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["nuxt-svgo", "@nuxt/content"],
+  modules: ["nuxt-svgo", "@nuxt/content", "floating-vue/nuxt"],
   css: [
     "@/assets/fonts/highrise/stylesheet.css",
     "@/assets/fonts/neue-montreal/stylesheet.css",

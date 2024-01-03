@@ -231,22 +231,21 @@ $color-base: #0e0e0e;
 
 .card {
   @apply relative;
-  @apply grid;
 
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     var(--color-base) 0%,
     color.scale($color-base, $lightness: 5%) 50%,
     var(--color-base) 100%
-  );
+  ); */
+  @apply bg-base-color;
   @apply h-full;
   $border: 1px;
   @apply bg-clip-padding;
   border: solid $border transparent;
   @apply rounded-2xl;
   @apply pt-[20%];
-  @apply px-[8vw];
-  grid-template-rows: 2fr 4fr 1fr;
+  @apply pb-5;
 
   &:before {
     content: "";
@@ -266,8 +265,17 @@ $color-base: #0e0e0e;
     );
   }
 
-  @screen md {
-    @apply px-[2vw];
+  &--body {
+    @apply grid;
+    @apply overflow-hidden;
+    @apply h-full;
+
+    @apply px-[8vw];
+    grid-template-rows: max-content auto max-content;
+
+    @screen md {
+      @apply px-[2vw];
+    }
   }
 }
 

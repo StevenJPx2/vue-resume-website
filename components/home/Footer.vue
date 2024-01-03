@@ -4,6 +4,24 @@ import YellowBlob from "~/assets/yellow-ellipse.svg";
 const props = defineProps({
   tagline: { type: String, required: true },
 });
+
+const tagline = ref<HTMLElement>();
+const { to } = useGsap();
+
+useWordSlideInAnimation(tagline, {
+  splitBy: "lines, words, chars",
+  select: "chars",
+  scrollTrigger: {
+    trigger: tagline.value,
+    start: "80% 80%",
+    end: "bottom 20%",
+  },
+  onComplete() {
+    to(".yellow-blob", { duration: 2, autoAlpha: 1 });
+  },
+  zoom: true,
+});
+
 const store = useMainStore();
 </script>
 <template>
@@ -19,7 +37,8 @@ const store = useMainStore();
       :class="[commonPadding]"
     >
       <h2
-        class="h1 text-[25vw] md:text-[20vw] text-center leading-[0.8] place-self-center"
+        ref="tagline"
+        class="h1 w-full text-[25vw] md:text-[20vw] text-center leading-[0.8] place-self-center"
       >
         {{ props.tagline }}
       </h2>

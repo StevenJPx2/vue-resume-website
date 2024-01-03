@@ -180,6 +180,12 @@ const technologies = defineTechnologies([
     icon_name: "keras",
     color: "#D00000",
   },
+  {
+    id: "tailwind",
+    icon_name: "tailwindcss",
+    link: "tailwindcss.com",
+    color: "#06B6D4",
+  },
 
   // Databases
   {
@@ -269,6 +275,23 @@ const technologies = defineTechnologies([
   },
 
   // SaaS
+  { id: "retool", icon_name: "retool", link: "retool.com", color: "#F63366" },
+  { id: "pipedream", link: "pipedream.com", color: "#00D784" },
+  {
+    id: "razorpay",
+    icon_name: "razorpay",
+    link: "razorpay.com",
+    color: "#0C2451",
+  },
+  { id: "zoho", icon_name: "zoho", link: "zoho.com", color: "#E42527" },
+  {
+    id: "directus",
+    icon_name: "directus",
+    link: "directus.cloud",
+    color: "#263238",
+  },
+  { id: "sanity", icon_name: "sanity", link: "sanity.io", color: "#F03E2F" },
+  { id: "strapi", icon_name: "strapi", link: "strapi.io", color: "#4945FF" },
 ]);
 
 export default technologies;

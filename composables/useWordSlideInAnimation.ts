@@ -11,7 +11,6 @@ type Options = {
   ease?: string;
   rotate?: boolean;
   zoom?: boolean;
-  runOnCompleteAtIndex?: number;
 } & AnimationOptions;
 
 const defaultOptions = {
@@ -39,15 +38,16 @@ export default function (
     stagger,
     rotate,
     zoom,
-    shouldBeMounted,
-    runOnCompleteAtIndex,
     onComplete,
-    ...animationOptions
+    scrollTrigger,
   } = Object.assign(
     defaultOptions,
     {
       activation: "scroll",
-      scrollTrigger: { trigger: unRefedElement, start: "center bottom" },
+      scrollTrigger: {
+        trigger: unRefedElement,
+        start: "center bottom",
+      },
     },
     options,
   );
@@ -71,11 +71,13 @@ export default function (
     from: { y: "150%", rotate: rotate ? 15 : 0 },
     to: {
       transformOrigin: "top left",
+      duration,
       rotate: 0,
       y: 0,
       stagger,
       ease,
       onComplete,
+      scrollTrigger,
     },
   });
 

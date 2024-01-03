@@ -31,7 +31,6 @@ const runAnimation = (val: Store) => {
       activation: "immediate",
       splitBy: "words, chars",
       select: "chars",
-      runOnCompleteAtIndex: 9,
       onComplete() {
         const { tlFn } = timeline();
         tlFn((tl) => {

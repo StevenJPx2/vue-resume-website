@@ -1,5 +1,5 @@
-import { KnownStuff } from "~~/utils/types";
-import technologies, { TechnologyKeys } from "./technologies";
+import { type KnownStuff } from "~~/utils/types";
+import technologies, { type TechnologyKeys } from "./technologies";
 
 type BrandedKnownStuff = Omit<KnownStuff, "technologies"> & {
   technologies: TechnologyKeys[];
@@ -35,6 +35,7 @@ export default defineKnownStuff([
       "nuxt",
       "react",
       "next",
+      "tailwind",
       "svelte",
       "sveltekit",
       "astro",
@@ -67,5 +68,16 @@ export default defineKnownStuff([
       "supabase",
     ],
   },
-  // { category: "SaaS", technologies: [] },
+  {
+    category: "SaaS",
+    technologies: [
+      "retool",
+      "pipedream",
+      "razorpay",
+      "zoho",
+      "directus",
+      "sanity",
+      "strapi",
+    ],
+  },
 ]);

@@ -9,6 +9,7 @@ export default defineExperience([
   {
     id: "hexo",
     from: "2023-03-01",
+    to: "2023-11-01",
     description: {
       body: `- Worked on **Hexo Studio**, a platform for generating **images** from **text templates** for **social media** and **marketing** purposes using generative AI.
 - It was built using:
@@ -30,6 +31,14 @@ export default defineExperience([
     },
     workplace_name: "Hexo",
     workplace_title: "Lead Full Stack Consultant",
+    stack: [
+      "typescript",
+      "next",
+      "firebase",
+      "python",
+      "fastapi",
+      "postgresql",
+    ],
   },
   {
     id: "anduin",
@@ -40,6 +49,7 @@ export default defineExperience([
     },
     workplace_name: "Anduin",
     workplace_title: "Contractor",
+    stack: ["python"],
   },
   {
     id: "hyphen",
@@ -55,6 +65,16 @@ export default defineExperience([
     },
     workplace_name: "Hyphen",
     workplace_title: "Full Stack Developer",
+    stack: [
+      "typescript",
+      "firebase",
+      "supabase",
+      "pipedream",
+      "retool",
+      "razorpay",
+      "zoho",
+      "flutter",
+    ],
   },
   {
     id: "tcs",
@@ -66,5 +86,6 @@ export default defineExperience([
     },
     workplace_name: "TCS",
     workplace_title: "Software Engineer",
+    stack: ["gcp", "python", "apache-beam"],
   },
 ]);

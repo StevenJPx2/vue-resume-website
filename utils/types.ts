@@ -1,5 +1,6 @@
 import type { ParsedContent } from "@nuxt/content/dist/runtime/types";
 import type { MaybeRef } from "@vueuse/core";
+import { TechnologyKeys } from "~/repos/collections/technologies";
 
 export type Pages = "home" | "blog" | "project";
 export type MaybeRefHTMLElement = MaybeRef<HTMLElement | null | undefined>;
@@ -68,5 +69,6 @@ export interface Experience {
   workplace_title: string;
   from: string;
   to?: string;
-  description: Pick<BlogPost, "body" | "slug">;
+  description: { body: string };
+  stack: TechnologyKeys[];
 }
