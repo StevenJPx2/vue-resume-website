@@ -15,7 +15,11 @@ const slugifiedText = props.text
     class="border-t border-b border-accent py-[1vw] mb-[21vw] md:mb-[15vw]"
     gap="12vw"
   >
-    <h2 :id="slugifiedText" class="md:text-[3.1vw] mr-[12vw]" v-for="_ in 10">
+    <h2
+      :key="`${slugifiedText}-${i}`"
+      class="md:text-[3.1vw] mr-[12vw]"
+      v-for="i in 10"
+    >
       {{ text.toUpperCase() }}
     </h2>
   </infinite-marquee>

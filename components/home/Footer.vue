@@ -8,18 +8,19 @@ const props = defineProps({
 const tagline = ref<HTMLElement>();
 const { to } = useGsap();
 
-useWordSlideInAnimation(tagline, {
-  splitBy: "lines, words, chars",
-  select: "chars",
-  scrollTrigger: {
-    trigger: tagline.value,
-    start: "80% 80%",
-    end: "bottom 20%",
-  },
-  onComplete() {
-    to(".yellow-blob", { duration: 2, autoAlpha: 1 });
-  },
-  zoom: true,
+tryOnMounted(() => {
+  to(".yellow-blob--footer", {
+    duration: 2,
+    ease: "linear",
+    autoAlpha: 1,
+    immediateRender: true,
+    scrollTrigger: {
+      trigger: tagline.value,
+    },
+    onComplete() {
+      console.log("hello");
+    },
+  });
 });
 
 const store = useMainStore();
@@ -27,10 +28,10 @@ const store = useMainStore();
 <template>
   <section class="h-screen relative">
     <yellow-blob
-      class="pointer-events-none yellow-blob svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%] z-[-1]"
+      class="pointer-events-none yellow-blob opacity-0 yellow-blob--footer svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%] z-[-1]"
     />
     <yellow-blob
-      class="pointer-events-none yellow-blob svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%] z-[-1]"
+      class="pointer-events-none yellow-blob opacity-0 yellow-blob--footer svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%] z-[-1]"
     />
     <div
       class="mt-[15vw] h-full grid grid-rows-[max-content,max-content] place-content-center gap-y-[5vw] md:gap-y-[3vw]"

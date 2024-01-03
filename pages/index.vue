@@ -71,10 +71,10 @@ useSeoHead({
         </splide-track>
 
         <div class="splide__arrows">
-          <button class="splide__arrow splide__arrow--prev">
+          <button type="button" class="splide__arrow splide__arrow--prev">
             <icon name="heroicons:chevron-right" />
           </button>
-          <button class="splide__arrow splide__arrow--next">
+          <button type="button" class="splide__arrow splide__arrow--next">
             <icon name="heroicons:chevron-right" />
           </button>
         </div>

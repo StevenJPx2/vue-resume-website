@@ -80,9 +80,9 @@ const flipPage = async (i: number) => {
         class="flex-1 h-full relative isolate bg-primary group"
         @click="flipPage(index)"
       >
-        <h4 class="mix-blend-exclusion text-primary">
+        <p class="h4 mix-blend-exclusion text-primary">
           {{ knownStuff[setIndex(index)].category }}
-        </h4>
+        </p>
         <div
           class="w-full h-full origin-bottom scale-y-[2%] rounded group-hover:scale-y-100 transition-transform duration-300 ease-in-out-expo bg-base-color z-[-1] absolute top-0 left-0"
         />

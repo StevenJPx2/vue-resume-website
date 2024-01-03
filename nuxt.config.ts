@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     public: {
       siteUrl: "https://stevenjohn.co",
       siteName: "Steven John",
+      lang: "en-IN",
       siteDescription: "",
       language: "en-IN",
       titleSeparator: "|",

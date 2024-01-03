@@ -63,6 +63,6 @@ watch([isLoading], ([val]) => {
     ref="loadingContainer"
     class="w-full h-screen bg-base-color absolute top-0 z-50 grid place-content-center"
   >
-    <h1 class="overflow-hidden" ref="loadingText">Loading</h1>
+    <h2 class="h1 overflow-hidden" ref="loadingText">Loading</h2>
   </div>
 </template>

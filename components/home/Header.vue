@@ -40,7 +40,7 @@ const runAnimation = (val: Store) => {
             autoAlpha: 1,
             y: 0,
           })
-            .to(".yellow-blob", { duration: 2, autoAlpha: 1 }, "+=0")
+            .to(".yellow-blob--header", { duration: 2, autoAlpha: 1 }, "+=0")
             .to(
               ".pop-in",
               {
@@ -52,7 +52,6 @@ const runAnimation = (val: Store) => {
               1,
             );
         });
-        console.log("hello");
       },
       zoom: true,
     });
@@ -64,10 +63,10 @@ watch(() => store.value, runAnimation, { deep: true });
 <template>
   <div class="h-screen w-full relative">
     <yellow-blob
-      class="yellow-blob svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]"
+      class="yellow-blob yellow-blob--header svgo absolute scale-[1.5] top-[-13%] md:scale-100 md:left-[-28%] md:top-[-27%]"
     />
     <yellow-blob
-      class="yellow-blob svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]"
+      class="yellow-blob yellow-blob--header svgo absolute scale-[1.5] bottom-[-13%] md:scale-100 md:right-[-28%] md:bottom-[-27%]"
     />
     <div class="wrapper h-screen place-content-center">
       <div
