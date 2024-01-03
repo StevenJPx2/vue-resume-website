@@ -31,7 +31,12 @@ const experienceTechnologies = props.stack.map((key) => technologies[key]);
         :name="tech.icon_name"
         class="[&>path]:fill-current"
       />
-      <small v-else class="w-max">
+      <small
+        :class="{
+          'w-max text-[4vw] md:text-[1.1vw]': true,
+          'sr-only': !!tech.icon_name,
+        }"
+      >
         {{ tech.name }}
       </small>
     </nuxt-link>

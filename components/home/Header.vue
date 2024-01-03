@@ -87,6 +87,8 @@ watch(() => store.value, runAnimation, { deep: true });
           placeholder
           sizes="100vw md:50vw lg:33vw"
           quality="85"
+          format="webp"
+          alt="Steven John"
           :src="props.img"
           id="header-image"
           class="w-full"
