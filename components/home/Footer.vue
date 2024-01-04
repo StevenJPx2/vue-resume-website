@@ -54,6 +54,7 @@ const store = useMainStore();
           :external="true"
           class="opacity-90 hover:opacity-100 text-[9vw] md:text-[4vw] transition-transform duration-300 ease-out-quart hover:scale-125"
         >
+          <small class="sr-only">{{ id }}</small>
           <icon :name="icon" />
         </nuxt-link>
       </div>

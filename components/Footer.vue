@@ -19,10 +19,16 @@ const footer = computed(() => store.value.footer);
       <icon name="heroicons-solid:heart" />
       <p>using</p>
       <nuxt-link to="https://nuxt.com">
+        <small class="sr-only">Nuxt</small>
         <icon name="logos:nuxt-icon" class="[&>path]:fill-current" />
       </nuxt-link>
-      <p>and</p>
-      <icon name="simple-icons:directus" />
+      <template v-show="false">
+        <p>and</p>
+        <nuxt-link to="https://directus.io">
+          <small class="sr-only">Directus</small>
+          <icon name="simple-icons:directus" />
+        </nuxt-link>
+      </template>
     </div>
 
     <div
@@ -36,6 +42,7 @@ const footer = computed(() => store.value.footer);
         :external="true"
         class="opacity-90 hover:opacity-100 text-[9vw] text-base-color md:text-[1.6vw] transition-transform duration-300 ease-out-quart hover:scale-125"
       >
+        <small class="sr-only">{{ id }}</small>
         <icon :name="icon" />
       </nuxt-link>
     </div>
