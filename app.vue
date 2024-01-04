@@ -15,6 +15,7 @@ tryOnMounted(() => {
 </script>
 
 <template>
+  <Html lang="en-IN"></Html>
   <nuxt-layout>
     <seo-kit />
     <nuxt-page />
