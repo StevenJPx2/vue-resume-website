@@ -55,10 +55,14 @@ const { from, to } = {
         class="overflow-hidden prose p-3 pb-9 relative"
         :class="{ 'hover:bg-accent/10': hasInitialOverflow }"
       >
-        <div ref="body" v-html="bodyContent" />
         <div
-          v-if="hasInitialOverflow"
-          class="absolute bottom-0 from-base-color from-25% w-full h-16 bg-gradient-to-t"
+          :style="{
+            maskImage: hasInitialOverflow
+              ? 'linear-gradient(to bottom, var(--color-base) 25%, transparent 90%)'
+              : 'none',
+          }"
+          ref="body"
+          v-html="bodyContent"
         />
       </article>
 
