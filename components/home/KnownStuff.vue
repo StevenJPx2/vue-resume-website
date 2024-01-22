@@ -88,7 +88,7 @@ const flipPage = async (i: number) => {
         />
       </button>
     </div>
-    <transition-offset
+    <offset-transition
       class="!absolute inset-0 [&>*]:pointer-events-auto pointer-events-none z-1"
       :run="runTransition"
       :direction="origin"

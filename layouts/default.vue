@@ -36,9 +36,9 @@ function enterFunction() {
         @enter="enterFunction"
         @before-leave="leaveFunction"
       >
-        <smooth-scroll>
+        <locomotive>
           <component :is="Component" :key="route.fullPath" />
-        </smooth-scroll>
+        </locomotive>
       </transition>
     </router-view>
     <Footer />
