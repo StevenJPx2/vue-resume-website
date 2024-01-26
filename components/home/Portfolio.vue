@@ -29,10 +29,19 @@ const images = designs.map((file, i) => ({
     >
       <SwiperSlide
         class="h-full max-w-full object-contain"
-        v-for="image in images"
-        :key="image.src"
+        v-for="{ src, alt } in images"
+        :key="src"
       >
-        <img class="rounded-md" :src="image.src" :alt="image.alt" />
+        <nuxt-img
+          placeholder
+          sizes="90vw md:50vw lg:33vw"
+          quality="85"
+          format="webp"
+          loading="lazy"
+          class="rounded-md"
+          :src
+          :alt
+        />
       </SwiperSlide>
     </Swiper>
   </div>
