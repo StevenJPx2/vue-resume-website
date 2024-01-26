@@ -10,9 +10,9 @@ export default <Config>{
         hack: ["Hack", "monospace"],
       },
       colors: {
-        "base-color": { DEFAULT: "var(--color-base)" },
-        primary: { DEFAULT: "var(--color-primary)" },
-        accent: { DEFAULT: "var(--color-accent)" },
+        "base-color": "var(--color-base)",
+        primary: "var(--color-primary)",
+        accent: "var(--color-accent)",
       },
       transitionTimingFunction: {
         css: "ease",
@@ -117,3 +117,4 @@ export default <Config>{
     },
   },
 };
+

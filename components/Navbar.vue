@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const links: { label: string; link: string; visible: boolean }[] = [
   { label: "Home", link: "/", visible: true },
+  { label: "Designs", link: "/designs", visible: true },
   { label: "Blog", link: "/blog", visible: false },
   { label: "Projects", link: "/projects", visible: false },
 ];
@@ -13,7 +14,7 @@ const links: { label: string; link: string; visible: boolean }[] = [
   >
     <nuxt-link
       to="/"
-      class="text-primary font-high-con text-[10vw] md:text-[5vw]"
+      class="text-primary font-high-con text-[10vw] md:text-[5vw] delay-75 hover:scale-125 transition duration-700 ease-in-out-quart origin-top-left"
     >
       steven john
     </nuxt-link>

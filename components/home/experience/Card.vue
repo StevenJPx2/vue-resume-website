@@ -9,21 +9,9 @@ const props = defineProps({
 
 const body = ref<HTMLElement>();
 const bodyContent = marked.parse(props.data.description.body);
-const hasInitialOverflow = ref(true);
 const isReadMoreModalRevealed = ref(false);
 
-tryOnMounted(() => {
-  const { hasOverflow } = useLineClamp(body);
-
-  hasInitialOverflow.value = hasOverflow.value;
-
-  watchOnce(
-    () => hasOverflow.value,
-    (val) => {
-      hasInitialOverflow.value = val;
-    },
-  );
-});
+const { hasOverflow } = useLineClamp(body);
 
 const { from, to } = {
   from: useDateFormat(props.data.from, "MMM, YYYY").value,
@@ -34,7 +22,7 @@ const { from, to } = {
 </script>
 
 <template>
-  <div class="card grid">
+  <div class="card grid grid-rows-[auto,max-content]">
     <div class="card--body">
       <div>
         <h3 class="text-[30vw] md:text-[9vw] leading-[0.9]">
@@ -52,24 +40,19 @@ const { from, to } = {
       </div>
 
       <article
-        class="overflow-hidden prose p-3 pb-9 relative"
-        :class="{ 'hover:bg-accent/10': hasInitialOverflow }"
+        class="overflow-hidden prose p-3 pb-9 relative isolate"
+        :class="{
+          'hover:bg-accent/10 [mask:linear-gradient(to_bottom,black_40%,transparent_100%)]':
+            hasOverflow,
+        }"
       >
-        <div
-          :style="{
-            maskImage: hasInitialOverflow
-              ? 'linear-gradient(to bottom, var(--color-base) 25%, transparent 90%)'
-              : 'none',
-          }"
-          ref="body"
-          v-html="bodyContent"
-        />
+        <div ref="body" v-html="bodyContent" />
       </article>
 
       <button
         @click="isReadMoreModalRevealed = true"
         class="btn btn-hoverable justify-self-center"
-        v-if="hasInitialOverflow"
+        v-if="hasOverflow"
       >
         Read more
       </button>

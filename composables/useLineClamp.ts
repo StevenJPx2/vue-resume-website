@@ -1,25 +1,30 @@
-import { Ref } from "vue";
+import { MaybeComputedElementRef } from "@vueuse/core";
 
-const isLarger = (el: HTMLElement) => el.clientHeight > (el.parentElement?.clientHeight ?? 0)
-
-const replaceText = (el: HTMLElement, text: string) => {
-  el.innerHTML = text;
-  let replaced = false;
-  while (isLarger(el)) {
-    el.innerHTML = el.innerHTML.replace(/\W*\s(\S)*$/, '...');
-    replaced = true;
-  }
-  return replaced;
-}
-
-export default function(el: Ref<HTMLElement | null | undefined>) {
-  const unrefedEl = el.value!;
-  const initalText = unrefedEl.innerHTML;
+export default function (
+  el: MaybeComputedElementRef<HTMLElement | null | undefined>,
+) {
+  const initialText = ref<string>();
   const hasOverflow = ref(false);
 
-  useTimeoutFn(() => {
-    hasOverflow.value = replaceText(unrefedEl, initalText);
-  }, 0.1);
+  const { height, width } = useWindowSize();
+
+  watch(
+    () => [unrefElement(el), height.value, width.value] as const,
+    ([el]) => {
+      if (!el) return;
+      if (!initialText.value) initialText.value = el.innerHTML;
+      else el.innerHTML = initialText.value;
+
+      if (el.clientHeight <= (el.parentElement?.clientHeight ?? 0)) {
+        if (hasOverflow.value) hasOverflow.value = false;
+      }
+
+      while (el.clientHeight > (el.parentElement?.clientHeight ?? 0)) {
+        el.innerHTML = el.innerHTML.replace(/\W*\s(\S)*$/, "...");
+        if (!hasOverflow.value) hasOverflow.value = true;
+      }
+    },
+  );
 
   return { hasOverflow };
 }

@@ -4,12 +4,15 @@ import imagesLoaded from "imagesloaded";
 const store = useMainStore();
 
 const isLoading = $isLoading(store);
-
-tryOnMounted(() => {
+const areImagesLoading = () => {
+  window.scrollTo(0, 0);
   imagesLoaded(document.querySelectorAll("img"), { background: true }, () => {
     isLoading.value = false;
   });
-});
+};
+
+tryOnMounted(areImagesLoading);
+whenever(() => isLoading.value, areImagesLoading);
 
 //* include .splide__pagination
 </script>
@@ -128,10 +131,18 @@ $color-base: #0e0e0e;
   }
 
   .btn {
-    @apply rounded-full bg-white/[0.01] uppercase backdrop-blur-sm w-fit h-fit border border-accent text-center justify-center flex text-[4vw] py-[2vw] px-[8vw];
+    @apply rounded-full bg-white/[0.01] uppercase backdrop-blur-sm w-fit h-fit border border-accent text-center items-center justify-center flex text-[4vw] py-[2vw] px-[8vw];
 
     @screen md {
       @apply py-[0.6vw] px-[2.2vw] text-[1.2vw];
+    }
+
+    &-sm {
+      @apply text-[2.5vw] py-[1.5vw] px-[6vw];
+
+      @screen md {
+        @apply text-[0.8vw] py-[0.5vw] px-[1.8vw];
+      }
     }
 
     &-hoverable {
@@ -390,6 +401,43 @@ $color-base: #0e0e0e;
           @apply opacity-0;
         }
       }
+    }
+  }
+}
+
+.splide {
+  &__arrows {
+    @apply absolute;
+    @apply inset-0;
+    @apply pointer-events-none;
+  }
+
+  &__arrow {
+    @apply pointer-events-auto;
+    border-radius: 0 !important;
+    background: transparent !important;
+    height: 100% !important;
+    width: 10vw !important;
+
+    svg {
+      font-size: 24vw;
+      height: 24vw !important;
+      width: 24vw !important;
+
+      path {
+        stroke-width: 0.7 !important;
+        stroke-linecap: square !important;
+        stroke-linejoin: square !important;
+      }
+
+      @screen md {
+        height: 6vw !important;
+        width: 6vw !important;
+      }
+    }
+
+    @screen md {
+      @apply w-[3vw];
     }
   }
 }

@@ -31,17 +31,29 @@ useSeoHead({
       class="md:mb-[20vw] mb-[23vw]"
     />
 
-    <app-infinite-marquee
-      text="Who I am"
-      direction="left"
-      :target="105.5"
-      class="-rotate-3"
-    />
+    <app-infinite-marquee text="Who I am" direction="left" class="-rotate-3" />
     <section
       class="grid md:grid-cols-2 gap-[15vw] md:gap-[5vw] mb-[20vw] md:my-[12vw] items-center grid-rows-[max-content]"
       :class="[commonPadding]"
     >
-      <p class="whitespace-pre-wrap">
+      <p
+        v-split-animate="{
+          baked: true,
+          options: {
+            duration: 1.5,
+            scrollAnimationOptions: { start: '-=30% 100%' },
+            animationOptions: { translate: true, rotate: true },
+            splitOptions: {
+              wrapping: {
+                wrapType: 'span',
+                wrapClass: 'inline-block overflow-hidden',
+                select: 'lines',
+              },
+            },
+          },
+        }"
+        class="whitespace-pre-wrap"
+      >
         {{ homeData.about_me }}
       </p>
       <home-known-stuff />
@@ -49,9 +61,8 @@ useSeoHead({
 
     <template v-if="experience.length > 0">
       <app-infinite-marquee
-        text=" Experience"
-        direction="left"
-        :target="105.5"
+        text="Experience"
+        direction="right"
         class="-rotate-3"
       />
       <splide
@@ -85,7 +96,6 @@ useSeoHead({
       <app-infinite-marquee
         text="My Philosophy"
         direction="right"
-        :target="105.5"
         class="rotate-3"
       />
       <section class="md:columns-2 gap-[5vw] mb-[3vw]" :class="[commonPadding]">
@@ -105,45 +115,9 @@ useSeoHead({
       </section>
     </template>
 
+    <app-infinite-marquee text="Design" direction="right" class="rotate-3" />
+    <HomePortfolio />
+
     <home-footer :tagline="homeData!.footer_tagline" />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.splide {
-  &__arrows {
-    @apply absolute;
-    @apply inset-0;
-    @apply pointer-events-none;
-  }
-
-  &__arrow {
-    @apply pointer-events-auto;
-    @apply rounded-none;
-    @apply bg-transparent;
-    @apply h-full;
-    @apply w-[10vw];
-
-    svg {
-      font-size: 24vw;
-      height: 24vw !important;
-      width: 24vw !important;
-
-      :deep(path) {
-        stroke-width: 0.7 !important;
-        stroke-linecap: square !important;
-        stroke-linejoin: square !important;
-      }
-
-      @screen md {
-        height: 6vw !important;
-        width: 6vw !important;
-      }
-    }
-
-    @screen md {
-      @apply w-[3vw];
-    }
-  }
-}
-</style>

@@ -8,25 +8,29 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^1.0.6",
     "@nuxtjs/tailwindcss": "^6.10.3",
     "@types/imagesloaded": "^4.1.6",
-    "nuxt": "^3.9.0",
+    "nuxt": "^3.9.3",
+    "nuxt-prepare": "^1.1.0",
     "nuxt-svgo": "^3.7.0",
+    "nuxt-swiper": "latest",
     "sass": "^1.69.6",
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@fdcn/popcorn": "^0.0.7",
+    "@fdcn/popcorn": "^0.0.8",
     "@nuxt/content": "^2.10.0",
     "@pinia/nuxt": "^0.5.1",
     "@splidejs/vue-splide": "^0.6.12",
+    "@vueuse/components": "^10.7.2",
     "change-case": "^5.3.0",
-    "floating-vue": "^2.0.0-beta.24",
+    "floating-vue": "^5.2.0",
     "imagesloaded": "^5.0.0",
     "locomotive-scroll": "^5.0.0-beta.11",
     "marked": "^9.1.6",
     "pathe": "^1.1.1",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "radix-vue": "^1.3.2",
+    "vue": "^3.4.15"
   }
 }

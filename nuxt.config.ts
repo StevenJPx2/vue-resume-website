@@ -50,8 +50,18 @@ export default defineNuxtConfig({
       ],
     },
   },
-  modules: ["nuxt-svgo", "@nuxt/content", "floating-vue/nuxt"],
+
+  modules: [
+    "nuxt-svgo",
+    "@nuxt/content",
+    "floating-vue/nuxt",
+    "nuxt-swiper",
+    "radix-vue/nuxt",
+    "nuxt-prepare",
+  ],
+
   css: [
+    "@/assets/fonts/highrise/stylesheet.css",
     "@/assets/fonts/highrise/stylesheet.css",
     "@/assets/fonts/neue-montreal/stylesheet.css",
   ],
