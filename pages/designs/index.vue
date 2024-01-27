@@ -19,9 +19,7 @@ const activeImage = ref<number>();
       >
         <nuxt-img
           class="rounded-md w-full hover:scale-110 transition duration-300 ease-in-out-cubic"
-          format="webp"
           sizes="90vw md:50vw lg:33vw"
-          :quality="85"
           placeholder
           loading="lazy"
           :src
@@ -57,10 +55,9 @@ const activeImage = ref<number>();
             >
               <nuxt-img
                 class="rounded-md h-[80vh] w-full object-contain"
-                format="webp"
                 sizes="90vw md:80vw"
-                quality="85"
                 placeholder
+                preload
                 loading="lazy"
                 :src
                 :alt

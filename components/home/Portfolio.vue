@@ -35,8 +35,6 @@ const images = designs.map((file, i) => ({
         <nuxt-img
           placeholder
           sizes="90vw md:50vw lg:33vw"
-          quality="85"
-          format="webp"
           loading="lazy"
           class="rounded-md"
           :src
