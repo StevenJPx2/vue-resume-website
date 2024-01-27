@@ -36,7 +36,7 @@ function enterFunction() {
         @enter="enterFunction"
         @before-leave="leaveFunction"
       >
-        <locomotive>
+        <locomotive :options="{ lenisOptions: { smoothTouch: true } }">
           <component :is="Component" :key="route.fullPath" />
         </locomotive>
       </transition>
