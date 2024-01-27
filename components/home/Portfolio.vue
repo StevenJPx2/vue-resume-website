@@ -32,11 +32,11 @@ const images = designs.map((file, i) => ({
         v-for="{ src, alt } in images"
         :key="src"
       >
-        <nuxt-img
-          placeholder
-          sizes="90vw md:50vw lg:33vw"
-          loading="lazy"
-          class="rounded-md"
+        <nuxt-picture
+          :imgAttrs="{
+            ['class']: 'rounded-md',
+            loading: 'lazy',
+          }"
           :src
           :alt
         />

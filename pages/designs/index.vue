@@ -17,11 +17,12 @@ const activeImage = ref<number>();
         :key="src"
         @click="activeImage = i"
       >
-        <nuxt-img
-          class="rounded-md w-full hover:scale-110 transition duration-300 ease-in-out-cubic"
-          sizes="90vw md:50vw lg:33vw"
-          placeholder
-          loading="lazy"
+        <nuxt-picture
+          :imgAttrs="{
+            ['class']:
+              'rounded-md w-full hover:scale-110 transition duration-300 ease-in-out-cubic',
+            loading: 'lazy',
+          }"
           :src
           :alt
         />
@@ -53,12 +54,11 @@ const activeImage = ref<number>();
               v-for="{ src, alt } in images"
               :key="src"
             >
-              <nuxt-img
-                class="rounded-md h-[80vh] w-full object-contain"
-                sizes="90vw md:80vw"
-                placeholder
-                preload
-                loading="lazy"
+              <nuxt-picture
+                :imgAttrs="{
+                  ['class']: 'rounded-md h-[80vh] w-full object-contain',
+                  loading: 'lazy',
+                }"
                 :src
                 :alt
               />

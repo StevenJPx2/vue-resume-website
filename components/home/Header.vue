@@ -85,6 +85,7 @@ watch(() => store.value, runAnimation, { deep: true });
         <nuxt-img
           preload
           placeholder
+          format="webp"
           sizes="100vw md:50vw lg:33vw"
           alt="Steven John"
           :src="props.img"
