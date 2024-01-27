@@ -3,7 +3,12 @@ export default defineNuxtConfig({
   extends: ["@fdcn/popcorn"],
   devtools: { enabled: true },
   routeRules: { "/": { static: true } },
-  image: { domains: ["i.imgur.com"], format: ["avif", "webp"], quality: 85 },
+  image: {
+    domains: ["i.imgur.com"],
+    alias: { imgur: "https://i.imgur.com" },
+    format: ["avif", "webp"],
+    quality: 85,
+  },
   runtimeConfig: {
     public: {
       siteUrl: "https://stevenjohn.co",

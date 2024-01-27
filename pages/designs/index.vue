@@ -16,6 +16,7 @@ const activeImage = ref<number>();
         v-for="({ src, alt }, i) in images"
         :key="src"
         @click="activeImage = i"
+        type="button"
       >
         <nuxt-picture
           :imgAttrs="{
