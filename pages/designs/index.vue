@@ -61,6 +61,7 @@ const activeImage = ref<number>();
                 sizes="90vw md:80vw"
                 quality="85"
                 placeholder
+                loading="lazy"
                 :src
                 :alt
               />
