@@ -56,7 +56,7 @@ const activeImage = ref<number>();
               :key="src"
             >
               <nuxt-img
-                class="rounded-md h-[80vh] w-full object-scale-down"
+                class="rounded-md h-[80vh] w-full object-contain"
                 format="webp"
                 sizes="90vw md:80vw"
                 quality="85"
