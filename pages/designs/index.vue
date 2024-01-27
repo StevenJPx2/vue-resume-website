@@ -48,7 +48,7 @@ const activeImage = ref<number>();
             :initial-slide="activeImage"
             effect="coverflow"
             :coverflow-effect="{ slideShadows: false }"
-            class="w-full max-w-[80vw] place-self-center"
+            class="w-full max-w-[80vw] place-self-center pointer-events-none"
           >
             <SwiperSlide
               class="w-full h-[80vh] grid place-items-center"
