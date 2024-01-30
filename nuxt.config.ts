@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     format: ["avif", "webp"],
     quality: 85,
   },
+  delayHydration: { mode: "manual" },
   runtimeConfig: {
     public: {
       siteUrl: "https://stevenjohn.co",

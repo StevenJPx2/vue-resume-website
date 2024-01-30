@@ -10,7 +10,9 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.3",
     "@types/imagesloaded": "^4.1.6",
+    "@types/masonry-layout": "^4.2.7",
     "fdir": "^6.1.1",
+    "masonry-layout": "^4.2.2",
     "nuxt": "^3.9.3",
     "nuxt-prepare": "^1.1.0",
     "nuxt-svgo": "^3.7.0",

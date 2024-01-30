@@ -5,23 +5,28 @@ const images = designs.map((file, i) => ({
   alt: `Image ${i}`,
 }));
 const activeImage = ref<number>();
+const masonry = ref<HTMLElement>();
+
+useMasonry(masonry, { columnWidth: "200", itemSelector: ".item" });
 </script>
 <template>
   <main :class="[commonPadding]">
     <h1>Designs</h1>
     <div
-      class="grid grid-cols-[repeat(auto-fill,minmax(max(30%,320px),1fr))] grid-rows-[masonry] justify-items-center gap-[5vw] md:gap-[2vw]"
+      ref="masonry"
+      class="grid w-full h-full mx-auto justify-items-center gap-[5vw] md:gap-[2vw]"
     >
       <button
         v-for="({ src, alt }, i) in images"
         :key="src"
         @click="activeImage = i"
         type="button"
+        class="item"
       >
         <nuxt-picture
           :imgAttrs="{
             ['class']:
-              'rounded-md w-full hover:scale-110 transition duration-300 ease-in-out-cubic',
+              'rounded-md min-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic',
             loading: 'lazy',
           }"
           :src
@@ -29,6 +34,7 @@ const activeImage = ref<number>();
         />
       </button>
     </div>
+
     <Teleport to="body">
       <div
         v-if="activeImage !== undefined"
