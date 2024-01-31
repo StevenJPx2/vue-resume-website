@@ -6,7 +6,7 @@ const store = useMainStore();
 const isLoading = $isLoading(store);
 const areImagesLoading = () => {
   window.scrollTo(0, 0);
-  imagesLoaded(document.querySelectorAll("img"), { background: true }, () => {
+  imagesLoaded(document.querySelectorAll("img"), () => {
     isLoading.value = false;
   });
 };
