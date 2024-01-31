@@ -35,8 +35,9 @@ const images = designs.map((file, i) => ({
         <nuxt-picture
           :imgAttrs="{
             ['class']: 'rounded-md',
-            loading: 'lazy',
           }"
+          sizes="sm:50vw md:40vw lg:30vw xl:20vw"
+          loading="lazy"
           :src
           :alt
         />

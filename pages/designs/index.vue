@@ -6,7 +6,16 @@ const images = designs.map((file, i) => ({
 }));
 const activeImage = ref<number>();
 
-useMasonry("#masonry", { trueOrder: true, margin: 20 });
+useMasonry("#masonry", {
+  trueOrder: true,
+  margin: 20,
+  breakAt: {
+    1200: 5,
+    940: 3,
+    520: 2,
+    400: 1,
+  },
+});
 </script>
 
 <template>
@@ -24,8 +33,9 @@ useMasonry("#masonry", { trueOrder: true, margin: 20 });
           :imgAttrs="{
             ['class']:
               'rounded-md max-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2',
-            loading: 'lazy',
           }"
+          loading="lazy"
+          sizes="sm:50vw md:40vw lg:30vw xl:20vw"
           :src
           :alt
         />
@@ -61,8 +71,9 @@ useMasonry("#masonry", { trueOrder: true, margin: 20 });
               <nuxt-picture
                 :imgAttrs="{
                   ['class']: 'rounded-md h-[80vh] w-full object-contain',
-                  loading: 'lazy',
                 }"
+                loading="lazy"
+                sizes="sm:50vw md:40vw lg:30vw xl:20vw"
                 :src
                 :alt
               />
