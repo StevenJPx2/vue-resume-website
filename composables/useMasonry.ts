@@ -1,33 +1,27 @@
-import { MaybeComputedElementRef } from "@vueuse/core";
-import type Masonry from "masonry-layout";
-import type { Options } from "masonry-layout";
-import imagesLoaded from "imagesloaded";
+import type { Options, default as Macy } from "macy";
 
-export default function (el: MaybeComputedElementRef, options: Options) {
-  const masonryRef = ref<Masonry>();
-  let imgLoad: ReturnType<typeof imagesLoaded>;
-
-  const reloadLayout = () => {
-    masonryRef.value?.layout?.();
-  };
+export default function (
+  el: MaybeRefOrGetter<string>,
+  options: Omit<Options, "container">,
+) {
+  const masonryRef = ref<Macy>();
 
   watch(
-    () => unrefElement(el),
+    () => toValue(el),
     async (el) => {
       if (!el) return;
-      masonryRef.value = new (await import("masonry-layout")).default(
-        el,
-        options,
-      );
-      imgLoad = imagesLoaded(el.querySelectorAll("img"));
-      imgLoad.on("progress", reloadLayout);
+      tryOnMounted(async () => {
+        masonryRef.value = new (await import("macy")).default({
+          ...options,
+          container: el,
+        });
+      });
     },
     { flush: "post", immediate: true },
   );
 
   tryOnScopeDispose(() => {
-    masonryRef.value?.destroy?.();
-    imgLoad?.off?.("progress", reloadLayout);
+    masonryRef.value?.remove?.();
   });
 
   return masonryRef;

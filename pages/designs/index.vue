@@ -5,19 +5,14 @@ const images = designs.map((file, i) => ({
   alt: `Image ${i}`,
 }));
 const activeImage = ref<number>();
-const masonry = ref<HTMLElement>();
 
-useMasonry(masonry, {
-  columnWidth: 80,
-  itemSelector: ".item",
-  fitWidth: true,
-  gutter: 8,
-});
+useMasonry("#masonry", { trueOrder: true, margin: 20 });
 </script>
+
 <template>
   <main :class="[commonPadding]">
     <h1>Designs</h1>
-    <div ref="masonry" class="w-full h-full mx-auto justify-items-center">
+    <div id="masonry" class="w-full h-full mx-auto justify-items-center">
       <button
         v-for="({ src, alt }, i) in images"
         :key="src"

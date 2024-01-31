@@ -10,9 +10,7 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.3",
     "@types/imagesloaded": "^4.1.6",
-    "@types/masonry-layout": "^4.2.7",
     "fdir": "^6.1.1",
-    "masonry-layout": "^4.2.2",
     "nuxt": "^3.10.0",
     "nuxt-prepare": "^1.1.0",
     "nuxt-svgo": "^3.7.0",
@@ -29,6 +27,7 @@
     "change-case": "^5.3.0",
     "imagesloaded": "^5.0.0",
     "locomotive-scroll": "^5.0.0-beta.11",
+    "macy": "^2.5.1",
     "marked": "^9.1.6",
     "pathe": "^1.1.1",
     "pinia": "^2.1.7",
