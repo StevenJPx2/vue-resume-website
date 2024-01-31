@@ -32,12 +32,13 @@ const images = designs.map((file, i) => ({
         v-for="{ src, alt } in images"
         :key="src"
       >
-        <nuxt-picture
-          :imgAttrs="{
-            ['class']: 'rounded-md',
-          }"
+        <nuxt-img
+          class="rounded-md"
           sizes="sm:50vw md:40vw lg:30vw xl:20vw"
           loading="lazy"
+          placeholder
+          quality="80"
+          format="webp"
           :src
           :alt
         />

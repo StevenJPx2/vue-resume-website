@@ -29,13 +29,13 @@ useMasonry("#masonry", {
         type="button"
         class="item"
       >
-        <nuxt-picture
-          :imgAttrs="{
-            ['class']:
-              'rounded-md max-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2',
-          }"
+        <nuxt-img
+          class="rounded-md max-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2"
           loading="lazy"
           sizes="sm:50vw md:40vw lg:30vw xl:20vw"
+          placeholder
+          quality="80"
+          format="webp"
           :src
           :alt
         />
@@ -68,12 +68,12 @@ useMasonry("#masonry", {
               v-for="{ src, alt } in images"
               :key="src"
             >
-              <nuxt-picture
-                :imgAttrs="{
-                  ['class']: 'rounded-md h-[80vh] w-full object-contain',
-                }"
+              <nuxt-img
+                class="rounded-md h-[80vh] w-full object-contain"
                 loading="lazy"
                 sizes="sm:50vw md:40vw lg:30vw xl:20vw"
+                quality="80"
+                format="webp"
                 :src
                 :alt
               />
