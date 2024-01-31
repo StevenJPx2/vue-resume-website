@@ -60,7 +60,6 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-svgo",
     "@nuxt/content",
-    "floating-vue/nuxt",
     "nuxt-swiper",
     "radix-vue/nuxt",
     "nuxt-prepare",

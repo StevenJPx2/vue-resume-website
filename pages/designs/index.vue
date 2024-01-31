@@ -7,15 +7,17 @@ const images = designs.map((file, i) => ({
 const activeImage = ref<number>();
 const masonry = ref<HTMLElement>();
 
-useMasonry(masonry, { columnWidth: "200", itemSelector: ".item" });
+useMasonry(masonry, {
+  columnWidth: 80,
+  itemSelector: ".item",
+  fitWidth: true,
+  gutter: 8,
+});
 </script>
 <template>
   <main :class="[commonPadding]">
     <h1>Designs</h1>
-    <div
-      ref="masonry"
-      class="grid w-full h-full mx-auto justify-items-center gap-[5vw] md:gap-[2vw]"
-    >
+    <div ref="masonry" class="w-full h-full mx-auto justify-items-center">
       <button
         v-for="({ src, alt }, i) in images"
         :key="src"
@@ -26,7 +28,7 @@ useMasonry(masonry, { columnWidth: "200", itemSelector: ".item" });
         <nuxt-picture
           :imgAttrs="{
             ['class']:
-              'rounded-md min-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic',
+              'rounded-md max-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2',
             loading: 'lazy',
           }"
           :src

@@ -5,6 +5,7 @@ import { knownStuff } from "~~/repos";
 type Origin = "left" | "right";
 const origin = ref<Origin>("left");
 const runTransition = ref(false);
+const body = ref<HTMLElement | null>(null);
 
 const index = ref(0);
 const setIndex = (n = 0) => {
@@ -19,15 +20,18 @@ const flipPage = async (i: number) => {
   origin.value = i === -1 ? "left" : "right";
   runTransition.value = true;
   await promiseTimeout(500);
+  body.value?.classList.add("!max-h-[101vh]");
   index.value = setIndex(i);
   await promiseTimeout(500);
   runTransition.value = true;
+  body.value?.classList.remove("!max-h-[101vh]");
 };
 </script>
 
 <template>
   <div
-    class="rounded-[2vw] border-accent transition-all border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform isolate"
+    class="rounded-[2vw] border-accent max-h-[100vh] ease-in-quart duration-200 transition-all border bg-primary text-base text-base-color py-[3vw] px-[2vw] shadow-primary shadow-2xl grid grid-rows-[auto,max-content,auto] relative overflow-hidden transform isolate"
+    ref="body"
   >
     <h3 class="text-center mb-[3vw] md:mb-[2vw]">
       {{ knownStuff[index].category }}
