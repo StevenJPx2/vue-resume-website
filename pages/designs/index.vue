@@ -30,7 +30,7 @@ useMasonry("#masonry", {
         class="item"
       >
         <nuxt-img
-          class="rounded-md max-w-[320px] w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2"
+          class="rounded-md w-full mx-auto object-center object-contain hover:scale-110 transition duration-300 ease-in-out-cubic mb-2"
           loading="lazy"
           sizes="sm:50vw md:40vw lg:30vw xl:20vw"
           placeholder
