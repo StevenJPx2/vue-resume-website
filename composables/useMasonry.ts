@@ -1,3 +1,4 @@
+import { promiseTimeout } from "@vueuse/core";
 import type { Options, default as Macy } from "macy";
 
 export default function (
@@ -15,6 +16,8 @@ export default function (
           ...options,
           container: el,
         });
+        await promiseTimeout(100);
+        masonryRef.value.recalculate(true, true);
       });
     },
     { flush: "post", immediate: true },
